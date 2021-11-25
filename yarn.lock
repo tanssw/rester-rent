@@ -372,7 +372,7 @@
     "@vue/compiler-core" "3.2.22"
     "@vue/shared" "3.2.22"
 
-"@vue/compiler-sfc@3.2.22":
+"@vue/compiler-sfc@3.2.22", "@vue/compiler-sfc@^3.2.22":
   version "3.2.22"
   resolved "https://registry.yarnpkg.com/@vue/compiler-sfc/-/compiler-sfc-3.2.22.tgz#ffd0e5e35479b6ade18d12fefec369cbaf2f7718"
   integrity sha512-tWRQ5ge1tsTDhUwHgueicKJ8rYm6WUVAPTaIpFW3GSwZKcOEJ2rXdfkHFShNVGupeRALz2ET2H84OL0GeRxY0A==
