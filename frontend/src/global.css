@@ -1,0 +1,12 @@
+:root {
+    --emerald: #034C52;
+    --light-emerald: #015C63;
+    --lighter-emerald: #017075;
+    --salmon: #F48079;
+    --light-salmon: #FDA898;
+    --lighter-salmon: #FFC0B4;
+}
+
+html, body {
+    height: 100%;
+}
