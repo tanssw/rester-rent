@@ -4,6 +4,12 @@ Rester Rent is a project in Service-Oriented Programming, Faculty of Information
 ## Workflow Utilities
 - [Trello - Project Management Board](https://trello.com/b/gaNjzTMl/resterrent)
 
+
+## Front-end Setup Guideline
+- Use Yarn Package Manager ([Link to Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable))
+- `yarn install` to install all package in package.json
+- `yarn run frontend` to start Vue.js Live Server at port 8080
+
 ## Color Palette
 Emerald Green (Dark -> Light)
 - `#034C52`
