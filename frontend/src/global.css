@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100;300;400;500;600&display=swap');
+
+:root {
+    --emerald: #034C52;
+    --light-emerald: #015C63;
+    --lighter-emerald: #017075;
+    --salmon: #F48079;
+    --light-salmon: #FDA898;
+    --lighter-salmon: #FFC0B4;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Prompt', sans-serif;
+}
