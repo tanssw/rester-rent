@@ -1,0 +1,19 @@
+{
+    "name": "rester-rent",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/tanssw/rester-rent.git",
+    "author": "Tasanai Srisawat <tasanai.srisawat@gmail.com>",
+    "license": "MIT",
+    "scripts": {
+        "frontend": "cd frontend && vue-cli-service serve"
+    },
+    "devDependencies": {
+        "@vue/cli-service": "^4.5.15",
+        "@vue/compiler-sfc": "^3.2.22"
+    },
+    "dependencies": {
+        "vue": "^3.2.22",
+        "vue-router": "^4.0.12"
+    }
+}
