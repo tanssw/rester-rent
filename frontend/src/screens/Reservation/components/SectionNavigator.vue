@@ -21,7 +21,13 @@
         background: lightgrey;
     }
 }
-.section.active > .section-indicator {
+.section.active:nth-child(2) > .section-indicator {
+    background: var(--lighter-salmon);
+}
+.section.active:nth-child(3) > .section-indicator {
+    background: var(--light-salmon);
+}
+.section.active:nth-child(4) > .section-indicator {
     background: var(--salmon);
 }
 </style>
@@ -30,9 +36,9 @@ export default {
     data() {
         return {
             sections: [
-                {title: 'Select Date', active: false},
+                {title: 'Select Date', active: true},
                 {title: 'Specify Details', active: false},
-                {title: 'Make a Payment', active: false},
+                {title: 'Verify Reservation', active: false},
             ]
         }
     }
