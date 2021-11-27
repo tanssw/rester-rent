@@ -1,10 +1,14 @@
 <template>
-    <div class="container-fluid background h-100 d-flex justify-content-center align-items-center text-white display-1 fw-bold">
-        Hello WOrld!
+    <div>
+        <section-navigator />
     </div>
 </template>
-<style scoped>
-.background {
-    background: var(--emerald);
+<script>
+import SectionNavigator from './components/SectionNavigator.vue'
+
+export default {
+    components: {
+        SectionNavigator
+    }
 }
-</style>
+</script>
