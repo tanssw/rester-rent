@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex justify-content-center align-items-center">
+    <div class="d-flex justify-content-center align-items-center mb-5">
         <div class="flex-shrink-1 flex-md-grow-1"></div>
         <div v-for="(section, index) in sections" :key="index" :class="{active: section.active}" class="section flex-grow-1 flex-md-shrink-1 text-center mx-2">
             <div class="section-text text-secondary text-capitalize small mb-2 mx-3 d-none d-md-block">{{section.title}}</div>
