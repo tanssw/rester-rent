@@ -1,7 +1,7 @@
 <template>
     <div>
         <section-navigator :step="step" @change="toStep" />
-        <reserve-calendar v-if="step === 1" @next="nextStep" />
+        <reserve-calendar v-if="step === 1" @confirm="setDate" />
         <specify-detail v-else-if="step === 2" />
     </div>
 </template>
@@ -23,6 +23,10 @@ export default {
         }
     },
     methods: {
+        setDate(date) {
+            this.date = date
+            this.nextStep()
+        },
         nextStep() {
             let nextStep = this.step + 1
             if (![1, 2, 3].includes(nextStep)) return

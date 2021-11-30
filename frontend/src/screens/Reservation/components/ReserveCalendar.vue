@@ -50,7 +50,8 @@ export default {
             this.selected = dayjs(date).format('DD MMMM YYYY')
         },
         choose() {
-            this.$emit('next')
+            if (!this.selected) return
+            this.$emit('confirm', this.selected)
         }
     }
 }
