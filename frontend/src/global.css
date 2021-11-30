@@ -16,3 +16,7 @@ html, body {
 body {
     font-family: 'Prompt', sans-serif;
 }
+
+.text-emerald {
+    color: var(--emerald)
+}
