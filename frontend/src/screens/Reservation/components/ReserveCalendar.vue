@@ -1,11 +1,15 @@
 <template>
     <div>
-        <div class="d-flex justify-content-between align-items-centerr mb-4">
-            <h3 class="mb-0">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 v-if="selected" class="mb-0">
                 <span class="text-secondary fw-light">Selected Date:&nbsp;</span>
                 <span class="text-emerald">{{selected}}</span>
-            </h3>
-            <button class="btn btn-primary">Select</button>
+            </h4>
+            <h4 v-else class="mb-0">Select the date you would like to reserve</h4>
+            <button @click="choose()" class="btn btn-emerald d-flex align-items-center">
+                <span class="me-2">Next</span>
+                <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
         <calendar is-expanded trim-weeks class="custom-calendar">
             <template v-slot:day-content="{day}">
@@ -26,9 +30,6 @@
 .date:hover {
     color: var(--salmon);
 }
-.btn-select {
-
-}
 </style>
 <script>
 import dayjs from 'dayjs'
@@ -46,8 +47,10 @@ export default {
     },
     methods: {
         select(date) {
-            // TODO: Function when date selected
             this.selected = dayjs(date).format('DD MMMM YYYY')
+        },
+        choose() {
+            this.$emit('next')
         }
     }
 }
