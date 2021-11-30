@@ -1,10 +1,40 @@
 <template>
-    <div class="container-fluid background h-100 d-flex justify-content-center align-items-center text-white display-1 fw-bold">
-        Hello WOrld!
+    <div>
+        <section-navigator :step="step" @change="toStep" />
+        <reserve-calendar v-if="step === 1" @confirm="setDate" />
+        <specify-detail v-else-if="step === 2" />
     </div>
 </template>
-<style scoped>
-.background {
-    background: var(--emerald);
+<script>
+import SectionNavigator from './components/SectionNavigator.vue'
+import ReserveCalendar from './components/ReserveCalendar.vue'
+import SpecifyDetail from './components/SpecifyDetail.vue'
+
+export default {
+    components: {
+        SectionNavigator,
+        ReserveCalendar,
+        SpecifyDetail
+    },
+    data() {
+        return {
+            step: 1,
+            date: null
+        }
+    },
+    methods: {
+        setDate(date) {
+            this.date = date
+            this.nextStep()
+        },
+        nextStep() {
+            let nextStep = this.step + 1
+            if (![1, 2, 3].includes(nextStep)) return
+            this.step = nextStep
+        },
+        toStep(step) {
+            this.step = step
+        }
+    }
 }
-</style>
+</script>
