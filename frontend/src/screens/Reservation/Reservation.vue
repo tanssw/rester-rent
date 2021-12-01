@@ -1,7 +1,7 @@
 <template>
     <div>
         <section-navigator :step="step" @change="toStep" />
-        <div v-if="step === 1">
+        <div v-if="step === 1" class="section-container">
             <reserve-calendar v-model:selected="date" />
             <select-time />
             <select-room />

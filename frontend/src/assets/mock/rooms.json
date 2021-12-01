@@ -1,0 +1,50 @@
+[
+    {
+        "title": "The Continental",
+        "size": "200x200x200",
+        "maximum": 150,
+        "price": 3500,
+        "description": "Test Description",
+        "audioDescription": "Hello World!"
+    },
+    {
+        "title": "The Continental",
+        "size": "200x200x200",
+        "maximum": 150,
+        "price": 3500,
+        "description": "Test Description",
+        "audioDescription": "Hello World!"
+    },
+    {
+        "title": "The Continental",
+        "size": "200x200x200",
+        "maximum": 150,
+        "price": 3500,
+        "description": "Test Description",
+        "audioDescription": "Hello World!"
+    },
+    {
+        "title": "The Continental",
+        "size": "200x200x200",
+        "maximum": 150,
+        "price": 3500,
+        "description": "Test Description",
+        "audioDescription": "Hello World!"
+    },
+    {
+        "title": "The Continental",
+        "size": "200x200x200",
+        "maximum": 150,
+        "price": 3500,
+        "description": "Test Description",
+        "audioDescription": "Hello World!"
+    },
+    {
+        "title": "The Continental",
+        "size": "200x200x200",
+        "maximum": 150,
+        "price": 3500,
+        "description": "Test Description",
+        "audioDescription": "Hello World!"
+    }
+]
