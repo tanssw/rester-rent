@@ -3,7 +3,7 @@
         <h4 class="fw-light mb-4">เลือกห้องสำหรับจัดงาน</h4>
         <div class="row g-5">
             <div v-for="(room, index) in rooms" :key="index" class="col-6">
-                <div class="room-card cursor-pointer rounded-3 p-3">
+                <div @click="showDescription(room)" class="room-card cursor-pointer rounded-3 p-3">
                     <div class="row">
                         <div class="col-3">
 
@@ -22,6 +22,7 @@
                 </div>
             </div>
         </div>
+        <room-desc-modal ref="roomDescModal" :room="selected" />
     </div>
 </template>
 <style scoped>
@@ -39,10 +40,22 @@
 <script>
 import mockedRoomList from '@/assets/mock/rooms.json'
 
+import RoomDescModal from './RoomDescModal.vue'
+
 export default {
+    components: {
+        RoomDescModal
+    },
     data() {
         return {
+            selected: {},
             rooms: mockedRoomList
+        }
+    },
+    methods: {
+        showDescription(room) {
+            this.selected = room
+            this.$refs.roomDescModal.toggle()
         }
     }
 }
