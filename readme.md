@@ -2,6 +2,10 @@
 
 Rester Rent is a project in Service-Oriented Programming, Faculty of Information Technology, KMITL. This web application provide a template for restaurant's event organization service.
 
+## Database
+
+- MongaDB design collection ([Link](https://docs.google.com/spreadsheets/d/1cJCTlVGoJx0i0lNmKZo-czlYQ2V0G2wQmDEtPqYuPM4/edit?usp=sharing))
+
 ## Api Document
 
 - Postman api document ([Link](https://documenter.getpostman.com/view/14185907/UVJeEFff))
