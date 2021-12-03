@@ -2,9 +2,9 @@
     <div>
         <section-navigator :step="step" @change="toStep" />
         <div v-if="step === 1" class="section-container">
-            <reserve-calendar v-model:selected="date" />
-            <select-room v-model:selected="room" />
-            <select-time />
+            <reserve-calendar v-model:selected="reservation.date" />
+            <select-room v-model:selected="reservation.room" />
+            <select-time v-model:startAt="reservation.startAt" v-model:endAt="reservation.endAt" />
         </div>
         <div v-else-if="step === 2">
             <specify-detail />
@@ -31,8 +31,12 @@ export default {
     data() {
         return {
             step: 1,
-            date: null,
-            room: {}
+            reservation: {
+                date: null,
+                room: {},
+                startAt: null,
+                endAt: null
+            }
         }
     },
     methods: {

@@ -2,11 +2,11 @@
     <div class="mb-5">
         <h4 class="fw-light mb-4">ระบุช่วงเวลาที่ต้องการจอง</h4>
         <div class="d-flex align-items-center justify-content-center">
-            <select class="form-select p-3 fw-light">
+            <select v-model="selected.startAt" @change="selectStart()" class="form-select p-3 fw-light">
                 <option :value="time" v-for="(time, index) in option.startAt" :key="index">{{time}}</option>
             </select>
             <i class="fas fa-long-arrow-alt-right fa-3x mx-5 text-secondary"></i>
-            <select class="form-select p-3 fw-light">
+            <select v-model="selected.endAt" @change="selectEnd()" class="form-select p-3 fw-light">
                 <option :value="time" v-for="(time, index) in option.endAt" :key="index">{{time}}</option>
             </select>
         </div>
@@ -19,8 +19,23 @@ option:hover {
 </style>
 <script>
 export default {
+    props: {
+        startAt: {
+            type: String,
+            required: true
+        },
+        endAt: {
+            type: String,
+            required: true
+        }
+    },
+    emits: ['update:startAt', 'update:endAt'],
     data() {
         return {
+            selected: {
+                startAt: null,
+                endAt: null
+            },
             option: {
                 startAt: [],
                 endAt: []
@@ -37,6 +52,14 @@ export default {
             this.option.startAt.push(hour)
             this.option.endAt.push(hour)
             runner++
+        }
+    },
+    methods: {
+        selectStart() {
+            this.$emit('update:startAt', this.selected.startAt)
+        },
+        selectEnd() {
+            this.$emit('update:endAt', this.selected.endAt)
         }
     }
 }
