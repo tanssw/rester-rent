@@ -17,9 +17,22 @@ body {
     font-family: 'Prompt', sans-serif;
 }
 
+.cursor-pointer {
+    cursor: pointer;
+}
+
 /* Texts */
 .text-emerald {
     color: var(--emerald);
+}
+.text-salmon {
+    color: var(--salmon);
+}
+.text-light-salmon {
+    color: var(--light-salmon);
+}
+.text-lighter-salmon {
+    color: var(--lighter-salmon);
 }
 
 /* Buttons */
@@ -31,4 +44,9 @@ body {
     background-color: #023236;
     color: white;
     outline-color: var(--light-emerald) !important;
+}
+
+/* Background */
+.bg-emerald {
+    background-color: var(--emerald);
 }
