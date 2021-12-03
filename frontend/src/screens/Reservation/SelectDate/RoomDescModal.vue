@@ -49,6 +49,7 @@ export default {
             this.modal.toggle()
         },
         confirmSelect() {
+            this.$emit('select')
             this.modal.hide()
         }
     }

@@ -3,7 +3,7 @@
         <section-navigator :step="step" @change="toStep" />
         <div v-if="step === 1" class="section-container">
             <reserve-calendar v-model:selected="date" />
-            <select-room />
+            <select-room v-model:selected="room" />
             <select-time />
         </div>
         <div v-else-if="step === 2">
@@ -31,7 +31,8 @@ export default {
     data() {
         return {
             step: 1,
-            date: null
+            date: null,
+            room: {}
         }
     },
     methods: {

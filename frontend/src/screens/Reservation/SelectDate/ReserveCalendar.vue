@@ -5,7 +5,7 @@
             <template v-slot:day-content="{day}">
                 <div>
                     <button @click="select(day.id)" class="date d-flex justify-content-center h5 mb-0 p-4 w-100 border-0">
-                        <div :class="{'active': isActiveDate(day.id)}" class="day-box rounded-3 d-flex align-items-center justify-content-center">
+                        <div :class="{'active': checkActiveDate(day.id)}" class="day-box rounded-3 d-flex align-items-center justify-content-center">
                             {{day.day}}
                         </div>
                     </button>
@@ -47,7 +47,7 @@ export default {
         select(date) {
             this.$emit('update:selected', date)
         },
-        isActiveDate(date) {
+        checkActiveDate(date) {
             return date === this.selected
         }
     }

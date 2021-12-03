@@ -2,17 +2,19 @@
     <div class="mb-5">
         <h4 class="fw-light mb-4">เลือกห้องสำหรับจัดงาน</h4>
         <div class="row g-5">
-            <div v-for="(room, index) in rooms" :key="index" class="col-6">
-                <div @click="showDescription(room)" class="room-card cursor-pointer rounded-3 p-3">
+            <div v-for="(room, index) in rooms" :key="index" class="col-4">
+                <div @click="showDescription(room)" :class="{'active': checkSelectedRoom(room.id)}" class="room-card cursor-pointer rounded-3 p-3">
                     <div class="row">
                         <div class="col-3">
 
                         </div>
                         <div class="col-9 d-flex">
                             <div class="flex-grow-1">
-                                <h4>{{room.title}}</h4>
-                                <div>ขนาด: {{room.size}}</div>
-                                <div>รองรับได้สูงสุด {{room.maximum}} คน</div>
+                                <h5>{{room.title}}</h5>
+                                <div class="small">
+                                    <div>ขนาด: {{room.size}}</div>
+                                    <div>รองรับได้สูงสุด {{room.maximum}} คน</div>
+                                </div>
                             </div>
                             <div class="my-auto">
                                 <i class="fas fa-info-circle fa-2x text-secondary"></i>
@@ -22,16 +24,16 @@
                 </div>
             </div>
         </div>
-        <room-desc-modal ref="roomDescModal" :room="selected" />
+        <room-desc-modal ref="roomDescModal" :room="focus" @select="selectRoom" />
     </div>
 </template>
 <style scoped>
 .room-card {
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     transition: .25s;
 }
 .room-card:hover {
-    border-color: var(--salmon);
+    border-color: #aaa;
 }
 .room-card.active {
     border-color: var(--salmon);
@@ -46,16 +48,30 @@ export default {
     components: {
         RoomDescModal
     },
+    props: {
+        selected: {
+            type: Object,
+            required: true
+        }
+    },
+    emits: ['update:selected'],
     data() {
         return {
-            selected: {},
+            focus: {},
             rooms: mockedRoomList
         }
     },
     methods: {
         showDescription(room) {
-            this.selected = room
+            this.focus = room
             this.$refs.roomDescModal.toggle()
+        },
+        selectRoom() {
+            this.$emit('update:selected', this.focus)
+            this.focus = {}
+        },
+        checkSelectedRoom(roomId) {
+            return this.selected.id === roomId
         }
     }
 }
