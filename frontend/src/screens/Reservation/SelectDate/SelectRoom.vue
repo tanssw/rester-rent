@@ -36,7 +36,7 @@
     border-color: #aaa;
 }
 .room-card.active {
-    border-color: var(--salmon);
+    border-color: var(--light-emerald);
 }
 </style>
 <script>
