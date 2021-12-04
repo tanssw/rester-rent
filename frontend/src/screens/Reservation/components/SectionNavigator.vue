@@ -42,6 +42,7 @@ export default {
             required: true
         }
     },
+    emits: ['update:step'],
     data() {
         return {
             sections: [
@@ -52,14 +53,28 @@ export default {
         }
     },
     watch: {
-        step(newStep) {
-            this.sections[1].active = newStep > 1
-            this.sections[2].active = newStep > 2
+        step(oldStep, newStep) {
+            let isValidStep = this.validateStep(newStep)
+            if (!isValidStep) return
+            this.sections[newStep].active = true
         }
     },
     methods: {
         changeStep(index) {
-            this.$emit('change', index + 1)
+            // If changed step is not valid, do nothing
+            let isValidStep = this.validateStep(index)
+            if (!isValidStep) return
+            // If changed step is not active, do nothing
+            if (!this.sections[step].active) return
+            this.$emit('update:step', index)
+        },
+        validateStep(step) {
+            // If step is more than length of sections
+            if (step >= this.sections.length) return false
+            // If step is less than first index (0)
+            if (step < 0) return false
+
+            return true
         }
     }
 }

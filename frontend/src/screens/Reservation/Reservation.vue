@@ -1,13 +1,13 @@
 <template>
     <div>
-        <section-navigator :step="step" @change="toStep" />
-        <div v-if="step === 1" class="section-container">
+        <section-navigator v-model:step="step" />
+        <div v-if="step === 0" class="section-container">
             <reserve-calendar v-model:selected="reservation.date" />
             <select-room v-model:selected="reservation.room" />
             <select-time v-model:startAt="reservation.startAt" v-model:endAt="reservation.endAt" />
-            <confirm-selection :reservation="reservation" :isValid="isValid" />
+            <confirm-selection :reservation="reservation" :isValid="isValid" @confirm="nextStep" />
         </div>
-        <div v-else-if="step === 2">
+        <div v-else-if="step === 1">
             <specify-detail />
         </div>
     </div>
@@ -33,7 +33,7 @@ export default {
     },
     data() {
         return {
-            step: 1,
+            step: 0,
             reservation: {
                 date: null,
                 room: {},
@@ -55,12 +55,9 @@ export default {
     methods: {
         nextStep() {
             let nextStep = this.step + 1
-            if (![1, 2, 3].includes(nextStep)) return
+            if (![0, 1, 2].includes(nextStep)) return
             this.step = nextStep
-        },
-        toStep(step) {
-            this.step = step
-        },
+        }
     }
 }
 </script>

@@ -50,8 +50,7 @@ export default {
     },
     props: {
         selected: {
-            type: Object,
-            required: true
+            type: Object
         }
     },
     emits: ['update:selected'],

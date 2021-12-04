@@ -23,12 +23,10 @@ option:hover {
 export default {
     props: {
         startAt: {
-            type: String,
-            required: true
+            type: Number
         },
         endAt: {
-            type: String,
-            required: true
+            type: Number
         }
     },
     emits: ['update:startAt', 'update:endAt'],
