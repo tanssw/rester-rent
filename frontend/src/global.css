@@ -40,10 +40,25 @@ body {
     background-color: var(--emerald);
     color: white;
 }
-.btn-emerald:enabled:hover, .btn-emerald:enabled:focus {
+.btn-emerald:enabled:hover {
     background-color: #023236;
     color: white;
-    outline-color: var(--light-emerald) !important;
+}
+.btn-lighter-emerald {
+    background-color: var(--lighter-emerald);
+    color: white;
+}
+.btn-lighter-emerald:enabled:hover {
+    background-color: var(--emerald);
+    color: white;
+}
+.btn-salmon {
+    background-color: var(--salmon);
+    color: white;
+}
+.btn-salmon:enabled:hover {
+    background-color: #d67873;
+    color: white;
 }
 
 /* Background */

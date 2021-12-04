@@ -17,18 +17,19 @@
 <style scoped>
 .date {
     color: #333;
-    transition: .25s;
+    transition: .125s;
     background-color: white;
 }
 .date:hover {
-    color: var(--lighter-emerald);
+    color: var(--light-emerald);
 }
 .day-box {
     width: 2em;
     height: 2em;
+    transition: .125s;
 }
 .day-box.active {
-    background: var(--lighter-emerald);
+    background: var(--light-emerald);
     color: white;
 }
 </style>
