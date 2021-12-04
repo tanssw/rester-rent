@@ -53,7 +53,7 @@ export default {
         }
     },
     watch: {
-        step(oldStep, newStep) {
+        step(newStep) {
             let isValidStep = this.validateStep(newStep)
             if (!isValidStep) return
             this.sections[newStep].active = true
@@ -65,7 +65,7 @@ export default {
             let isValidStep = this.validateStep(index)
             if (!isValidStep) return
             // If changed step is not active, do nothing
-            if (!this.sections[step].active) return
+            if (!this.sections[index].active) return
             this.$emit('update:step', index)
         },
         validateStep(step) {

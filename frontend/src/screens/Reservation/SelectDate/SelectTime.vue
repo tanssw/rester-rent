@@ -2,12 +2,12 @@
     <div class="mb-5">
         <h4 class="fw-light mb-4">ระบุช่วงเวลาที่ต้องการจอง</h4>
         <div class="d-flex align-items-center justify-content-center">
-            <select v-model="selected.startAt" @change="selectStart()" class="form-select p-3 fw-light">
+            <select v-model="startAt" @change="selectStart()" class="form-select p-3 fw-light">
                 <option :value="null" disabled>เวลาเริ่มต้น</option>
                 <option :value="time.value" v-for="(time, index) in filteredStartOptions" :key="index">{{time.display}}</option>
             </select>
             <i class="fas fa-long-arrow-alt-right fa-3x mx-5 text-secondary"></i>
-            <select v-model="selected.endAt" @change="selectEnd()" class="form-select p-3 fw-light">
+            <select v-model="endAt" @change="selectEnd()" class="form-select p-3 fw-light">
                 <option :value="null" disabled>เวลาสิ้นสุด</option>
                 <option :value="time.value" v-for="(time, index) in filteredEndOptions" :key="index">{{time.display}}</option>
             </select>
