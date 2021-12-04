@@ -5,7 +5,7 @@
             <reserve-calendar v-model:selected="reservation.date" />
             <select-room v-model:selected="reservation.room" />
             <select-time v-model:startAt="reservation.startAt" v-model:endAt="reservation.endAt" />
-            <confirm-selection :isValid="isValid" />
+            <confirm-selection :reservation="reservation" :isValid="isValid" />
         </div>
         <div v-else-if="step === 2">
             <specify-detail />

@@ -60,7 +60,7 @@ export default {
         const END_HOUR = 24
         let runner = START_HOUR
         while (runner <= END_HOUR) {
-            let hour = runner < 10 ? `0${runner}:00` : `${runner}:00`
+            let hour = runner < 10 ? `0${runner}:00` : runner === 24 ? `00:00` : `${runner}:00`
             this.option.startAt.push({value: runner, display: hour})
             this.option.endAt.push({value: runner, display: hour})
             runner++

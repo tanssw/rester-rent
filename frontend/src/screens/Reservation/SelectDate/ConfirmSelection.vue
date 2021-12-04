@@ -8,7 +8,7 @@
                 </div>
             </button>
         </div>
-        <confirm-modal ref="confirmModal" />
+        <confirm-modal :reservation="reservation" ref="confirmModal" />
     </div>
 </template>
 <style scoped>
@@ -27,6 +27,10 @@ export default {
         ConfirmModal
     },
     props: {
+        reservation: {
+            type: Object,
+            required: true
+        },
         isValid: {
             type: Boolean,
             required: true
