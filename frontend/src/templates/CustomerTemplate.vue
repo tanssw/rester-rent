@@ -8,5 +8,6 @@
 <style scoped>
 .background {
     background: var(--emerald);
+    min-height: 100vh;
 }
 </style>

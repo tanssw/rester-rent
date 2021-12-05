@@ -1,7 +1,7 @@
 <template>
     <div>
         <section-navigator v-model:step="step" />
-        <div v-if="step === 0" class="section-container">
+        <div v-if="step === 0">
             <reserve-calendar v-model:selected="reservation.date" />
             <select-room v-model:selected="reservation.room" />
             <select-time v-model:startAt="reservation.startAt" v-model:endAt="reservation.endAt" />
@@ -33,7 +33,7 @@ export default {
     },
     data() {
         return {
-            step: 0,
+            step: 1,
             reservation: {
                 date: null,
                 room: {},

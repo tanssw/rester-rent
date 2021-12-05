@@ -9,7 +9,7 @@
                         <h4 class="fw-light">{{reserveDate}}</h4>
                     </div>
                     <button @click="toggle()" class="btn btn-outline-secondary px-5 py-2 mx-1 fw-light">
-                        ยกเลิก
+                        กลับ
                     </button>
                     <button @click="confirm()" class="btn btn-lighter-emerald px-5 py-2 mx-1 fw-light">
                         ดำเนินการต่อ
