@@ -8,7 +8,7 @@
                 </div>
             </button>
         </div>
-        <confirm-modal ref="confirmModal" />
+        <confirm-modal ref="confirmModal" :reservation="reservation" @confirm="onConfirm" />
     </div>
 </template>
 <style scoped>
@@ -26,7 +26,12 @@ export default {
     components: {
         ConfirmModal
     },
+    emits: ['confirm'],
     props: {
+        reservation: {
+            type: Object,
+            required: true
+        },
         isValid: {
             type: Boolean,
             required: true
@@ -35,6 +40,9 @@ export default {
     methods: {
         openConfirmation() {
             this.$refs.confirmModal.toggle()
+        },
+        onConfirm() {
+            this.$emit('confirm')
         }
     }
 }

@@ -1,14 +1,14 @@
 <template>
     <div>
-        <section-navigator :step="step" @change="toStep" />
-        <div v-if="step === 1" class="section-container">
+        <section-navigator v-model:step="step" />
+        <div v-if="step === 0">
             <reserve-calendar v-model:selected="reservation.date" />
             <select-room v-model:selected="reservation.room" />
             <select-time v-model:startAt="reservation.startAt" v-model:endAt="reservation.endAt" />
-            <confirm-selection :isValid="isValid" />
+            <confirm-selection :reservation="reservation" :isValid="isValid" @confirm="nextStep" />
         </div>
-        <div v-else-if="step === 2">
-            <specify-detail />
+        <div v-else-if="step === 1">
+            <theme-selection v-model:selected="spec.theme" />
         </div>
     </div>
 </template>
@@ -20,25 +20,32 @@ import SelectRoom from './SelectDate/SelectRoom.vue'
 import SelectTime from './SelectDate/SelectTime.vue'
 import ConfirmSelection from './SelectDate/ConfirmSelection.vue'
 
-import SpecifyDetail from './SpecifyDetail/SpecifyDetail.vue'
+import ThemeSelection from './SpecifyDetail/ThemeSelection.vue'
 
 export default {
     components: {
         SectionNavigator,
+        // 1st Section's Components
         ReserveCalendar,
         SelectRoom,
         SelectTime,
         ConfirmSelection,
-        SpecifyDetail
+        // 2nd Section's Components
+        ThemeSelection
     },
     data() {
         return {
-            step: 1,
+            step: 0,
             reservation: {
                 date: null,
                 room: {},
                 startAt: null,
                 endAt: null
+            },
+            spec: {
+                theme: null,
+                music: null,
+                food: null
             }
         }
     },
@@ -55,12 +62,9 @@ export default {
     methods: {
         nextStep() {
             let nextStep = this.step + 1
-            if (![1, 2, 3].includes(nextStep)) return
+            if (![0, 1, 2].includes(nextStep)) return
             this.step = nextStep
-        },
-        toStep(step) {
-            this.step = step
-        },
+        }
     }
 }
 </script>

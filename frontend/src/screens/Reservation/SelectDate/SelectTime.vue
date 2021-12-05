@@ -23,12 +23,10 @@ option:hover {
 export default {
     props: {
         startAt: {
-            type: String,
-            required: true
+            type: Number
         },
         endAt: {
-            type: String,
-            required: true
+            type: Number
         }
     },
     emits: ['update:startAt', 'update:endAt'],
@@ -60,11 +58,13 @@ export default {
         const END_HOUR = 24
         let runner = START_HOUR
         while (runner <= END_HOUR) {
-            let hour = runner < 10 ? `0${runner}:00` : `${runner}:00`
+            let hour = runner < 10 ? `0${runner}:00` : runner === 24 ? `00:00` : `${runner}:00`
             this.option.startAt.push({value: runner, display: hour})
             this.option.endAt.push({value: runner, display: hour})
             runner++
         }
+        this.selected.startAt = this.startAt
+        this.selected.endAt = this.endAt
     },
     methods: {
         selectStart() {
