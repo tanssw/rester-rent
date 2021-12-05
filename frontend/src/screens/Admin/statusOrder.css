@@ -1,0 +1,46 @@
+.dot {
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.ชำระเงินเสร็จสิ้น {
+    background-color: #66f7b1;
+    color: #198754;
+}
+.ชำระเงินเสร็จสิ้น .dot{
+    background-color: #198754;
+}
+
+.ยกเลิกการดำเนินการ {
+    background-color: #f86e6e;
+    color: #dc3535;
+}
+.ยกเลิกการดำเนินการ .dot{
+    background-color: #dc3535;
+}
+
+.ระหว่างดำเนินการ {
+    background-color: #FFF8E4;
+    color: #FFCC32;
+}
+.ระหว่างดำเนินการ .dot{
+    background-color: #FFCC32;
+}
+
+.รอการดำเนินการ {
+    background-color: #9c9c9c;
+    color: #ffffff;
+}
+.รอการดำเนินการ .dot{
+    background-color: #ffffff;
+}
+
+.รอการชำระเงิน {
+    background-color: #d3f5fc;
+    color: #0DCAF0;
+}
+.รอการชำระเงิน .dot{
+    background-color: #0DCAF0;
+}

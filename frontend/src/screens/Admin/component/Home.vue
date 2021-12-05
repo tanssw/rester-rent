@@ -1,5 +1,4 @@
 <template>
-    <Order/>
 </template>
 
 <style>
