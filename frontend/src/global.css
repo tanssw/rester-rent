@@ -16,3 +16,52 @@ html, body {
 body {
     font-family: 'Prompt', sans-serif;
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Texts */
+.text-emerald {
+    color: var(--emerald);
+}
+.text-salmon {
+    color: var(--salmon);
+}
+.text-light-salmon {
+    color: var(--light-salmon);
+}
+.text-lighter-salmon {
+    color: var(--lighter-salmon);
+}
+
+/* Buttons */
+.btn-emerald {
+    background-color: var(--emerald);
+    color: white;
+}
+.btn-emerald:enabled:hover {
+    background-color: #023236;
+    color: white;
+}
+.btn-lighter-emerald {
+    background-color: var(--lighter-emerald);
+    color: white;
+}
+.btn-lighter-emerald:enabled:hover {
+    background-color: var(--emerald);
+    color: white;
+}
+.btn-salmon {
+    background-color: var(--salmon);
+    color: white;
+}
+.btn-salmon:enabled:hover {
+    background-color: #d67873;
+    color: white;
+}
+
+/* Background */
+.bg-emerald {
+    background-color: var(--emerald);
+}

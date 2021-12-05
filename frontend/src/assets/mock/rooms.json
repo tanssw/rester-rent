@@ -1,0 +1,56 @@
+[
+    {
+        "id": 0,
+        "title": "The Continental",
+        "size": "200x200x200",
+        "maximum": 150,
+        "price": 3500,
+        "description": "Test Description",
+        "audioDescription": "Hello World!"
+    },
+    {
+        "id": 1,
+        "title": "Alae",
+        "size": "200x200x200",
+        "maximum": 150,
+        "price": 3500,
+        "description": "Test Description",
+        "audioDescription": "Hello World!"
+    },
+    {
+        "id": 2,
+        "title": "Yes,Sir",
+        "size": "200x200x200",
+        "maximum": 150,
+        "price": 3500,
+        "description": "Test Description",
+        "audioDescription": "Hello World!"
+    },
+    {
+        "id": 3,
+        "title": "Gooooose",
+        "size": "200x200x200",
+        "maximum": 150,
+        "price": 3500,
+        "description": "Test Description",
+        "audioDescription": "Hello World!"
+    },
+    {
+        "id": 4,
+        "title": "Siam",
+        "size": "200x200x200",
+        "maximum": 150,
+        "price": 3500,
+        "description": "Test Description",
+        "audioDescription": "Hello World!"
+    },
+    {
+        "id": 5,
+        "title": "Little Pony",
+        "size": "200x200x200",
+        "maximum": 150,
+        "price": 3500,
+        "description": "Test Description",
+        "audioDescription": "Hello World!"
+    }
+]
