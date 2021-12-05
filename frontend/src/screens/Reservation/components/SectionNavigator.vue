@@ -45,9 +45,9 @@ export default {
     data() {
         return {
             sections: [
-                {title: 'Select Date', active: true},
-                {title: 'Specify Details', active: false},
-                {title: 'Verify Reservation', active: false},
+                {title: 'ระบุวันจอง', active: true},
+                {title: 'แจ้งรายละเอียด', active: false},
+                {title: 'ตรวจสอบ', active: false},
             ]
         }
     },
