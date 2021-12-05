@@ -8,7 +8,7 @@
             <confirm-selection :reservation="reservation" :isValid="isValid" @confirm="nextStep" />
         </div>
         <div v-else-if="step === 1">
-            <specify-detail />
+            <theme-selection v-model:selected="spec.theme" />
         </div>
     </div>
 </template>
@@ -20,16 +20,18 @@ import SelectRoom from './SelectDate/SelectRoom.vue'
 import SelectTime from './SelectDate/SelectTime.vue'
 import ConfirmSelection from './SelectDate/ConfirmSelection.vue'
 
-import SpecifyDetail from './SpecifyDetail/SpecifyDetail.vue'
+import ThemeSelection from './SpecifyDetail/ThemeSelection.vue'
 
 export default {
     components: {
         SectionNavigator,
+        // 1st Section's Components
         ReserveCalendar,
         SelectRoom,
         SelectTime,
         ConfirmSelection,
-        SpecifyDetail
+        // 2nd Section's Components
+        ThemeSelection
     },
     data() {
         return {
@@ -39,6 +41,11 @@ export default {
                 room: {},
                 startAt: null,
                 endAt: null
+            },
+            spec: {
+                theme: null,
+                music: null,
+                food: null
             }
         }
     },
