@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="row g-5 align-items-center">
+        <div class="row g-5 align-items-center mb-5">
             <div v-for="(theme, index) in themes" :key="index" class="col-3 text-center">
                 <div class="d-flex justify-content-center">
                     <div @click="openModal(theme)" :class="{'active': checkSelected(theme)}" class="theme-card">

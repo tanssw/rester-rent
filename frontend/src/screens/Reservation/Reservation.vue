@@ -8,12 +8,20 @@
             <confirm-selection :reservation="reservation" :isValid="isValid" @confirm="nextStep" />
         </div>
         <div v-else-if="step === 1">
-            <theme-selection v-model:selected="spec.theme" />
+            <detail-navigator />
+            <div>
+                <theme-selection v-if="specStep === 0" v-model:selected="spec.theme" />
+                <music-selection v-if="specStep === 1" />
+                <food-selection v-if="specStep === 2" />
+            </div>
+            <detail-bottom-navigator v-model:step="specStep" />
         </div>
     </div>
 </template>
 <script>
 import SectionNavigator from './components/SectionNavigator.vue'
+import DetailNavigator from './components/DetailNavigator.vue'
+import DetailBottomNavigator from './components/DetailBottomNavigator.vue'
 
 import ReserveCalendar from './SelectDate/ReserveCalendar.vue'
 import SelectRoom from './SelectDate/SelectRoom.vue'
@@ -21,6 +29,8 @@ import SelectTime from './SelectDate/SelectTime.vue'
 import ConfirmSelection from './SelectDate/ConfirmSelection.vue'
 
 import ThemeSelection from './SpecifyDetail/ThemeSelection.vue'
+import MusicSelection from './SpecifyDetail/MusicSelection.vue'
+import FoodSelection from './SpecifyDetail/FoodSelection.vue'
 
 export default {
     components: {
@@ -31,11 +41,16 @@ export default {
         SelectTime,
         ConfirmSelection,
         // 2nd Section's Components
-        ThemeSelection
+        DetailNavigator,
+        DetailBottomNavigator,
+        ThemeSelection,
+        MusicSelection,
+        FoodSelection,
     },
     data() {
         return {
-            step: 0,
+            step: 1,
+            specStep: 0,
             reservation: {
                 date: null,
                 room: {},
