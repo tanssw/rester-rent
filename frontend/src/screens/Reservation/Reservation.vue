@@ -8,7 +8,7 @@
             <confirm-selection :reservation="reservation" :isValid="isValid" @confirm="nextStep" />
         </div>
         <div v-else-if="step === 1">
-            <detail-navigator />
+            <detail-navigator v-model:step="specStep" :info="spec" />
             <div>
                 <theme-selection v-if="specStep === 0" v-model:selected="spec.theme" />
                 <music-selection v-if="specStep === 1" />
