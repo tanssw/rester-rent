@@ -53,7 +53,7 @@ export default {
     data() {
         return {
             sections: [
-                {title: 'Theme', key: 'theme', active: true},
+                {title: 'Theme', key: 'theme', active: false},
                 {title: 'Music', key: 'music', active: false},
                 {title: 'Food', key: 'food', active: false},
             ]
