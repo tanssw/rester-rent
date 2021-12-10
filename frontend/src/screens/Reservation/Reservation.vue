@@ -11,7 +11,7 @@
             <detail-navigator v-model:step="specStep" :info="spec" />
             <div>
                 <theme-selection v-if="specStep === 0" v-model:selected="spec.theme" />
-                <music-selection v-if="specStep === 1" v-model:selected="spec.music" />
+                <music-selection v-if="specStep === 1" v-model:selected="spec.music" :date="reservation.date" />
                 <food-selection v-if="specStep === 2" />
             </div>
             <detail-bottom-navigator v-model:step="specStep" :detail="spec" />
@@ -49,7 +49,7 @@ export default {
     },
     data() {
         return {
-            step: 1,
+            step: 0,
             specStep: 0,
             reservation: {
                 date: null,

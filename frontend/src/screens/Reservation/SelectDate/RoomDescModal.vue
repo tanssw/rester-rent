@@ -31,8 +31,7 @@
 export default {
     props: {
         room: {
-            type: Object,
-            required: true
+            type: Object
         }
     },
     data() {

@@ -12,7 +12,7 @@
             <div class="col-8">
                 <h3 class="text-capitalize mb-3">{{options[selected].title}}</h3>
                 <audio-detail v-if="selected === 'audio'" />
-                <band-detail v-else-if="selected === 'band'" />
+                <band-detail v-else-if="selected === 'band'" :date="date" />
             </div>
         </div>
     </div>
@@ -36,6 +36,9 @@ export default {
     },
     props: {
         selected: {
+            type: String
+        },
+        date: {
             type: String
         }
     },

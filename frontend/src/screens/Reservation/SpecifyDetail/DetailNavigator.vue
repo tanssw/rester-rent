@@ -59,7 +59,13 @@ export default {
             ]
         }
     },
+    created() {
+
+    },
     methods: {
+        checkStep() {
+
+        },
         isCurrentStep(step) {
             return step === this.step
         },

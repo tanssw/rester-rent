@@ -66,11 +66,11 @@ export default {
             this.$refs.roomDescModal.toggle()
         },
         selectRoom() {
-            this.$emit('update:selected', this.focus.id)
+            this.$emit('update:selected', this.focus)
             this.focus = {}
         },
         checkSelectedRoom(roomId) {
-            return this.selected === roomId
+            return this.selected.id === roomId
         }
     }
 }
