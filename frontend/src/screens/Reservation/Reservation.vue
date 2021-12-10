@@ -49,7 +49,7 @@ export default {
     },
     data() {
         return {
-            step: 0,
+            step: 1,
             specStep: 0,
             reservation: {
                 date: null,
