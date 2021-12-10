@@ -6,7 +6,7 @@
         <button v-if="!isLastStep" @click="next()" class="btn btn-outline-secondary px-3 py-2">
             <i class="fas fa-chevron-right"></i>
         </button>
-        <button v-else @click="next()" class="btn btn-lighter-emerald px-3 py-2">
+        <button v-else @click="next()" class="btn btn-lighter-emerald px-3 py-2" :disabled="isIncompleted">
             ดำเนินการต่อ
         </button>
     </div>
@@ -16,6 +16,9 @@ export default {
     props: {
         step: {
             type: Number
+        },
+        detail: {
+            type: Object
         }
     },
     emits: ['update:step'],
@@ -30,6 +33,9 @@ export default {
         },
         isLastStep() {
             return this.step === this.steps[this.steps.length - 1]
+        },
+        isIncompleted() {
+            return Object.values(this.detail).includes(null)
         }
     },
     methods: {

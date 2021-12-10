@@ -11,26 +11,26 @@
             <detail-navigator v-model:step="specStep" :info="spec" />
             <div>
                 <theme-selection v-if="specStep === 0" v-model:selected="spec.theme" />
-                <music-selection v-if="specStep === 1" />
+                <music-selection v-if="specStep === 1" v-model:selectedType="spec.music.type" v-model:selectedBand="spec.music.band" :date="reservation.date" />
                 <food-selection v-if="specStep === 2" />
             </div>
-            <detail-bottom-navigator v-model:step="specStep" />
+            <detail-bottom-navigator v-model:step="specStep" :detail="spec" />
         </div>
     </div>
 </template>
 <script>
 import SectionNavigator from './components/SectionNavigator.vue'
-import DetailNavigator from './components/DetailNavigator.vue'
-import DetailBottomNavigator from './components/DetailBottomNavigator.vue'
+import DetailNavigator from './SpecifyDetail/DetailNavigator.vue'
+import DetailBottomNavigator from './SpecifyDetail/DetailBottomNavigator.vue'
 
 import ReserveCalendar from './SelectDate/ReserveCalendar.vue'
 import SelectRoom from './SelectDate/SelectRoom.vue'
 import SelectTime from './SelectDate/SelectTime.vue'
 import ConfirmSelection from './SelectDate/ConfirmSelection.vue'
 
-import ThemeSelection from './SpecifyDetail/ThemeSelection.vue'
-import MusicSelection from './SpecifyDetail/MusicSelection.vue'
-import FoodSelection from './SpecifyDetail/FoodSelection.vue'
+import ThemeSelection from './SpecifyDetail/Theme/ThemeSelection.vue'
+import MusicSelection from './SpecifyDetail/Music/MusicSelection.vue'
+import FoodSelection from './SpecifyDetail/Food/FoodSelection.vue'
 
 export default {
     components: {
@@ -59,7 +59,10 @@ export default {
             },
             spec: {
                 theme: null,
-                music: null,
+                music: {
+                    type: 'audio',
+                    band: {}
+                },
                 food: null
             }
         }
