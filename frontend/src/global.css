@@ -26,6 +26,12 @@ body {
 .text-emerald {
     color: var(--emerald);
 }
+.text-light-emerald {
+    color: var(--light-emerald);
+}
+.text-lighter-emerald {
+    color: var(--lighter-emerald);
+}
 .text-salmon {
     color: var(--salmon);
 }
@@ -65,4 +71,9 @@ body {
 /* Background */
 .bg-emerald {
     background-color: var(--emerald);
+}
+
+/* Border */
+.border-emerald {
+    border-color: var(--emerald) !important;
 }

@@ -11,7 +11,7 @@
             <detail-navigator v-model:step="specStep" :info="spec" />
             <div>
                 <theme-selection v-if="specStep === 0" v-model:selected="spec.theme" />
-                <music-selection v-if="specStep === 1" />
+                <music-selection v-if="specStep === 1" v-model:selected="spec.music" />
                 <food-selection v-if="specStep === 2" />
             </div>
             <detail-bottom-navigator v-model:step="specStep" />
@@ -28,9 +28,9 @@ import SelectRoom from './SelectDate/SelectRoom.vue'
 import SelectTime from './SelectDate/SelectTime.vue'
 import ConfirmSelection from './SelectDate/ConfirmSelection.vue'
 
-import ThemeSelection from './SpecifyDetail/ThemeSelection.vue'
-import MusicSelection from './SpecifyDetail/MusicSelection.vue'
-import FoodSelection from './SpecifyDetail/FoodSelection.vue'
+import ThemeSelection from './SpecifyDetail/Theme/ThemeSelection.vue'
+import MusicSelection from './SpecifyDetail/Music/MusicSelection.vue'
+import FoodSelection from './SpecifyDetail/Food/FoodSelection.vue'
 
 export default {
     components: {
@@ -59,7 +59,7 @@ export default {
             },
             spec: {
                 theme: null,
-                music: null,
+                music: 'audio',
                 food: null
             }
         }
