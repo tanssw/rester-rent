@@ -10,9 +10,9 @@
                 </div>
             </div>
             <div class="col-8">
-                <h3 class="text-capitalize mb-3">{{options[selected].title}}</h3>
-                <audio-detail v-if="selected === 'audio'" />
-                <band-detail v-else-if="selected === 'band'" :date="date" />
+                <h3 class="text-capitalize mb-3">{{options[selectedType].title}}</h3>
+                <audio-detail v-if="selectedType === 'audio'" />
+                <band-detail v-else-if="selectedType === 'band'" :selected="selectedBand" :date="date" @select="selectBand" />
             </div>
         </div>
     </div>
@@ -35,14 +35,17 @@ export default {
         BandDetail
     },
     props: {
-        selected: {
+        selectedType: {
             type: String
+        },
+        selectedBand: {
+            type: Object
         },
         date: {
             type: String
         }
     },
-    emits: ['update:selected'],
+    emits: ['update:selectedType', 'update:selectedBand'],
     data() {
         return {
             options: {
@@ -53,10 +56,13 @@ export default {
     },
     methods: {
         checkActive(id) {
-            return this.selected === id
+            return this.selectedType === id
         },
         choose(id) {
-            this.$emit('update:selected', id)
+            this.$emit('update:selectedType', id)
+        },
+        selectBand(band) {
+            this.$emit('update:selectedBand', band)
         }
     }
 }

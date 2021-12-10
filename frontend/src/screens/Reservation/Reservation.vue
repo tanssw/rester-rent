@@ -11,7 +11,7 @@
             <detail-navigator v-model:step="specStep" :info="spec" />
             <div>
                 <theme-selection v-if="specStep === 0" v-model:selected="spec.theme" />
-                <music-selection v-if="specStep === 1" v-model:selected="spec.music" :date="reservation.date" />
+                <music-selection v-if="specStep === 1" v-model:selectedType="spec.music.type" v-model:selectedBand="spec.music.band" :date="reservation.date" />
                 <food-selection v-if="specStep === 2" />
             </div>
             <detail-bottom-navigator v-model:step="specStep" :detail="spec" />
@@ -49,7 +49,7 @@ export default {
     },
     data() {
         return {
-            step: 0,
+            step: 1,
             specStep: 0,
             reservation: {
                 date: null,
@@ -59,7 +59,10 @@ export default {
             },
             spec: {
                 theme: null,
-                music: 'audio',
+                music: {
+                    type: 'audio',
+                    band: {}
+                },
                 food: null
             }
         }
