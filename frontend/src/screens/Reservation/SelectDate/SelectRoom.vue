@@ -50,8 +50,7 @@ export default {
     },
     props: {
         selected: {
-            type: Object,
-            required: true
+            type: Object
         }
     },
     emits: ['update:selected'],
@@ -67,11 +66,11 @@ export default {
             this.$refs.roomDescModal.toggle()
         },
         selectRoom() {
-            this.$emit('update:selected', this.focus)
+            this.$emit('update:selected', this.focus.id)
             this.focus = {}
         },
         checkSelectedRoom(roomId) {
-            return this.selected.id === roomId
+            return this.selected === roomId
         }
     }
 }
