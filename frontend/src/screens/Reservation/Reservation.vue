@@ -14,14 +14,14 @@
                 <music-selection v-if="specStep === 1" v-model:selected="spec.music" />
                 <food-selection v-if="specStep === 2" />
             </div>
-            <detail-bottom-navigator v-model:step="specStep" />
+            <detail-bottom-navigator v-model:step="specStep" :detail="spec" />
         </div>
     </div>
 </template>
 <script>
 import SectionNavigator from './components/SectionNavigator.vue'
-import DetailNavigator from './components/DetailNavigator.vue'
-import DetailBottomNavigator from './components/DetailBottomNavigator.vue'
+import DetailNavigator from './SpecifyDetail/DetailNavigator.vue'
+import DetailBottomNavigator from './SpecifyDetail/DetailBottomNavigator.vue'
 
 import ReserveCalendar from './SelectDate/ReserveCalendar.vue'
 import SelectRoom from './SelectDate/SelectRoom.vue'
