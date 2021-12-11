@@ -4,7 +4,7 @@ const Order = [
         "content": "xxxx@gmail.com",
         "status": "รอการดำเนินการ",
         "income": 600.69,
-        "details": []    
+        "details": []   
     },
     {
         "id": "0002",

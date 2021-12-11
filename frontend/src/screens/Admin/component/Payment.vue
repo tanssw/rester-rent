@@ -7,7 +7,7 @@
     </div>
 </template>
 
-<style>
+<style scoped>
     .main {
         height: 89vh;
         background-color: var(--emerald);

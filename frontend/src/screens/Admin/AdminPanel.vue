@@ -1,7 +1,4 @@
 <template>
-    <header>
-        
-    </header>
     <div class="container-fluid">
         <div class="row flex-nowrap main-content">
         <SIDEBAR :section ="section" @change= "changeSec" />

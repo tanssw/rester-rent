@@ -7,7 +7,6 @@
                     <tr>
                         <th scope="col">Order#</th>
                         <th scope="col">Context</th>
-                        <!-- <th scope="col">Status</th> -->
                         <th scope="col">Total</th>
                         <th scope="col">Details</th>
                         <th scope="col" >Actions</th>
@@ -107,7 +106,6 @@
                 <th scope="col" width="20%">Status</th>
                 <th scope="col">Total</th>
                 <th scope="col">Details</th>
-                <!-- <th scope="col" >Actions</th> -->
             </tr>
             </thead>
             <tbody>
@@ -175,7 +173,7 @@
 
 
 <style src="../statusOrder.css"></style>
-<style>
+<style scoped>
 
     @media only screen and (max-height: 1200px) {
         .box-table {
