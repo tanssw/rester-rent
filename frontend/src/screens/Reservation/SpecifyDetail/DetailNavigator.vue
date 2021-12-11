@@ -70,7 +70,9 @@ export default {
             if (!isValidStep) return
 
             let currentKey = this.sections[step].key
-            if (!this.info[currentKey]) return
+            let isObject = typeof this.info[currentKey] === 'object'
+            if (this.info[currentKey] === null) return
+            if (isObject && !Object.keys(this.info[currentKey]).length) return
 
             this.sections[step].active = true
         },

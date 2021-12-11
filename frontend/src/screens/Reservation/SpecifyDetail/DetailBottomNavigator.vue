@@ -35,7 +35,9 @@ export default {
             return this.step === this.steps[this.steps.length - 1]
         },
         isIncompleted() {
-            return Object.values(this.detail).includes(null)
+            let detail = this.detail
+            if (detail.music.type === 'band' && !Object.keys(detail.music.band).length) return true
+            return false
         }
     },
     methods: {
