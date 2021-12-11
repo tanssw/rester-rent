@@ -6,7 +6,7 @@
         <button v-if="!isLastStep" @click="next()" class="btn btn-outline-secondary px-3 py-2">
             <i class="fas fa-chevron-right"></i>
         </button>
-        <button v-else @click="next()" class="btn btn-lighter-emerald px-3 py-2" :disabled="isIncompleted">
+        <button v-else @click="confirm()" class="btn btn-lighter-emerald px-3 py-2" :disabled="isIncompleted">
             ดำเนินการต่อ
         </button>
     </div>
@@ -53,6 +53,9 @@ export default {
             let nextStep = this.step + 1
             if (!this.validateStep(nextStep)) return
             this.$emit('update:step', nextStep)
+        },
+        confirm() {
+            this.$emit('confirm')
         }
     }
 }

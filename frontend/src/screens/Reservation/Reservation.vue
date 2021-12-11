@@ -14,7 +14,7 @@
                 <music-selection v-if="specStep === 1" v-model:selectedType="spec.music.type" v-model:selectedBand="spec.music.band" :date="reservation.date" />
                 <food-selection v-if="specStep === 2" v-model:selected="spec.food" />
             </div>
-            <detail-bottom-navigator v-model:step="specStep" :detail="spec" />
+            <detail-bottom-navigator v-model:step="specStep" :detail="spec" @confirm="nextStep" />
         </div>
     </div>
 </template>
