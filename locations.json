@@ -1,0 +1,123 @@
+[{
+  "_id": {
+    "$oid": "61b34defc2e2b139a51d6b7c"
+  },
+  "name": "Jarinthip Hall",
+  "image": "https://res.cloudinary.com/eddypisit/image/upload/c_fill/c_limit,w_1000/rjn21r6rto1puy0cbhuv.jpg",
+  "capacity": 200,
+  "price": 10000,
+  "size": "Medium",
+  "facilities": [
+    "ระบบเสียง",
+    "ระบบแสง",
+    "โปรเจคเตอร์/จอฉายภาพ",
+    "เวที"
+  ],
+  "details_room": "ห้องจัดเลี้ยงขนาดกลาง สามารถจุได้สูงสุด 200 ท่าน ภายในห้องมีความกล้าง 16 ม. ยาว 18 ม. และสูง 6 ม. และมีสิ่งเอานวยความสะดวกครบครัน",
+  "details_music": "มีลำโพงทั้งหมด 6 ตัว ติดไว้ที่จุดต่างๆตามมุมห้องและมีไมโครโฟนไร้สายจำนวน 4 ตัว"
+},{
+  "_id": {
+    "$oid": "61b34defc2e2b139a51d6b7d"
+  },
+  "name": "Jarinthip Grand Hall",
+  "image": "https://res.cloudinary.com/eddypisit/image/upload/c_fill/c_limit,w_1000/zfnqvinkblx1vfchlpqr.jpg",
+  "capacity": 800,
+  "price": 30000,
+  "size": "Large",
+  "facilities": [
+    "ระบบเสียง",
+    "ระบบแสง",
+    "โปรเจคเตอร์/จอฉายภาพ",
+    "เวที",
+    "Podium",
+    "โต๊ะลงทะเบียน"
+  ],
+  "details_room": "ห้องจัดเลี้ยงขนาดใหญ่ พร้อมเวที ระบบแสงสีเสียง สามารถจุได้สูงสุด 800 ท่าน ภายในห้องมีความกล้าง 30 ม. ยาว 40 ม. และสูง 10 ม. และมีสิ่งเอานวยความสะดวกครบครัน",
+  "details_music": "มีลำโพงทั้งหมด 14 ตัว ติดไว้ที่จุดต่างๆตามมุมห้องและมีไมโครโฟนไร้สายจำนวน 6 ตัว"
+},{
+  "_id": {
+    "$oid": "61b34defc2e2b139a51d6b7e"
+  },
+  "name": "ห้อง VIPst",
+  "image": "https://res.cloudinary.com/eddypisit/image/upload/c_fill/c_limit,w_1000/hqf3gn2zfy4l659uxvhe.jpg",
+  "capacity": 60,
+  "price": 10000,
+  "size": "Small",
+  "facilities": [
+    "ระบบเสียง",
+    "ระบบแสง",
+    "โปรเจคเตอร์/จอฉายภาพ"
+  ],
+  "details_room": "ห้องอาหารส่วนตัว สำหรับแขกมากลุ่มเล็ก สามารถจุได้สูงสุด 60 ท่าน สามารถกั้นห้องได้ 4 ห้อง หรือตีทะลุเป็นห้องใหญ่ห้องเดียวได้ ภายในห้องมีความกล้าง 5 ม. ยาว 18.5 ม. และสูง 2.5 ม. และมีสิ่งเอานวยความสะดวกครบครัน",
+  "details_music": "มีลำโพงทั้งหมด 6 ตัว ติดไว้ที่จุดต่างๆตามมุมห้องและมีไมโครโฟนไร้สายจำนวน 4 ตัว"
+},{
+  "_id": {
+    "$oid": "61b34defc2e2b139a51d6b7f"
+  },
+  "name": "Banquet hall",
+  "image": "https://res.cloudinary.com/eddypisit/image/upload/c_fill/c_limit,w_1000/rt5ntn26w9g8rnqs6ioc.jpg",
+  "capacity": 1000,
+  "price": 35000,
+  "size": "Extra Large",
+  "facilities": [
+    "ระบบเสียง",
+    "ระบบแสง",
+    "โปรเจคเตอร์/จอฉายภาพ",
+    "เวที",
+    "Podium",
+    "โต๊ะลงทะเบียน",
+    "สายวีจีเอ"
+  ],
+  "details_room": "ห้องจัดเลี้ยงขนาดใหญ่พิเศษ พร้อมเวที ระบบแสงสีเสียง สามารถจุได้สูงสุด 1000 ท่าน และมีสิ่งเอานวยความสะดวกครบครัน",
+  "details_music": "มีลำโพงทั้งหมด 20 ตัว ติดไว้ที่จุดต่างๆตามมุมห้องและมีไมโครโฟนไร้สายจำนวน 10 ตัว"
+},{
+  "_id": {
+    "$oid": "61b34defc2e2b139a51d6b80"
+  },
+  "name": "Diamond House",
+  "image": "https://res.cloudinary.com/eddypisit/image/upload/c_fill/c_limit,w_1000/kjqhkguqraczdnvkugjl.jpg",
+  "capacity": 400,
+  "price": 20000,
+  "size": "Medium",
+  "facilities": [
+    "ระบบเสียง",
+    "ระบบแสง",
+    "โปรเจคเตอร์/จอฉายภาพ",
+    "เวที",
+    "Podium",
+    "โต๊ะลงทะเบียน"
+  ],
+  "details_room": "ห้องจัดเลี้ยงขนาดกลาง พร้อมเวที ระบบแสงสีเสียง สามารถจุได้สูงสุด 400 ท่าน และมีสิ่งเอานวยความสะดวกครบครัน",
+  "details_music": "มีลำโพงทั้งหมด 4 ตัว ติดไว้ที่จุดต่างๆตามมุมห้องและมีไมโครโฟนไร้สายจำนวน 4 ตัว"
+},{
+  "_id": {
+    "$oid": "61b34defc2e2b139a51d6b81"
+  },
+  "name": "Charming Hall",
+  "image": "https://res.cloudinary.com/eddypisit/image/upload/c_fill/c_limit,w_1000/gwmx7uv1ki4shkdp8iep.jpg",
+  "capacity": 100,
+  "price": 8000,
+  "size": "Small",
+  "facilities": [
+    "ระบบเสียง",
+    "ระบบแสง",
+    "เวที"
+  ],
+  "details_room": "ห้องจัดเลี้ยงขนาดเล็ก พร้อมเวที ระบบแสงสีเสียง สามารถจุได้สูงสุด 100 ท่าน และมีสิ่งเอานวยความสะดวกครบครัน",
+  "details_music": "มีลำโพงทั้งหมด 3 ตัว ติดไว้ที่จุดต่างๆตามมุมห้องและมีไมโครโฟนไร้สายจำนวน 2 ตัว"
+},{
+  "_id": {
+    "$oid": "61b34defc2e2b139a51d6b82"
+  },
+  "name": "Charming Mild",
+  "image": "https://res.cloudinary.com/eddypisit/image/upload/c_fill/c_limit,w_1000/t0otbpcbifp01v0phg7y.jpg",
+  "capacity": 30,
+  "price": 2000,
+  "size": "Small",
+  "facilities": [
+    "ระบบเสียง",
+    "ระบบแสง"
+  ],
+  "details_room": "ห้องจัดเลี้ยงขนาดเล็ก ระบบแสงสีเสียง สามารถจุได้สูงสุด 30 ท่าน และมีสิ่งเอานวยความสะดวกครบครัน",
+  "details_music": "มีลำโพงทั้งหมด 1 ตัว ติดไว้ที่จุดต่างๆตามมุมห้องและมีไมโครโฟนไร้สายจำนวน 1 ตัว"
+}]
