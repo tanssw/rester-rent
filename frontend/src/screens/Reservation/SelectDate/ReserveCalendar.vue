@@ -41,7 +41,9 @@ export default {
         Calendar
     },
     props: {
-        selected: {type: String, required: true}
+        selected: {
+            type: String
+        }
     },
     emits: ['update:selected'],
     methods: {
