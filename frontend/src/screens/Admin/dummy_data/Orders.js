@@ -9,21 +9,21 @@ const Order = [
     {
         "id": "0002",
         "content": "xxxx@gmail.com",
-        "status": "ชำระเงินเสร็จสิ้น",
+        "status": "รอการชำระเงิน",
         "income": 500.03,
         "details": []    
     },
     {
         "id": "0003",
         "content": "xxxx@gmail.com",
-        "status": "ระหว่างดำเนินการ",
+        "status": "ชำระเงินเสร็จสิ้น",
         "income": 333.33,
         "details": []    
     },
     {
         "id": "0004",
         "content": "xxxx@gmail.com",
-        "status": "รอการชำระเงิน",
+        "status": "ออเดอร์เสร็จสิ้น",
         "income": 18000,
         "details": []    
     },
@@ -44,7 +44,7 @@ const Order = [
     {
         "id": "0013",
         "content": "xxxx@gmail.com",
-        "status": "ระหว่างดำเนินการ",
+        "status": "รอการดำเนินการ",
         "income": 333.33,
         "details": []    
     },
@@ -65,7 +65,7 @@ const Order = [
     {
         "id": "0016",
         "content": "xxxx@gmail.com",
-        "status": "ยกเลิกการดำเนินการ",
+        "status": "รอการดำเนินการ",
         "income": 2500,
         "details": []    
     },
@@ -73,7 +73,7 @@ const Order = [
     {
         "id": "0017",
         "content": "xxxx@gmail.com",
-        "status": "ยกเลิกการดำเนินการ",
+        "status": "รอการดำเนินการ",
         "income": 2500,
         "details": []    
     },

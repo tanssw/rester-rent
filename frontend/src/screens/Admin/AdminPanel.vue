@@ -5,9 +5,9 @@
     <div class="container-fluid">
         <div class="row flex-nowrap main-content">
         <SIDEBAR :section ="section" @change= "changeSec" />
-        <div class="col p-5">
-            <HOME v-if= "section == 'home'"/>
+        <div class="col py-3">
             <ORDER v-if= "section == 'order'"/>
+            <PAYMENT v-if= "section == 'payment'"/>
         </div>
         </div>
     </div>
@@ -25,12 +25,12 @@
 </style>
 
 <script>
-import HOME from "./component/Home.vue"
+import PAYMENT from "./component/Payment.vue"
 import ORDER from "./component/Order.vue"
 import SIDEBAR from "./component/Sidebar.vue"
 export default {
     components: {
-        HOME, ORDER, SIDEBAR
+        PAYMENT, ORDER, SIDEBAR
     },
     data() {
         return {

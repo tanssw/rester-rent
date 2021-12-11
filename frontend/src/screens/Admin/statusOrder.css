@@ -21,19 +21,19 @@
     background-color: #dc3535;
 }
 
-.ระหว่างดำเนินการ {
+.รอการดำเนินการ {
     background-color: #FFF8E4;
     color: #FFCC32;
 }
-.ระหว่างดำเนินการ .dot{
+.รอการดำเนินการ .dot{
     background-color: #FFCC32;
 }
 
-.รอการดำเนินการ {
+.ออเดอร์เสร็จสิ้น {
     background-color: #9c9c9c;
     color: #ffffff;
 }
-.รอการดำเนินการ .dot{
+.ออเดอร์เสร็จสิ้น .dot{
     background-color: #ffffff;
 }
 
