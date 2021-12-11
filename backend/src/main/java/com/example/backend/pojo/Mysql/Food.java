@@ -1,5 +1,7 @@
 package com.example.backend.pojo.Mysql;
 
+import org.bson.json.JsonObject;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,14 +15,18 @@ public class Food {
     private String FNAME;
     private int CAPACITY;
     private String SIZE;
+    private String MENUS;
+    private int PRICE;
 
     public Food() {
     }
 
-    public Food(String FNAME, int CAPACITY, String SIZE) {
+    public Food(String FNAME, int CAPACITY, String SIZE, JsonObject MENUS, int PRICE) {
         this.FNAME = FNAME;
         this.CAPACITY = CAPACITY;
         this.SIZE = SIZE;
+        this.MENUS = MENUS.toString();
+        this.PRICE = PRICE;
     }
 
     public String getID() {
@@ -53,5 +59,21 @@ public class Food {
 
     public void setSIZE(String SIZE) {
         this.SIZE = SIZE;
+    }
+
+    public String getMENUS() {
+        return MENUS;
+    }
+
+    public void setMENUS(String MENUS) {
+        this.MENUS = MENUS;
+    }
+
+    public int getPRICE() {
+        return PRICE;
+    }
+
+    public void setPRICE(int PRICE) {
+        this.PRICE = PRICE;
     }
 }

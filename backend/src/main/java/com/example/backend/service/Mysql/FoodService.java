@@ -17,7 +17,7 @@ public class FoodService {
     //    CREATE
     public boolean addFood(FoodBody item) {
         try {
-            Food newFood = new Food(item.getName(), item.getCapacity(), item.getSize());
+            Food newFood = new Food(item.getName(), item.getCapacity(), item.getSize(), item.getMenus(), item.getPrice());
             foodRepository.save(newFood);
             return true;
         } catch (Exception e) {
@@ -36,7 +36,7 @@ public class FoodService {
     //    UPDATE
     public boolean updateFoodDataById(int id, FoodBody item) {
         try {
-            foodRepository.changeFoodById(item.getName(), item.getCapacity(), item.getSize(), id);
+            foodRepository.changeFoodById(item.getName(), item.getCapacity(), item.getSize(), item.getMenus().toString(), item.getPrice(), id);
             return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
