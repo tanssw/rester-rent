@@ -1,9 +1,7 @@
 package com.example.backend.pojo.Mysql;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Theme {
@@ -11,14 +9,27 @@ public class Theme {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String ID;
     private String TNAME;
+    private int price;
     private String IMAGE;
     private String DETAILS;
+
+//    @OneToMany(mappedBy = "Accessory")
+//    Set<ThemeAccessory> themeAccessory;
 
     public Theme() {
     }
 
-    public Theme(String TNAME, String IMAGE, String DETAILS) {
+    public Theme(String TNAME, int price, String IMAGE, String DETAILS) {
         this.TNAME = TNAME;
+        this.price = price;
+        this.IMAGE = IMAGE;
+        this.DETAILS = DETAILS;
+    }
+
+    public Theme(String ID, String TNAME, int price, String IMAGE, String DETAILS) {
+        this.ID = ID;
+        this.TNAME = TNAME;
+        this.price = price;
         this.IMAGE = IMAGE;
         this.DETAILS = DETAILS;
     }
@@ -37,6 +48,14 @@ public class Theme {
 
     public void setTNAME(String TNAME) {
         this.TNAME = TNAME;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public String getIMAGE() {

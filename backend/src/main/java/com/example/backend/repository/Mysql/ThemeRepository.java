@@ -6,19 +6,20 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 public interface ThemeRepository extends JpaRepository<Theme, String> {
 
     @Query(value = "SELECT * FROM THEME WHERE ID=?1", nativeQuery = true)
-    Theme findByThemeId(int id);
+    List<Theme> findByThemeId(int id);
 
     @Query(value = "SELECT * FROM THEME WHERE TNAME=?1", nativeQuery = true)
-    Theme findByThemeName(String name);
+    List<Theme> findByThemeName(String name);
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE THEME SET TNAME=?1, IMAGE=?2, DETAILS=?3 WHERE ID=?4", nativeQuery = true)
-    void changeThemeById(String name, String image, String details, int id);
+    @Query(value = "UPDATE THEME SET TNAME=?1, PRICE=?2, IMAGE=?3, DETAILS=?4 WHERE ID=?5", nativeQuery = true)
+    void changeThemeById(String name, int price, String image, String details, int id);
 
     @Transactional
     @Modifying

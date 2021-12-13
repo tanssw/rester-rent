@@ -1,6 +1,6 @@
 package com.example.backend.service.Mysql;
 
-import com.example.backend.controller.Mysql.Body.AccessoryBody;
+import com.example.backend.controller.Mysql.body.AccessoryBody;
 import com.example.backend.pojo.Mysql.Accessory;
 import com.example.backend.repository.Mysql.AccessoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class AccessoryService {
 //    CREATE
     public boolean addAccessory(AccessoryBody item) {
         try {
-            Accessory newAccessory = new Accessory(item.getName(), item.getQuantity());
+            Accessory newAccessory = new Accessory(item.getName());
             accessoryRepository.save(newAccessory);
             return true;
         } catch (Exception e) {
@@ -27,16 +27,16 @@ public class AccessoryService {
     }
 
 //    READ
-    public List allAccessory() {return accessoryRepository.findAll();}
+    public List<Accessory> allAccessory() {return accessoryRepository.findAll();}
 
-    public Accessory findByAccessoryName(String name) {return accessoryRepository.findByAccessoryName(name);}
+    public List<Accessory> findByAccessoryName(String name) {return accessoryRepository.findByAccessoryName(name);}
 
-    public Accessory findByAccessoryId(int id) {return accessoryRepository.findByAccessoryId(id);}
+    public List<Accessory> findByAccessoryId(int id) {return accessoryRepository.findByAccessoryId(id);}
 
 //    UPDATE
     public boolean updateAccessory(int id, AccessoryBody item) {
         try {
-            accessoryRepository.changeAccessoryById(item.getName(), item.getQuantity(), id);
+            accessoryRepository.changeAccessoryById(item.getName(), id);
             return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());

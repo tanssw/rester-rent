@@ -1,6 +1,7 @@
 package com.example.backend.controller.Mysql;
 
-import com.example.backend.controller.Mysql.Body.ThemeBody;
+import com.example.backend.controller.Mysql.body.ThemeBody;
+import com.example.backend.pojo.Mysql.Theme;
 import com.example.backend.service.Mysql.ThemeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,13 +18,23 @@ public class ThemeController {
     private ThemeService themeService;
 
     @GetMapping("/")
-    public List allTheme() {return themeService.allTheme();}
+    public ResponseEntity allTheme() {return new ResponseEntity(themeService.allTheme(), HttpStatus.OK);}
 
     @GetMapping("/find/name/{name}")
-    public ResponseEntity findByThemeName(@PathVariable("name") String name) {return new ResponseEntity(themeService.findByThemeName(name), HttpStatus.OK);}
+    public ResponseEntity findByThemeName(@PathVariable("name") String name) {
+        if (themeService.findByThemeName(name).isEmpty()) {
+            return new ResponseEntity<>("Not found theme with this name: " + name, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(themeService.findByThemeName(name), HttpStatus.OK);
+    }
 
     @GetMapping("/find/id/{id}")
-    public ResponseEntity findByThemeId(@PathVariable("id") int id) {return new ResponseEntity(themeService.findByThemeId(id), HttpStatus.OK);}
+    public ResponseEntity findByThemeId(@PathVariable("id") int id) {
+        if (themeService.findByThemeId(id).isEmpty()) {
+            return new ResponseEntity<>("Not found theme with this id: " + id, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(themeService.findByThemeId(id), HttpStatus.OK);
+    }
 
     @PatchMapping("/add")
     public ResponseEntity<?> addTheme(@RequestBody ThemeBody themeBody) {

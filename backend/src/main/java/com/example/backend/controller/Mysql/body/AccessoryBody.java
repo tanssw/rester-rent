@@ -1,6 +1,6 @@
-package com.example.backend.controller.Mysql.Body;
+package com.example.backend.controller.Mysql.body;
 
-public class MenuBody {
+public class AccessoryBody {
     private String name;
 
     public String getName() {

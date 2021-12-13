@@ -1,31 +1,29 @@
-package com.example.backend.controller.Mysql.Body;
-
-import org.bson.json.JsonObject;
+package com.example.backend.controller.Mysql.body;
 
 public class FoodBody {
-    private String name;
+    private String fname;
     private int capacity;
     private String size;
-    private JsonObject menus;
+    private String menus;
     private int price;
 
     public FoodBody() {
     }
 
-    public FoodBody(String name, int capacity, String size, JsonObject menus, int price) {
-        this.name = name;
+    public FoodBody(String fname, int capacity, String size, String menus, int price) {
+        this.fname = fname;
         this.capacity = capacity;
         this.size = size;
         this.menus = menus;
         this.price = price;
     }
 
-    public String getName() {
-        return name;
+    public String getFname() {
+        return fname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFname(String fname) {
+        this.fname = fname;
     }
 
     public int getCapacity() {
@@ -44,11 +42,11 @@ public class FoodBody {
         this.size = size;
     }
 
-    public JsonObject getMenus() {
+    public String getMenus() {
         return menus;
     }
 
-    public void setMenus(JsonObject menus) {
+    public void setMenus(String menus) {
         this.menus = menus;
     }
 

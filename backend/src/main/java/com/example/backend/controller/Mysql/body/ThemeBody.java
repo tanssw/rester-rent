@@ -1,12 +1,14 @@
-package com.example.backend.controller.Mysql.Body;
+package com.example.backend.controller.Mysql.body;
 
 public class ThemeBody {
     private String name;
+    private int price;
     private String image;
     private String details;
 
-    public ThemeBody(String name, String image, String details) {
+    public ThemeBody(String name, int price, String image, String details) {
         this.name = name;
+        this.price = price;
         this.image = image;
         this.details = details;
     }
@@ -17,6 +19,14 @@ public class ThemeBody {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public String getImage() {

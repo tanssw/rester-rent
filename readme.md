@@ -11,6 +11,7 @@ Rester Rent is a project in Service-Oriented Programming, Faculty of Information
 - Postman api document ([Link](https://documenter.getpostman.com/view/14185907/UVJeEFff))
 
 ## Frontend
+- Wireframe ([Link](https://wireframepro.mockflow.com/view/MAzIxMwcbnb#/page/fbe793cb8bfb43e8b3ffa3287c257692))
 
 ## Workflow Utilities
 

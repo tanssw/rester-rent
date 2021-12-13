@@ -6,14 +6,15 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 public interface FoodRepository extends JpaRepository<Food, String> {
 
     @Query(value = "SELECT * FROM FOOD WHERE ID=?1", nativeQuery = true)
-    Food findByFoodId(int id);
+    List<Food> findByFoodId(int id);
 
     @Query(value = "SELECT * FROM FOOD WHERE FNAME=?1", nativeQuery = true)
-    Food findByFoodName(String name);
+    List<Food> findByFoodName(String name);
 
     @Transactional
     @Modifying

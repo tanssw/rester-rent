@@ -40,14 +40,16 @@ export default {
     },
     emits: ['update:step'],
     watch: {
+        // Check active on every step changed.
         step(newStep) {
-            let isValidStep = this.validateStep(newStep)
-            if (!isValidStep) return
-
-            let currentKey = this.sections[newStep].key
-            if (!this.info[currentKey]) return
-
-            this.sections[newStep].active = true
+            this.checkStep(newStep)
+        },
+        // Check active on every information changed.
+        info: {
+            handler() {
+                this.checkStep(this.step)
+            },
+            deep: true
         }
     },
     data() {
@@ -59,7 +61,19 @@ export default {
             ]
         }
     },
+    created() {
+        this.checkStep(this.step)
+    },
     methods: {
+        checkStep(step) {
+            let isValidStep = this.validateStep(step)
+            if (!isValidStep) return
+
+            let currentKey = this.sections[step].key
+            if (!this.info[currentKey]) return
+
+            this.sections[step].active = true
+        },
         isCurrentStep(step) {
             return step === this.step
         },

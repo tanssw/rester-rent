@@ -21,11 +21,11 @@ public class Food {
     public Food() {
     }
 
-    public Food(String FNAME, int CAPACITY, String SIZE, JsonObject MENUS, int PRICE) {
+    public Food(String FNAME, int CAPACITY, String SIZE, String MENUS, int PRICE) {
         this.FNAME = FNAME;
         this.CAPACITY = CAPACITY;
         this.SIZE = SIZE;
-        this.MENUS = MENUS.toString();
+        this.MENUS = MENUS;
         this.PRICE = PRICE;
     }
 

@@ -1,6 +1,6 @@
 package com.example.backend.controller.Mysql;
 
-import com.example.backend.controller.Mysql.Body.FoodBody;
+import com.example.backend.controller.Mysql.body.FoodBody;
 import com.example.backend.service.Mysql.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,13 +17,23 @@ public class FoodController {
     private FoodService foodService;
 
     @GetMapping("/")
-    public List allFood() {return foodService.allFood();}
+    public ResponseEntity allFood() {return new ResponseEntity(foodService.allFood(), HttpStatus.OK);}
 
     @GetMapping("/find/name/{name}")
-    public ResponseEntity findFoodByName(@PathVariable("name") String name) {return new ResponseEntity(foodService.findByFoodName(name), HttpStatus.OK);}
+    public ResponseEntity findFoodByName(@PathVariable("name") String name) {
+        if (foodService.findByFoodName(name).isEmpty()) {
+            return new ResponseEntity<>("Not found food with this name: " + name, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(foodService.findByFoodName(name), HttpStatus.OK);
+    }
 
     @GetMapping("/find/id/{id}")
-    public ResponseEntity findFoodByName(@PathVariable("id") int id) {return new ResponseEntity(foodService.findByFoodId(id), HttpStatus.OK);}
+    public ResponseEntity findFoodByName(@PathVariable("id") int id) {
+        if (foodService.findByFoodId(id).isEmpty()) {
+            return new ResponseEntity<>("Not found food with this id: " + id, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(foodService.findByFoodId(id), HttpStatus.OK);
+    }
 
     @PatchMapping("/add")
     public ResponseEntity<?> addFood(@RequestBody FoodBody foodBody) {

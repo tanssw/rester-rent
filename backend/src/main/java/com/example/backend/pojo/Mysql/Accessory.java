@@ -1,6 +1,7 @@
 package com.example.backend.pojo.Mysql;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "ACCESSORY")
@@ -9,14 +10,20 @@ public class Accessory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID;
     private String ANAME;
-    private int QUANTITY;
+
+//    @OneToMany(mappedBy = "Theme")
+//    Set<ThemeAccessory> themeAccessory;
 
     public Accessory() {
     }
 
-    public Accessory(String ANAME, int QUANTITY) {
+    public Accessory(String ANAME) {
         this.ANAME = ANAME;
-        this.QUANTITY = QUANTITY;
+    }
+
+    public Accessory(int ID, String ANAME) {
+        this.ID = ID;
+        this.ANAME = ANAME;
     }
 
     public int getID() {
@@ -33,13 +40,5 @@ public class Accessory {
 
     public void setANAME(String ANAME) {
         this.ANAME = ANAME;
-    }
-
-    public Integer getQUANTITY() {
-        return QUANTITY;
-    }
-
-    public void setQUANTITY(int QUANTITY) {
-        this.QUANTITY = QUANTITY;
     }
 }
