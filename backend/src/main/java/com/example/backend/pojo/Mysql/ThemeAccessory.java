@@ -2,22 +2,14 @@ package com.example.backend.pojo.Mysql;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class ThemeAccessory {
+
+public class ThemeAccessory implements Serializable {
 
     @EmbeddedId
     private CompositeThemeAccessory id;
-
-//    @ManyToOne
-//    @MapsId("THEME_ID")
-//    @JoinColumn(name = "theme_id")
-//    Theme theme;
-//
-//    @ManyToOne
-//    @MapsId("ACCESSORY_ID")
-//    @JoinColumn(name = "ID")
-//    Accessory accessory;
 
     private int QUANTITY;
 

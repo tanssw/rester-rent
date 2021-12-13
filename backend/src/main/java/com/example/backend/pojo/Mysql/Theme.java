@@ -9,7 +9,7 @@ public class Theme {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String ID;
     private String TNAME;
-    private int price;
+    private int PRICE;
     private String IMAGE;
     private String DETAILS;
 
@@ -19,17 +19,17 @@ public class Theme {
     public Theme() {
     }
 
-    public Theme(String TNAME, int price, String IMAGE, String DETAILS) {
+    public Theme(String ID, String TNAME, int PRICE, String IMAGE, String DETAILS) {
+        this.ID = ID;
         this.TNAME = TNAME;
-        this.price = price;
+        this.PRICE = PRICE;
         this.IMAGE = IMAGE;
         this.DETAILS = DETAILS;
     }
 
-    public Theme(String ID, String TNAME, int price, String IMAGE, String DETAILS) {
-        this.ID = ID;
+    public Theme(String TNAME, int PRICE, String IMAGE, String DETAILS) {
         this.TNAME = TNAME;
-        this.price = price;
+        this.PRICE = PRICE;
         this.IMAGE = IMAGE;
         this.DETAILS = DETAILS;
     }
@@ -50,12 +50,12 @@ public class Theme {
         this.TNAME = TNAME;
     }
 
-    public int getPrice() {
-        return price;
+    public int getPRICE() {
+        return PRICE;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setPRICE(int PRICE) {
+        this.PRICE = PRICE;
     }
 
     public String getIMAGE() {

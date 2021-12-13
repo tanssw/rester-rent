@@ -2,44 +2,56 @@ package com.example.backend.pojo.Mysql;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@IdClass(CompositeThemeAccessory.class)
-public class ThemeAccessoryResponse {
-    @Id
-    private int THEME_ID;
-    @Id
-    private int ACCESSORY_ID;
+public class ThemeAccessoryJoin implements Serializable {
+
+    @EmbeddedId
+    private CompositeThemeAccessory id;
     private String TNAME;
     private int PRICE;
     private String IMAGE;
     private String DETAILS;
     private String ANAME;
+    private int QUANTITY;
 
-    public ThemeAccessoryResponse(int THEME_ID, int ACCESSORY_ID, String TNAME, int PRICE, String IMAGE, String DETAILS, String ANAME) {
-        this.THEME_ID = THEME_ID;
-        this.ACCESSORY_ID = ACCESSORY_ID;
+    public ThemeAccessoryJoin() {
+    }
+
+    public ThemeAccessoryJoin(CompositeThemeAccessory id, String TNAME, int PRICE, String IMAGE, String DETAILS, String ANAME, int QUANTITY) {
+        this.id = id;
         this.TNAME = TNAME;
         this.PRICE = PRICE;
         this.IMAGE = IMAGE;
         this.DETAILS = DETAILS;
         this.ANAME = ANAME;
+        this.QUANTITY = QUANTITY;
     }
 
-    public int getTHEME_ID() {
-        return THEME_ID;
+    public ThemeAccessoryJoin(String TNAME, int PRICE, String IMAGE, String DETAILS, String ANAME, int QUANTITY) {
+        this.TNAME = TNAME;
+        this.PRICE = PRICE;
+        this.IMAGE = IMAGE;
+        this.DETAILS = DETAILS;
+        this.ANAME = ANAME;
+        this.QUANTITY = QUANTITY;
     }
 
-    public void setTHEME_ID(int THEME_ID) {
-        this.THEME_ID = THEME_ID;
+    public CompositeThemeAccessory getId() {
+        return id;
     }
 
-    public int getACCESSORY_ID() {
-        return ACCESSORY_ID;
+    public void setId(CompositeThemeAccessory id) {
+        this.id = id;
     }
 
-    public void setACCESSORY_ID(int ACCESSORY_ID) {
-        this.ACCESSORY_ID = ACCESSORY_ID;
+    public int getQUANTITY() {
+        return QUANTITY;
+    }
+
+    public void setQUANTITY(int QUANTITY) {
+        this.QUANTITY = QUANTITY;
     }
 
     public String getTNAME() {

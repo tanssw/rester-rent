@@ -8,11 +8,8 @@ import java.util.Objects;
 @Embeddable
 public class CompositeThemeAccessory implements Serializable {
 
-    @Column(name="THEME_ID")
-    int THEME_ID;
-
-    @Column(name="ACCESSORY_ID")
-    int ACCESSORY_ID;
+    private int THEME_ID;
+    private int ACCESSORY_ID;
 
     public CompositeThemeAccessory() {
     }
