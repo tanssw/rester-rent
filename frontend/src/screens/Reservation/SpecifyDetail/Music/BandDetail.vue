@@ -76,6 +76,7 @@ export default {
             return this.selected.id === band.id
         },
         selectBand(band) {
+            this.focus = {}
             this.$emit('select', band)
         }
     }
