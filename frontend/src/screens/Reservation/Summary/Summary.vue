@@ -10,10 +10,12 @@
                 <receipt :detail="detail" />
                 <div class="text-center mt-5">
                     <div class="d-flex align-items-center my-5">
-                        <span class="flex-grow-1">อีเมลสำหรับติดต่อ</span>
-                        <input type="email" placeholder="customer@example.com" class="form-control px-4 py-3">
+                        <span>อีเมลสำหรับติดต่อ</span>
+                        <div class="flex-grow-1 ms-4">
+                            <input v-model="email" type="email" placeholder="customer@example.com" :class="{'border-emerald': validEmail}" class="form-control px-4 py-3">
+                        </div>
                     </div>
-                    <button class="btn btn-emerald py-3 px-5">
+                    <button :disabled="!validEmail" class="btn btn-emerald py-3 px-5">
                         ยืนยันการจอง
                     </button>
                 </div>
@@ -36,12 +38,21 @@ export default {
             type: Object
         }
     },
+    data() {
+        return {
+            email: null
+        }
+    },
     computed: {
         detail() {
             return {
                 reservation: this.reservation,
                 spec: this.spec
             }
+        },
+        validEmail() {
+            let re = /\S+@\S+\.\S+/
+            return re.test(this.email)
         }
     }
 }
