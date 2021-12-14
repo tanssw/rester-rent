@@ -62,10 +62,10 @@ export default {
             this.$refs.themeInfoModal.toggle()
         },
         selectTheme() {
-            this.$emit('update:selected', this.focus.id)
+            this.$emit('update:selected', this.focus)
         },
         checkSelected(theme) {
-            return this.selected === theme.id
+            return this.selected.id === theme.id
         }
     }
 }

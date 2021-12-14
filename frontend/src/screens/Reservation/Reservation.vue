@@ -14,7 +14,10 @@
                 <music-selection v-if="specStep === 1" v-model:selectedType="spec.music.type" v-model:selectedBand="spec.music.band" :date="reservation.date" />
                 <food-selection v-if="specStep === 2" v-model:selected="spec.food" />
             </div>
-            <detail-bottom-navigator v-model:step="specStep" :detail="spec" />
+            <detail-bottom-navigator v-model:step="specStep" :detail="spec" @confirm="nextStep" />
+        </div>
+        <div v-else-if="step === 2">
+            <reserve-summary :reservation="reservation" :spec="spec" />
         </div>
     </div>
 </template>
@@ -32,6 +35,8 @@ import ThemeSelection from './SpecifyDetail/Theme/ThemeSelection.vue'
 import MusicSelection from './SpecifyDetail/Music/MusicSelection.vue'
 import FoodSelection from './SpecifyDetail/Food/FoodSelection.vue'
 
+import ReserveSummary from './Summary/Summary.vue'
+
 export default {
     components: {
         SectionNavigator,
@@ -46,10 +51,12 @@ export default {
         ThemeSelection,
         MusicSelection,
         FoodSelection,
+        // 3rd Section's Components
+        ReserveSummary
     },
     data() {
         return {
-            step: 1,
+            step: 0,
             specStep: 0,
             reservation: {
                 date: null,
@@ -58,7 +65,7 @@ export default {
                 endAt: null
             },
             spec: {
-                theme: null,
+                theme: {},
                 music: {
                     type: 'audio',
                     band: {}
