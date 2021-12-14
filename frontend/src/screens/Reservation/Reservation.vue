@@ -16,6 +16,9 @@
             </div>
             <detail-bottom-navigator v-model:step="specStep" :detail="spec" @confirm="nextStep" />
         </div>
+        <div v-else-if="step === 2">
+            <reserve-summary :reservation="reservation" :spec="spec" />
+        </div>
     </div>
 </template>
 <script>
@@ -32,6 +35,8 @@ import ThemeSelection from './SpecifyDetail/Theme/ThemeSelection.vue'
 import MusicSelection from './SpecifyDetail/Music/MusicSelection.vue'
 import FoodSelection from './SpecifyDetail/Food/FoodSelection.vue'
 
+import ReserveSummary from './Summary/Summary.vue'
+
 export default {
     components: {
         SectionNavigator,
@@ -46,6 +51,8 @@ export default {
         ThemeSelection,
         MusicSelection,
         FoodSelection,
+        // 3rd Section's Components
+        ReserveSummary
     },
     data() {
         return {
@@ -58,7 +65,7 @@ export default {
                 endAt: null
             },
             spec: {
-                theme: null,
+                theme: {},
                 music: {
                     type: 'audio',
                     band: {}
