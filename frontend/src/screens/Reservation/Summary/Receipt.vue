@@ -1,33 +1,29 @@
 <template>
-    <div class="row justify-content-center">
-        <div class="col-8">
-            <div class="border rounded-3 fw-light p-5">
-                <div class="row mb-5">
-                    <div class="col">
-                        <h2 class="fw-bold text-emerald mb-0">
-                            <i class="fas fa-concierge-bell"></i>
-                            Rester Rent
-                        </h2>
-                    </div>
-                    <div class="col text-end">
-                        <div class="my-2">วันที่ {{reserveDate}}</div>
-                        <div class="my-2">เวลา {{reserveTime}}</div>
-                    </div>
-                </div>
-                <div>
-                    <div class="d-flex justify-content-between">
-                        <h5>รายละเอียด</h5>
-                        <h5>ราคา</h5>
-                    </div>
-                    <div v-for="(item, index) in list" :key="index" class="d-flex justify-content-between my-3">
-                        <div>{{item.title}}</div>
-                        <div>{{item.price}}</div>
-                    </div>
-                    <div class="d-flex justify-content-between fw-bold mt-4">
-                        <div>ราคารวม</div>
-                        <div>{{totalPrice}}</div>
-                    </div>
-                </div>
+    <div class="border rounded-3 fw-light p-5">
+        <div class="row mb-5">
+            <div class="col">
+                <h2 class="fw-bold text-emerald mb-0">
+                    <i class="fas fa-concierge-bell"></i>
+                    Rester Rent
+                </h2>
+            </div>
+            <div class="col text-end">
+                <div class="my-2">วันที่ {{reserveDate}}</div>
+                <div class="my-2">เวลา {{reserveTime}}</div>
+            </div>
+        </div>
+        <div>
+            <div class="d-flex justify-content-between">
+                <h5>รายละเอียด</h5>
+                <h5>ราคา</h5>
+            </div>
+            <div v-for="(item, index) in list" :key="index" class="d-flex justify-content-between my-3">
+                <div>{{item.title}}</div>
+                <div>{{item.price}}</div>
+            </div>
+            <div class="d-flex justify-content-between fw-bold mt-4">
+                <div>ราคารวม</div>
+                <div>{{totalPrice}}</div>
             </div>
         </div>
     </div>
