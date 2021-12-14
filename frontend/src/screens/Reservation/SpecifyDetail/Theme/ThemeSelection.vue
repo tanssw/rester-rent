@@ -46,7 +46,7 @@ export default {
     },
     props: {
         selected: {
-            type: Number
+            type: Object
         }
     },
     emits: ['update:selected'],
