@@ -21,7 +21,7 @@ export default {
             type: Object
         }
     },
-    emits: ['update:step'],
+    emits: ['update:step', 'confirm'],
     data() {
         return {
             steps: [0, 1, 2]
