@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/ta")
 public class ThemeAccessoryController {
 
     @Autowired
@@ -19,13 +18,18 @@ public class ThemeAccessoryController {
     @Autowired
     private ThemeAccessoryJoinService themeAccessoryJoinService;
 
-    @GetMapping("/")
+    @GetMapping("/getTheme")
     public ResponseEntity all() {return new ResponseEntity(themeAccessoryJoinService.findAllTA(), HttpStatus.OK);}
 
-    @GetMapping("/find/{themeId}/{accessoryId}")
-    public ResponseEntity findOneByBothId(@PathVariable("themeId") int themeId, @PathVariable("accessoryId") int accessoryId) {return new ResponseEntity(themeAccessoryJoinService.findOneByBothId(themeId, accessoryId), HttpStatus.OK);}
+    @GetMapping("/findTheme/{themeId}/{accessoryId}")
+    public ResponseEntity findOneByBothId(@PathVariable("themeId") int themeId, @PathVariable("accessoryId") int accessoryId) {
+        if (themeAccessoryJoinService.findOneByBothId(themeId, accessoryId) == null) {
+            return new ResponseEntity("Not found.", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity(themeAccessoryJoinService.findOneByBothId(themeId, accessoryId), HttpStatus.OK);
+    }
 
-    @PatchMapping("/add")
+    @PatchMapping("/addTheme")
     public ResponseEntity addThemeAcessory(@RequestBody ThemeAccessoryBody themeAccessoryBody) {
         if(themeAccessoryService.addThemeAccessory(themeAccessoryBody)){
             return new ResponseEntity("Add theme_accessory successfully.", HttpStatus.OK);
@@ -34,7 +38,7 @@ public class ThemeAccessoryController {
         }
     }
 
-    @DeleteMapping("/delete/{themeId}/{accessoryId}")
+    @DeleteMapping("/delTheme/{themeId}/{accessoryId}")
     public ResponseEntity deleteThemeAccessory(@PathVariable("themeId") int themeId, @PathVariable("accessoryId") int accessoryId) {
         if(themeAccessoryService.deleteThemeAccessory(themeId, accessoryId)){
             return new ResponseEntity("Delete theme_accessory successfully.", HttpStatus.OK);

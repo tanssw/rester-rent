@@ -11,20 +11,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/accessory")
 public class AccessoryController {
 
     @Autowired
     private AccessoryService accessoryService;
 
 //    Get all accessory in db
-    @GetMapping("/")
+    @GetMapping("/getAcc")
     public ResponseEntity<?> allAccessory() {
         return new ResponseEntity<>(accessoryService.allAccessory(), HttpStatus.OK);
     }
 
 //    Find accessory by name return List
-    @GetMapping("/find/name/{name}")
+    @GetMapping("/findAcc/name/{name}")
     public ResponseEntity findAccessoryByName(@PathVariable("name") String name) {
         if (accessoryService.findByAccessoryName(name).isEmpty()){
             return new ResponseEntity<>("Not found accessory with this name: " + name, HttpStatus.NOT_FOUND);
@@ -33,7 +32,7 @@ public class AccessoryController {
     }
 
 //    Find accessory by id return Accessory (single)
-    @GetMapping("/find/id/{id}")
+    @GetMapping("/findAcc/id/{id}")
     public ResponseEntity findAccessoryByName(@PathVariable("id") int id) {
         if (accessoryService.findByAccessoryId(id).isEmpty()){
             return new ResponseEntity<>("Not found accessory with this id: " + id, HttpStatus.NOT_FOUND);
@@ -42,7 +41,7 @@ public class AccessoryController {
     }
 
 //    Add new accessory
-    @PatchMapping("/add")
+    @PatchMapping("/addAcc")
     public ResponseEntity addAccessory(@RequestBody AccessoryBody accessoryBody) {
         if (accessoryService.addAccessory(accessoryBody)) {
             return new ResponseEntity<>("Add accessory successfully.", HttpStatus.OK);
@@ -52,7 +51,7 @@ public class AccessoryController {
     }
 
 //    Change accessory name by id
-    @PatchMapping("/update/{id}")
+    @PatchMapping("/updAcc/{id}")
     public ResponseEntity<?> updateAccessoryById(@PathVariable("id") int id, @RequestBody AccessoryBody accessoryBody) {
         if (accessoryService.updateAccessory(id, accessoryBody)) {
             return new ResponseEntity<>("Update accessory data successfully.", HttpStatus.OK);
@@ -62,7 +61,7 @@ public class AccessoryController {
     }
 
 //    Delete accessory by id
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delAcc/{id}")
     public ResponseEntity<?> deleteAccessory(@PathVariable("id") int id) {
         if (accessoryService.deleteByAccessoryId(id)) {
             return new ResponseEntity<>("Delete accessory successfully", HttpStatus.OK);

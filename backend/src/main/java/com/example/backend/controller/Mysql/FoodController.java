@@ -10,16 +10,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/food")
 public class FoodController {
 
     @Autowired
     private FoodService foodService;
 
-    @GetMapping("/")
+    @GetMapping("/getFood")
     public ResponseEntity allFood() {return new ResponseEntity(foodService.allFood(), HttpStatus.OK);}
 
-    @GetMapping("/find/name/{name}")
+    @GetMapping("/findFood/name/{name}")
     public ResponseEntity findFoodByName(@PathVariable("name") String name) {
         if (foodService.findByFoodName(name).isEmpty()) {
             return new ResponseEntity<>("Not found food with this name: " + name, HttpStatus.NOT_FOUND);
@@ -27,7 +26,7 @@ public class FoodController {
         return new ResponseEntity<>(foodService.findByFoodName(name), HttpStatus.OK);
     }
 
-    @GetMapping("/find/id/{id}")
+    @GetMapping("/findFood/id/{id}")
     public ResponseEntity findFoodByName(@PathVariable("id") int id) {
         if (foodService.findByFoodId(id).isEmpty()) {
             return new ResponseEntity<>("Not found food with this id: " + id, HttpStatus.NOT_FOUND);
@@ -44,7 +43,7 @@ public class FoodController {
         }
     }
 
-    @PatchMapping("/update/{id}")
+    @PatchMapping("/updFood/{id}")
     public ResponseEntity<?> updateFoodDataById(@PathVariable("id") int id, @RequestBody FoodBody foodBody) {
         if (foodService.updateFoodDataById(id, foodBody)) {
             return new ResponseEntity<>("Add accessory successfully.", HttpStatus.OK);
@@ -53,7 +52,7 @@ public class FoodController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delFood/{id}")
     public ResponseEntity<?> deleteByFoodId(@PathVariable("id") int id) {
         if (foodService.deleteByFoodId(id)) {
             return new ResponseEntity<>("Delete food successfully", HttpStatus.OK);
