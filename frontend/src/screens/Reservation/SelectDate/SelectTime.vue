@@ -55,10 +55,10 @@ export default {
     created() {
         // Create list of time in HH:mm format from 06:00 - 24:00
         const START_HOUR = 6
-        const END_HOUR = 24
+        const END_HOUR = 23
         let runner = START_HOUR
         while (runner <= END_HOUR) {
-            let hour = runner < 10 ? `0${runner}:00` : runner === 24 ? `00:00` : `${runner}:00`
+            let hour = `${runner}:00`
             this.option.startAt.push({value: runner, display: hour})
             this.option.endAt.push({value: runner, display: hour})
             runner++
