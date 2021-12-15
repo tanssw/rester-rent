@@ -8,16 +8,24 @@
         <div class="row justify-content-center">
             <div class="col-8">
                 <receipt :detail="detail" />
-                <div class="text-center mt-5">
-                    <div class="d-flex align-items-center my-5">
-                        <span>อีเมลสำหรับติดต่อ</span>
-                        <div class="flex-grow-1 ms-4">
+                <div class="mt-5">
+                    <div class="row mb-3 align-items-center">
+                        <span class="col-3">ชื่อลูกค้า</span>
+                        <div class="col-9">
+                            <input v-model="name" type="email" placeholder="ชื่อ นามสกุล" :class="{'border-emerald': name}" class="form-control px-4 py-3">
+                        </div>
+                    </div>
+                    <div class="row mb-5 align-items-center">
+                        <span class="col-3">อีเมลสำหรับติดต่อ</span>
+                        <div class="col-9">
                             <input v-model="email" type="email" placeholder="customer@example.com" :class="{'border-emerald': validEmail}" class="form-control px-4 py-3">
                         </div>
                     </div>
-                    <button :disabled="!validEmail" class="btn btn-emerald py-3 px-5">
-                        ยืนยันการจอง
-                    </button>
+                    <div class="text-center">
+                        <button :disabled="!validInformation" class="btn btn-emerald py-3 px-5">
+                            ยืนยันการจอง
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -40,6 +48,7 @@ export default {
     },
     data() {
         return {
+            name: null,
             email: null
         }
     },
@@ -53,6 +62,9 @@ export default {
         validEmail() {
             let re = /\S+@\S+\.\S+/
             return re.test(this.email)
+        },
+        validInformation() {
+            return this.name && this.validEmail
         }
     }
 }
