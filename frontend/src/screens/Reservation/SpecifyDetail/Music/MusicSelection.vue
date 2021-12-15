@@ -12,7 +12,7 @@
             <div class="col-8">
                 <h3 class="text-capitalize mb-3">{{options[selectedType].title}}</h3>
                 <audio-detail v-if="selectedType === 'audio'" />
-                <band-detail v-else-if="selectedType === 'band'" :selected="selectedBand" :date="date" @select="selectBand" />
+                <band-detail v-else-if="selectedType === 'band'" :selected="selectedBand" :date="date" :range="range" @select="selectBand" />
             </div>
         </div>
     </div>
@@ -43,6 +43,9 @@ export default {
         },
         date: {
             type: String
+        },
+        range: {
+            type: Number
         }
     },
     emits: ['update:selectedType', 'update:selectedBand'],

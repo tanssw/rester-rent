@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <band-modal ref="bandModal" :band="focus" @select="selectBand" />
+        <band-modal ref="bandModal" :band="focus" :range="range" @select="selectBand" />
     </div>
 </template>
 <style scoped>
@@ -54,6 +54,9 @@ export default {
         },
         selected: {
             type: Object
+        },
+        range: {
+            type: Number
         }
     },
     data() {
