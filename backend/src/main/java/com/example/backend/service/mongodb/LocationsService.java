@@ -14,8 +14,8 @@ public class LocationsService {
     @Autowired
     private LocationsRepository locationsRepository;
 
-    //    CREATE
-    public boolean addLocation(Locations locations) {
+    //    CREATE & UPDATE
+    public boolean addOrUpdateLocation(Locations locations) {
         try {
             locationsRepository.save(locations);
             return true;
@@ -32,20 +32,10 @@ public class LocationsService {
 
     public List<Locations> findLocationByName(String name) {return locationsRepository.findByName(name);}
 
-//    UPDATE
-    public boolean updateLocation(Locations locations) {
-        try {
-            locationsRepository.save(locations);
-            return true;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-    }
 //    DELETE
-    public boolean deleteLocation(Locations locations) {
+    public boolean deleteLocation(String id) {
         try {
-            locationsRepository.delete(locations);
+            locationsRepository.deleteById(id);
             return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());

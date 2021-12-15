@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String ID;
+    private int ID;
     private String FNAME;
     private int CAPACITY;
     private String SIZE;
@@ -27,7 +27,7 @@ public class Food {
         this.PRICE = PRICE;
     }
 
-    public Food(String ID, String FNAME, int CAPACITY, String SIZE, String MENUS, int PRICE) {
+    public Food(int ID, String FNAME, int CAPACITY, String SIZE, String MENUS, int PRICE) {
         this.ID = ID;
         this.FNAME = FNAME;
         this.CAPACITY = CAPACITY;
@@ -36,11 +36,11 @@ public class Food {
         this.PRICE = PRICE;
     }
 
-    public String getID() {
+    public int getID() {
         return ID;
     }
 
-    public void setID(String ID) {
+    public void setID(int ID) {
         this.ID = ID;
     }
 

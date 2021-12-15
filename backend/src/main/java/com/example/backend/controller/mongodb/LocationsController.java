@@ -34,7 +34,7 @@ public class LocationsController {
 
     @RequestMapping(value="/addRoom", method = RequestMethod.PATCH)
     public ResponseEntity addLocation(@RequestBody Locations location) {
-        if (locationsService.addLocation(location)) {
+        if (locationsService.addOrUpdateLocation(location)) {
             return new ResponseEntity("Add room successfully.", HttpStatus.OK);
         }
         return new ResponseEntity("Something went wrong.", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -42,16 +42,16 @@ public class LocationsController {
 
     @RequestMapping(value="/updLocate", method = RequestMethod.PATCH)
     public ResponseEntity updateLocation(@RequestBody Locations location) {
-        if (locationsService.updateLocation(location)) {
+        if (locationsService.addOrUpdateLocation(location)) {
             return new ResponseEntity("Update room successfully.", HttpStatus.OK);
         } else {
             return new ResponseEntity("Something went wrong.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @RequestMapping(value="/delLocate", method = RequestMethod.DELETE)
-    public ResponseEntity deleteLocation(@RequestBody Locations location) {
-        if (locationsService.deleteLocation(location)) {
+    @RequestMapping(value="/delLocate/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity deleteLocation(@PathVariable("id") String id) {
+        if (locationsService.deleteLocation(id)) {
             return new ResponseEntity("delete room successfully.", HttpStatus.OK);
         } else {
             return new ResponseEntity("Something went wrong.", HttpStatus.INTERNAL_SERVER_ERROR);
