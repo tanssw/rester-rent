@@ -3,7 +3,6 @@ Rester Rent is a project in Service-Oriented Programming, Faculty of Information
 ## Document
 - Postman API document ([Link](https://documenter.getpostman.com/view/14185907/UVJeEFff))
 - MongaDB design collection ([Link](https://docs.google.com/spreadsheets/d/1cJCTlVGoJx0i0lNmKZo-czlYQ2V0G2wQmDEtPqYuPM4/edit?usp=sharing))
-## Frontend
 - Wireframe ([Link](https://wireframepro.mockflow.com/view/MAzIxMwcbnb#/page/fbe793cb8bfb43e8b3ffa3287c257692))
 ## Workflow Utilities
 - [Trello - Project Management Board](https://trello.com/b/gaNjzTMl/resterrent)
@@ -38,9 +37,5 @@ Salmon (Dark -> Light)
 - `#FFC0B4`
 
 ## Backend
-
-
-
 Use SDK 17 and Java 17
-
 First time, should clone project from version control.
