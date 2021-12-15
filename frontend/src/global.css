@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100;300;400;500;600&display=swap');
+
+:root {
+    --emerald: #034C52;
+    --light-emerald: #015C63;
+    --lighter-emerald: #017075;
+    --dark-salmon: #c46d68;
+    --salmon: #F48079;
+    --light-salmon: #FDA898;
+    --lighter-salmon: #FFC0B4;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Prompt', sans-serif;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Texts */
+.text-emerald {
+    color: var(--emerald);
+}
+.text-light-emerald {
+    color: var(--light-emerald);
+}
+.text-lighter-emerald {
+    color: var(--lighter-emerald);
+}
+.text-salmon {
+    color: var(--salmon);
+}
+.text-light-salmon {
+    color: var(--light-salmon);
+}
+.text-lighter-salmon {
+    color: var(--lighter-salmon);
+}
+
+/* Buttons */
+.btn-emerald {
+    background-color: var(--emerald);
+    color: white;
+}
+.btn-emerald:enabled:hover {
+    background-color: #023236;
+    color: white;
+}
+.btn-lighter-emerald {
+    background-color: var(--lighter-emerald);
+    color: white;
+}
+.btn-lighter-emerald:enabled:hover {
+    background-color: var(--emerald);
+    color: white;
+}
+.btn-salmon {
+    background-color: var(--salmon);
+    color: white;
+}
+.btn-salmon:enabled:hover {
+    background-color: #d67873;
+    color: white;
+}
+
+/* Background */
+.bg-emerald {
+    background-color: var(--emerald);
+}
+
+/* Border */
+.border-emerald {
+    border-color: var(--emerald) !important;
+}

@@ -1,0 +1,22 @@
+{
+    "name": "rester-rent",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/tanssw/rester-rent.git",
+    "author": "Tasanai Srisawat <tasanai.srisawat@gmail.com>",
+    "license": "MIT",
+    "scripts": {
+        "frontend": "cd frontend && vue-cli-service serve"
+    },
+    "devDependencies": {
+        "@vue/cli-service": "^4.5.15",
+        "@vue/compiler-sfc": "^3.2.22"
+    },
+    "dependencies": {
+        "@popperjs/core": "^2.11.0",
+        "dayjs": "^1.10.7",
+        "v-calendar": "^3.0.0-alpha.6",
+        "vue": "^3.2.22",
+        "vue-router": "^4.0.12"
+    }
+}
