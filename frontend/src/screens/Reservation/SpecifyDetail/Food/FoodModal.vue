@@ -21,7 +21,7 @@
                             <div class="col">รองรับได้ {{size.capacity}} คน</div>
                             <div class="col">ราคา {{size.price}} บาท</div>
                             <div class="col-1 text-end">
-                                <label :for="`size${size.id}`">
+                                <label :for="`size-${food.id}-${size.id}`">
                                     <span v-if="isChosenSize(size.id)">
                                         <i class="far fa-check-square fa-lg text-emerald"></i>
                                     </span>
@@ -29,12 +29,12 @@
                                         <i class="far fa-square fa-lg text-secondary"></i>
                                     </span>
                                 </label>
-                                <input v-model="selectedSize" :id="`size${size.id}`" name="size" type="radio" :value="size.id" class="d-none">
+                                <input v-model="selectedSize" :id="`size-${food.id}-${size.id}`" name="size" type="radio" :value="size.id" class="d-none">
                             </div>
                         </div>
                     </div>
                     <div class="d-flex justify-content-end align-items-center">
-                        <button @click="confirmSelect" :disabled="!isSelected" class="btn btn-emerald btn-confirm px-5 py-2">
+                        <button @click="confirmSelect()" :disabled="!isSelected" class="btn btn-emerald btn-confirm px-5 py-2">
                             ยืนยัน
                         </button>
                     </div>
@@ -76,8 +76,8 @@ export default {
             this.modal.toggle()
         },
         confirmSelect() {
-            let food = {...this.food}
-            food.size = food.sizes[this.selectedSize]
+            let food = JSON.parse(JSON.stringify(this.food))
+            food.size = food.sizes.find(size => size.id === this.selectedSize)
             delete food.sizes
             this.$emit('select', food)
             this.modal.hide()
