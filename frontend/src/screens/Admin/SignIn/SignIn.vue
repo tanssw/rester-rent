@@ -87,6 +87,10 @@ export default {
 
                 this.user = payload
 
+                // TODO: Send user data to backend
+                // TODO: Save token in local storage using for apis authorization
+                // TODO: Route to '/admin/'
+
             } catch (error) {
                 // Display error message
                 this.isLoading = false
