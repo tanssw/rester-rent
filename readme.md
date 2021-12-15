@@ -22,6 +22,19 @@ Rester Rent is a project in Service-Oriented Programming, Faculty of Information
 - Use Yarn Package Manager ([Link to Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable))
 - `yarn install` to install all package in package.json
 - `yarn run frontend` to start Vue.js Live Server at port 8080
+- Get firebase config from [Firebase Project - Rester Rent](https://console.firebase.google.com/u/0/project/rester-rent/settings/general)
+- Put firebaseConfig in `/frontend/src/config/firebaseConfig.js`
+```js
+export const firebaseConfig = {
+    apiKey: ...,
+    authDomain: ...,
+    projectId: ...,
+    storageBucket: ...,
+    messagingSenderId: ...,
+    appId: ...,
+    measurementId: ...
+}
+```
 
 ## Color Palette
 
