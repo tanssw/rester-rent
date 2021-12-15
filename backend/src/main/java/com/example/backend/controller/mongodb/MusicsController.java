@@ -17,22 +17,6 @@ public class MusicsController {
     @RequestMapping(value="/getBrand", method = RequestMethod.GET)
     public ResponseEntity getAllBrand() {return new ResponseEntity(musicsService.allBrands(), HttpStatus.OK);}
 
-    @RequestMapping(value="/findBrand/name/{name}", method = RequestMethod.GET)
-    public ResponseEntity findBrandByName(@PathVariable("name") String name) {
-        if (musicsService.findBrandByName(name).isEmpty()) {
-            return new ResponseEntity("Not found.", HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity(musicsService.findBrandByName(name), HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/findBrand/id/{id}", method = RequestMethod.GET)
-    public ResponseEntity findBrandById(@PathVariable("id") String id) {
-        if (musicsService.findBrandById(id).isEmpty()) {
-            return new ResponseEntity("Not found.", HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity(musicsService.findBrandById(id), HttpStatus.OK);
-    }
-
     @RequestMapping(value = "/addBrand", method = RequestMethod.PATCH)
     public ResponseEntity addBrand(@RequestBody Musics musics) {
         if (musicsService.addOrUpdateBrand(musics)) {

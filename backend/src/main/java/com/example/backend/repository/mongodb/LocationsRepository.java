@@ -9,7 +9,4 @@ import java.util.List;
 
 @Repository
 public interface LocationsRepository extends MongoRepository<Locations, String> {
-
-    @Query(value="{name:?0}")
-    List<Locations> findByName(String name);
 }

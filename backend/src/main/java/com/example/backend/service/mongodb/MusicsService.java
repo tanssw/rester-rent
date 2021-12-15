@@ -28,10 +28,6 @@ public class MusicsService {
 //    READ
     public List<Musics> allBrands() {return musicsRepository.findAll();}
 
-    public List<Musics> findBrandByName(String name) {return musicsRepository.findByName(name);}
-
-    public Optional<Musics> findBrandById(String id) {return musicsRepository.findById(id);}
-
 //    DELETE
     public boolean delBrand(String id) {
         try {

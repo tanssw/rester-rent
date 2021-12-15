@@ -1,4 +1,4 @@
-package com.example.backend.repository;
+package com.example.backend.repository.mysql;
 
 import com.example.backend.pojo.Accessory;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,12 +10,6 @@ import java.util.List;
 
 
 public interface AccessoryRepository extends JpaRepository<Accessory, String> {
-
-    @Query(value = "SELECT * FROM ACCESSORY WHERE ANAME=?1", nativeQuery = true)
-    List<Accessory> findByAccessoryName(String name);
-
-    @Query(value = "SELECT * FROM ACCESSORY WHERE ID=?1", nativeQuery = true)
-    List<Accessory> findByAccessoryId(int id);
 
     @Transactional
     @Modifying

@@ -28,11 +28,6 @@ public class ThemeService {
     //    READ
     public List<Theme> allTheme() {return themeRepository.findAll();}
 
-    public List<Theme> findByThemeName(String name) {return themeRepository.findByThemeName(name);}
-
-    public List<Theme> findByThemeId(int id) {return themeRepository.findByThemeId(id);}
-
-
     //    UPDATE
     public boolean updateThemeDataById(int id, ThemeBody item) {
         try {

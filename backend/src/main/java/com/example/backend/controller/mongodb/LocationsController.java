@@ -16,22 +16,6 @@ public class LocationsController {
     @RequestMapping(value="/getLocate", method = RequestMethod.GET)
     public ResponseEntity getAllLocations() { return new ResponseEntity(locationsService.allLocation(), HttpStatus.OK);}
 
-    @RequestMapping(value="/findLocate/id/{id}", method = RequestMethod.GET)
-    public ResponseEntity findLocateById(@PathVariable("id") String id) {
-        if (locationsService.findLocationById(id).isEmpty()) {
-            return new ResponseEntity("Room not found.", HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity(locationsService.findLocationById(id), HttpStatus.OK);
-    }
-
-    @RequestMapping(value="/findLocate/name/{name}", method = RequestMethod.GET)
-    public ResponseEntity findLocateByName(@PathVariable("name") String name) {
-        if (locationsService.findLocationByName(name).isEmpty()) {
-            return new ResponseEntity("Room not found.", HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity(locationsService.findLocationByName(name), HttpStatus.OK);
-    }
-
     @RequestMapping(value="/addRoom", method = RequestMethod.PATCH)
     public ResponseEntity addLocation(@RequestBody Locations location) {
         if (locationsService.addOrUpdateLocation(location)) {

@@ -9,10 +9,4 @@ import java.util.List;
 
 @Repository
 public interface OrdersRepository extends MongoRepository<Orders, String> {
-
-    @Query(value="{fullname:?0}")
-    List<Orders> findByFullname(String name);
-
-    @Query(value="{email:?0}")
-    List<Orders> findByEmail(String email);
 }
