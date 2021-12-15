@@ -9,7 +9,7 @@
                             <span class="fw-lighter text-secondary"> | Management</span>
                         </h3>
                         <div class="mt-4">
-                            <div v-if="loading" class="text-center p-5">
+                            <div v-if="isLoading" class="text-center p-5">
                                 <div class="spinner-border text-secondary" role="status">
                                     <span class="visually-hidden">Loading ...</span>
                                 </div>
@@ -19,6 +19,10 @@
                                 <i class="fab fa-google"></i>
                                 Sign-in with Google
                             </button>
+                        </div>
+                        <div v-if="isError" class="text-left text-danger fw-light mt-4">
+                            <i class="fas fa-exclamation-triangle me-1"></i>
+                            เกิดข้อผิดพลาดในการเข้าสู่ระบบ กรุณาลองใหม่อีกครั้ง
                         </div>
                     </div>
                 </div>
@@ -48,14 +52,15 @@ export default {
                 googleId: null,
                 accessToken: null
             },
-            loading: false
+            isLoading: false,
+            isError: false
         }
     },
     methods: {
         async openGoogleSignIn() {
 
             // Enable loading to hide the button
-            this.loading = true
+            this.isLoading = true
 
             const provider = new GoogleAuthProvider()
             provider.setCustomParameters({
@@ -83,10 +88,10 @@ export default {
                 this.user = payload
 
             } catch (error) {
-                const errorCode = error.code
-                const errorMessage = error.message
-                const email = error.email
-                const credential = GoogleAuthProvider.credentialFromError(error)
+                // Display error message
+                this.isLoading = false
+                this.isError = true
+                console.log(error)
             }
         }
     }
