@@ -51,6 +51,14 @@ body {
     background-color: #023236;
     color: white;
 }
+.btn-outline-emerald {
+    border: 1px solid var(--lighter-emerald);
+    color: var(--lighter-emerald);
+}
+.btn-outline-emerald:enabled:hover {
+    border: 1px solid var(--emerald);
+    color: var(--emerald);
+}
 .btn-lighter-emerald {
     background-color: var(--lighter-emerald);
     color: white;
