@@ -10,12 +10,6 @@ import java.util.List;
 
 public interface ThemeRepository extends JpaRepository<Theme, String> {
 
-    @Query(value = "SELECT * FROM THEME WHERE ID=?1", nativeQuery = true)
-    List<Theme> findByThemeId(int id);
-
-    @Query(value = "SELECT * FROM THEME WHERE TNAME=?1", nativeQuery = true)
-    List<Theme> findByThemeName(String name);
-
     @Transactional
     @Modifying
     @Query(value = "UPDATE THEME SET TNAME=?1, PRICE=?2, IMAGE=?3, DETAILS=?4 WHERE ID=?5", nativeQuery = true)

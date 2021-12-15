@@ -2,7 +2,7 @@ package com.example.backend.service;
 
 import com.example.backend.controller.mysql.body.AccessoryBody;
 import com.example.backend.pojo.Accessory;
-import com.example.backend.repository.AccessoryRepository;
+import com.example.backend.repository.mysql.AccessoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,10 +28,6 @@ public class AccessoryService {
 
 //    READ
     public List<Accessory> allAccessory() {return accessoryRepository.findAll();}
-
-    public List<Accessory> findByAccessoryName(String name) {return accessoryRepository.findByAccessoryName(name);}
-
-    public List<Accessory> findByAccessoryId(int id) {return accessoryRepository.findByAccessoryId(id);}
 
 //    UPDATE
     public boolean updateAccessory(int id, AccessoryBody item) {

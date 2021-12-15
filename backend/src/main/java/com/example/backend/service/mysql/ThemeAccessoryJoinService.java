@@ -1,7 +1,7 @@
 package com.example.backend.service.mysql;
 
 import com.example.backend.pojo.mysql.ThemeAccessoryJoin;
-import com.example.backend.repository.ThemeAccessoryJoinRepository;
+import com.example.backend.repository.mysql.ThemeAccessoryJoinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +14,4 @@ public class ThemeAccessoryJoinService {
     private ThemeAccessoryJoinRepository themeAccessoryJoinRepository;
 
     public List<ThemeAccessoryJoin> findAllTA() {return themeAccessoryJoinRepository.findAllThemeAccessory();}
-
-    public ThemeAccessoryJoin findOneByBothId(int themeId, int accessoryId) {return themeAccessoryJoinRepository.findOneByBothId(themeId, accessoryId);}
 }

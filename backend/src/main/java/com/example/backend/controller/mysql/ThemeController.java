@@ -17,22 +17,6 @@ public class ThemeController {
     @GetMapping("/")
     public ResponseEntity allTheme() {return new ResponseEntity(themeService.allTheme(), HttpStatus.OK);}
 
-    @GetMapping("/find/name/{name}")
-    public ResponseEntity findByThemeName(@PathVariable("name") String name) {
-        if (themeService.findByThemeName(name).isEmpty()) {
-            return new ResponseEntity<>("Not found theme with this name: " + name, HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(themeService.findByThemeName(name), HttpStatus.OK);
-    }
-
-    @GetMapping("/find/id/{id}")
-    public ResponseEntity findByThemeId(@PathVariable("id") int id) {
-        if (themeService.findByThemeId(id).isEmpty()) {
-            return new ResponseEntity<>("Not found theme with this id: " + id, HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(themeService.findByThemeId(id), HttpStatus.OK);
-    }
-
     @PatchMapping("/add")
     public ResponseEntity<?> addTheme(@RequestBody ThemeBody themeBody) {
         if (themeService.addTheme(themeBody)) {

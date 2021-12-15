@@ -28,10 +28,6 @@ public class FoodService {
     //    READ
     public List<Food> allFood() {return foodRepository.findAll();}
 
-    public List<Food> findByFoodName(String name) {return foodRepository.findByFoodName(name);}
-
-    public List<Food> findByFoodId(int id) {return foodRepository.findByFoodId(id);}
-
 
     //    UPDATE
     public boolean updateFoodDataById(int id, FoodBody item) {

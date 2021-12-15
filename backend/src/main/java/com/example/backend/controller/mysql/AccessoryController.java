@@ -19,24 +19,6 @@ public class AccessoryController {
         return new ResponseEntity<>(accessoryService.allAccessory(), HttpStatus.OK);
     }
 
-//    Find accessory by name return List
-    @GetMapping("/findAcc/name/{name}")
-    public ResponseEntity findAccessoryByName(@PathVariable("name") String name) {
-        if (accessoryService.findByAccessoryName(name).isEmpty()){
-            return new ResponseEntity<>("Not found accessory with this name: " + name, HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(accessoryService.findByAccessoryName(name), HttpStatus.OK);
-    }
-
-//    Find accessory by id return Accessory (single)
-    @GetMapping("/findAcc/id/{id}")
-    public ResponseEntity findAccessoryByName(@PathVariable("id") int id) {
-        if (accessoryService.findByAccessoryId(id).isEmpty()){
-            return new ResponseEntity<>("Not found accessory with this id: " + id, HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(accessoryService.findByAccessoryId(id), HttpStatus.OK);
-    }
-
 //    Add new accessory
     @PatchMapping("/addAcc")
     public ResponseEntity addAccessory(@RequestBody AccessoryBody accessoryBody) {

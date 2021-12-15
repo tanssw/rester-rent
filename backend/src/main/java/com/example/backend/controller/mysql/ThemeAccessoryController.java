@@ -21,14 +21,6 @@ public class ThemeAccessoryController {
     @GetMapping("/getTheme")
     public ResponseEntity all() {return new ResponseEntity(themeAccessoryJoinService.findAllTA(), HttpStatus.OK);}
 
-    @GetMapping("/findTheme/{themeId}/{accessoryId}")
-    public ResponseEntity findOneByBothId(@PathVariable("themeId") int themeId, @PathVariable("accessoryId") int accessoryId) {
-        if (themeAccessoryJoinService.findOneByBothId(themeId, accessoryId) == null) {
-            return new ResponseEntity("Not found.", HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity(themeAccessoryJoinService.findOneByBothId(themeId, accessoryId), HttpStatus.OK);
-    }
-
     @PatchMapping("/addTheme")
     public ResponseEntity addThemeAcessory(@RequestBody ThemeAccessoryBody themeAccessoryBody) {
         if(themeAccessoryService.addThemeAccessory(themeAccessoryBody)){

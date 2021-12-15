@@ -9,7 +9,4 @@ import java.util.List;
 
 @Repository
 public interface MusicsRepository extends MongoRepository<Musics, String> {
-
-    @Query(value="{name:?0}")
-    List<Musics> findByName(String name);
 }
