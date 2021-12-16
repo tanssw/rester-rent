@@ -28,10 +28,6 @@ public class LocationsService {
 //    READ
     public List<Locations> allLocation() {return locationsRepository.findAll();}
 
-    public Optional<Locations> findLocationById(String id) {return locationsRepository.findById(id);}
-
-    public List<Locations> findLocationByName(String name) {return locationsRepository.findByName(name);}
-
 //    DELETE
     public boolean deleteLocation(String id) {
         try {

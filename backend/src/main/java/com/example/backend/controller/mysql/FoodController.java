@@ -54,22 +54,6 @@ public class FoodController {
         return new ResponseEntity(response, HttpStatus.OK);
     }
 
-    @GetMapping("/findFood/name/{name}")
-    public ResponseEntity findFoodByName(@PathVariable("name") String name) {
-        if (foodService.findByFoodName(name).isEmpty()) {
-            return new ResponseEntity<>("Not found food with this name: " + name, HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(foodService.findByFoodName(name), HttpStatus.OK);
-    }
-
-    @GetMapping("/findFood/id/{id}")
-    public ResponseEntity findFoodByName(@PathVariable("id") int id) {
-        if (foodService.findByFoodId(id).isEmpty()) {
-            return new ResponseEntity<>("Not found food with this id: " + id, HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(foodService.findByFoodId(id), HttpStatus.OK);
-    }
-
     @PatchMapping("/addFood")
     public ResponseEntity<?> addFood(@RequestBody FoodBody foodBody) {
         if (foodService.addFood(foodBody)) {
@@ -79,10 +63,19 @@ public class FoodController {
         }
     }
 
-    @PatchMapping("/updFood/{id}")
+    @PatchMapping("/updFoodName/{name}")
+    public ResponseEntity<?> updateFoodDataById(@PathVariable("name") String targetName, @RequestBody FoodBody foodBody) {
+        if (foodService.updateFoodDataById(targetName, foodBody)) {
+            return new ResponseEntity<>("Update food data successfully.", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Something went wrong.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PatchMapping("/updFoodOption/{id}")
     public ResponseEntity<?> updateFoodDataById(@PathVariable("id") int id, @RequestBody FoodBody foodBody) {
-        if (foodService.updateFoodDataById(id, foodBody)) {
-            return new ResponseEntity<>("Add accessory successfully.", HttpStatus.OK);
+        if (foodService.updateFoodOptionById(id, foodBody)) {
+            return new ResponseEntity<>("Update food option successfully.", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Something went wrong.", HttpStatus.INTERNAL_SERVER_ERROR);
         }

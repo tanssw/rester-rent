@@ -15,10 +15,14 @@
                         <p>{{band.details}}</p>
                     </div>
                     <div class="d-flex justify-content-end align-items-center">
-                        <h4 class="fw-light me-4 mb-0">
-                            {{band.price}}
-                            <span class="small">บาท/ชั่วโมง</span>
-                        </h4>
+                        <div class="text-end me-4">
+                            <h4 class="fw-light mb-0">
+                                {{totalPrice}} บาท
+                            </h4>
+                            <span class="small fw-light">
+                                {{band.price}} บาท/ชั่วโมง ({{range}} ชั่วโมง)
+                            </span>
+                        </div>
                         <button @click="confirmSelect" class="btn btn-emerald px-5 py-2">เลือกวงนี้</button>
                     </div>
                 </div>
@@ -34,11 +38,19 @@ export default {
         },
         hours: {
             type: Number
+        },
+        range: {
+            type: Number
         }
     },
     data() {
         return {
             modal: null
+        }
+    },
+    computed: {
+        totalPrice() {
+            return this.range * this.band.price
         }
     },
     mounted() {

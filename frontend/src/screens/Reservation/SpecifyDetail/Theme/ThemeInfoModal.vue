@@ -52,6 +52,7 @@ export default {
             type: Object
         }
     },
+    emits: ['confirm'],
     data() {
         return {
             modal: null
