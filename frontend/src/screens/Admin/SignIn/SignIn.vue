@@ -15,7 +15,7 @@
                                 </div>
                                 <div class="mt-4 fw-light text-secondary">อยู่ระหว่างดำเนินการ</div>
                             </div>
-                            <button v-else @click="openGoogleSignIn" class="btn btn-outline-primary w-100 px-4 py-3">
+                            <button v-else @click="signIn()" class="btn btn-outline-primary w-100 px-4 py-3">
                                 <i class="fab fa-google"></i>
                                 Sign-in with Google
                             </button>
@@ -42,6 +42,7 @@
 </style>
 <script>
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import axios from 'axios'
 
 export default {
     data() {
@@ -57,8 +58,18 @@ export default {
         }
     },
     methods: {
+        async signIn() {
+            try {
+                this.user = await this.openGoogleSignIn()
+                await this.requestAuth()
+            } catch (error) {
+                // Display error message
+                this.isLoading = false
+                this.isError = true
+                console.log(error)
+            }
+        },
         async openGoogleSignIn() {
-
             // Enable loading to hide the button
             this.isLoading = true
 
@@ -70,33 +81,29 @@ export default {
             const auth = getAuth()
             auth.languageCode = 'it'
 
-            try {
+            // Open Google Sign-in Popup window and wait for user data
+            const result = await signInWithPopup(auth, provider)
+            const credential = GoogleAuthProvider.credentialFromResult(result)
+            const token = credential.accessToken
+            const user = result.user
 
-                // Open Google Sign-in Popup window and wait for user data
-                const result = await signInWithPopup(auth, provider)
-                const credential = GoogleAuthProvider.credentialFromResult(result)
-                const token = credential.accessToken
-                const user = result.user
-
-                let payload = {
-                    name: user.displayName,
-                    email: user.email,
-                    googleId: user.providerData[0].uid,
-                    accessToken: token
-                }
-
-                this.user = payload
-
-                // TODO: Send user data to backend
-                // TODO: Save token in local storage using for apis authorization
-                // TODO: Route to '/admin/'
-
-            } catch (error) {
-                // Display error message
-                this.isLoading = false
-                this.isError = true
-                console.log(error)
+            let payload = {
+                name: user.displayName,
+                email: user.email,
+                googleId: user.providerData[0].uid,
+                accessToken: token
             }
+
+            return payload
+        },
+        async requestAuth() {
+            // Send user data to backend
+            const path = `${process.env.VUE_APP_API_HOSTNAME}/auth`
+            const result = axios.post(path, this.user)
+            console.log(result.data)
+
+            // TODO: Save token in local storage using for apis authorization
+            // TODO: Route to '/admin/'
         }
     }
 }
