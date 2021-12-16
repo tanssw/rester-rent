@@ -28,8 +28,8 @@ const router = createRouter({
             path: '/admin',
             component: AdminPanel,
             children: [
-                { path: 'payment', component: Payment, name: 'Payment'},
-                { path: 'order', component: Order, name: 'Order'}
+                { path: 'payment', component: Payment, name: 'payment'},
+                { path: 'order', component: Order, name: 'order'}
             ]
         },
     ]
