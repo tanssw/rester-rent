@@ -1,9 +1,5 @@
 <template>
-  <div class="container-fluid">
-    <div class="row flex-nowrap main-content">
-      <SIDEBAR />
-      <div class="col py-3">
-        <div class="row px-3">
+  <div class="row px-3">
           <div class="col-8 p-5 rounded shadow">
             <h4>Order รอการดำเนินการ</h4>
             <table class="table is-fullwidth table-fixed">
@@ -218,8 +214,8 @@
               ></div>
             </div>
           </div>
-        </div>
-        <div class="col-12 p-5 rounded shadow">
+  </div>
+  <div class="col-12 p-5 rounded shadow">
           <h4>Orders</h4>
           <h6>
             <i class="fas fa-calendar-alt"></i>&nbsp;in last 30 days revenue
@@ -325,8 +321,8 @@
               </button>
             </div>
           </div>
-        </div>
-        <div id="myModal" class="modal fade" role="dialog">
+  </div>
+  <div id="myModal" class="modal fade" role="dialog">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-body">
@@ -335,9 +331,6 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -358,11 +351,7 @@
 
 <script>
 import Order from "../dummy_data/Orders.js";
-import SIDEBAR from "./Sidebar.vue";
 export default {
-  components:{
-      SIDEBAR
-  },
   data() {
     return {
       Orders: Order,

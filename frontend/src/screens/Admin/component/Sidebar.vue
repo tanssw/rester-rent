@@ -21,6 +21,14 @@
                             <i class="fas fa-money-check-alt"></i><span class="ms-1 d-none d-sm-inline"> Payment</span>
                         </a>
                     </li>
+                    <ul>
+
+                    </ul>
+                    <li>
+                        <a href="/admin/payment" class="nav-link px-3 align-middle">
+                            <i class="fas fa-money-check-alt"></i><span class="ms-1 d-none d-sm-inline"> Theme </span>
+                        </a>
+                    </li>
                 </ul>
                 <hr>
             </div>

@@ -1,9 +1,6 @@
 <template>
-  <div class="container-fluid">
-    <div class="row flex-nowrap main-content">
-      <SIDEBAR />
-      <div class="col py-3">
-        <div>
+
+  <div>
           <div class="col-11 mx-5 p-5 rounded shadow">
             <div class="row justify-content-between">
               <div class="col-4">
@@ -87,10 +84,8 @@
               </table>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
   </div>
+
   <!--Toast-->
     <div class="position-fixed bottom-0 end-0 p-5" style="z-index: 11">
         <div id="toast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
@@ -137,12 +132,8 @@
 
 <script>
 import Payment from "../dummy_data/Payment.js";
-import SIDEBAR from './Sidebar.vue';
 import dayjs from "dayjs";
 export default {
-  components: {
-    SIDEBAR,
-  },
   data() {
     return {
       Payments: Payment,
