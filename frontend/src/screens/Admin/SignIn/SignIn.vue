@@ -99,7 +99,7 @@ export default {
         async requestAuth() {
             // Send user data to backend
             const path = `${process.env.VUE_APP_API_TARGET}/auth`
-            const result = axios.post(path, this.user)
+            const result = await axios.post(path, this.user)
             console.log(result.data)
 
             // TODO: Save token in local storage using for apis authorization

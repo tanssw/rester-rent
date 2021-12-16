@@ -7,16 +7,16 @@ import javax.persistence.Id;
 
 @Data
 @Document("users")
-public class Users {
+public class User {
     @Id
     private String _id;
     private String name;
     private String email;
     private String googleId;
 
-    public Users() {}
+    public User() {}
 
-    public Users(String _id, String name, String email, String googleId) {
+    public User(String _id, String name, String email, String googleId) {
         this._id = _id;
         this.name = name;
         this.email = email;
