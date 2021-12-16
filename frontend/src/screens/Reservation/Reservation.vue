@@ -22,6 +22,8 @@
     </div>
 </template>
 <script>
+import dayjs from 'dayjs'
+
 import SectionNavigator from './components/SectionNavigator.vue'
 import DetailNavigator from './SpecifyDetail/DetailNavigator.vue'
 import DetailBottomNavigator from './SpecifyDetail/DetailBottomNavigator.vue'

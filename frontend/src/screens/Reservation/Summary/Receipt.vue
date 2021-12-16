@@ -23,7 +23,7 @@
             </div>
             <div class="d-flex justify-content-between fw-bold mt-4">
                 <div>ราคารวม</div>
-                <div>{{totalPrice}}</div>
+                <div>{{total}}</div>
             </div>
         </div>
     </div>
@@ -33,10 +33,14 @@ import dayjs from 'dayjs'
 
 export default {
     props: {
+        total: {
+            type: Number
+        },
         detail: {
             type: Object
         }
     },
+    emits: ['update:total'],
     data() {
         return {
 
@@ -78,20 +82,6 @@ export default {
             if (this.existing.hasFood) list.push({title: `ชุดอาหาร ${spec.food.fname}`, price: spec.food.size.price})
 
             return list
-        },
-        totalPrice() {
-            let reservation = this.detail.reservation
-            let spec = this.detail.spec
-
-            let musicPrice = (spec.music.type === 'audio') ? 0 : spec.music.band.price
-
-            let total = 0
-            if (this.existing.hasRoom) total += reservation.room.price
-            if (this.existing.hasTheme) total += spec.theme.price
-            if (this.existing.hasRoom || this.existing.hasBand) total += musicPrice
-            if (this.existing.hasFood) total += spec.food.size.price
-
-            return total
         }
     },
 }

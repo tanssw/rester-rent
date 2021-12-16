@@ -7,7 +7,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-8">
-                <receipt :detail="detail" />
+                <receipt :total="totalPrice" :detail="detail" />
                 <div class="mt-5">
                     <div class="row mb-3 align-items-center">
                         <span class="col-3">ชื่อลูกค้า</span>
@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <button :disabled="!validInformation" class="btn btn-emerald py-3 px-5">
+                        <button @click="requestOrder()" :disabled="!validInformation" class="btn btn-emerald py-3 px-5">
                             ยืนยันการจอง
                         </button>
                     </div>
@@ -32,6 +32,9 @@
     </div>
 </template>
 <script>
+import dayjs from 'dayjs'
+import axios from 'axios'
+
 import Receipt from './Receipt.vue'
 
 export default {
@@ -49,7 +52,7 @@ export default {
     data() {
         return {
             name: null,
-            email: null
+            email: null,
         }
     },
     computed: {
@@ -65,6 +68,66 @@ export default {
         },
         validInformation() {
             return this.name && this.validEmail
+        },
+        existing() {
+            let reservation = this.reservation
+            let spec = this.spec
+
+            return {
+                hasRoom: Object.keys(reservation.room).length,
+                hasTheme: Object.keys(spec.theme).length,
+                hasBand: Object.keys(spec.music.band).length,
+                hasFood: Object.keys(spec.food).length
+            }
+        },
+        totalPrice() {
+            let reservation = this.reservation
+            let spec = this.spec
+
+            let musicPrice = (spec.music.type === 'audio') ? 0 : spec.music.band.price
+
+            let total = 0
+            if (this.existing.hasRoom) total += reservation.room.price
+            if (this.existing.hasTheme) total += spec.theme.price
+            if (this.existing.hasRoom || this.existing.hasBand) total += musicPrice
+            if (this.existing.hasFood) total += spec.food.size.price
+
+            return total
+        },
+    },
+    methods: {
+        formatSpec(exist, id, price) {
+            if (exist) return {id: id, price: price}
+            return {id: null, price: 0}
+        },
+        async requestOrder() {
+            let reservation = this.reservation
+            let spec = this.spec
+
+            let startDate = dayjs(`${reservation.date} ${reservation.startAt}:00`, 'YYYY-MM-DD H:mm').format()
+            let endDate = dayjs(`${reservation.date} ${reservation.endAt}:00`, 'YYYY-MM-DD H:mm').format()
+
+            let theme = this.formatSpec(this.existing.hasTheme, spec.theme.id, spec.theme.price)
+            let food = this.formatSpec(this.existing.hasFood, spec.food.id, spec.food.price)
+            let music = this.formatSpec(this.existing.hasBand, spec.music.band.id, spec.music.band.price)
+
+            let body = {
+                fullname: this.name,
+                mail: this.email,
+                start_date: startDate,
+                end_date: endDate,
+                income: this.totalPrice,
+                details: {
+                    theme: theme,
+                    food: food,
+                    music: music,
+                    location: {id: reservation.room.id, price: reservation.room.price}
+                }
+            }
+
+            let path = `${process.env.VUE_APP_API_TARGET}/addOrder`
+            let result = await axios.patch(path, body)
+
         }
     }
 }
