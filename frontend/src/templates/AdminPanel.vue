@@ -20,7 +20,7 @@
                         </ul>
                     </div>
                     <div class="p-3">
-                        <button class="btn btn-outline-danger w-100">Sign Out</button>
+                        <button @click="signOut()" class="btn btn-outline-danger py-2 w-100">Sign Out</button>
                     </div>
                 </div>
             </div>
@@ -60,6 +60,8 @@
 }
 </style>
 <script>
+import axios from 'axios'
+
 export default {
     data() {
         return {
@@ -85,6 +87,21 @@ export default {
     methods: {
         goTo(pathName) {
             this.$router.push({name: pathName})
+        },
+        async signOut() {
+            try {
+                const path = `${process.env.VUE_APP_API_TARGET}/auth`
+                const body = {
+                    data: {
+                        token: localStorage.getItem('RR-Token'),
+                        userId: localStorage.getItem('RR-UID')
+                    }
+                }
+                const result = await axios.delete(path, body)
+                this.$router.push({name: 'signin'})
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 }
