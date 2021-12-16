@@ -97,7 +97,8 @@ export default {
                         userId: localStorage.getItem('RR-UID')
                     }
                 }
-                const result = await axios.delete(path, body)
+                await axios.delete(path, body)
+                this.destroyToken()
                 this.$router.push({name: 'signin'})
             } catch (error) {
                 console.log(error)
