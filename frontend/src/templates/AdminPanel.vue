@@ -11,7 +11,7 @@
                             </div>
                         </div>
                         <ul class="p-3" id="menu">
-                            <li @click="goTo(nav.pathName)" v-for="(nav, index) in navigations" :key="index" :class="{'mt-3': index}" class="d-flex align-items-center cursor-pointer">
+                            <li @click="goTo(nav.pathName)" v-for="(nav, index) in navigations" :key="index" :class="{'mt-3': index}" class="nav-text d-flex align-items-center cursor-pointer">
                                 <div class="icon-box">
                                     <i :class="nav.icon"></i>
                                 </div>
@@ -51,6 +51,12 @@
 .body-content {
     overflow-x: hidden;
     overflow-y: scroll;
+}
+.nav-text {
+    transition: .25s;
+}
+.nav-text:hover {
+    opacity: .5;
 }
 </style>
 <script>
