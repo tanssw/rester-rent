@@ -2,8 +2,9 @@ module.exports = {
     devServer: {
         host: 'localhost',
         proxy: {
-            '^/api': {
-                target: 'http://localhost:3000'
+            '^/(api)': {
+                target: process.env.VUE_APP_API_SERVER,
+                changeOrigin: true
             }
         }
     }
