@@ -43,14 +43,18 @@ public class AuthenticationController {
             result = authenticationService.addUser(user);
         }
 
-        System.out.println(result);
+        String token = authenticationService.generateToken(result.get_id());
 
-        return new ResponseEntity("This will be a token.", HttpStatus.OK);
+        return new ResponseEntity(token, HttpStatus.OK);
 
     }
 
     @RequestMapping(value="/token", method = RequestMethod.POST)
-    public void generateToken() {}
+    public void authWithToken() {
+
+
+
+    }
 
     @RequestMapping(value="/", method = RequestMethod.DELETE)
     public  void deleteToken() {}

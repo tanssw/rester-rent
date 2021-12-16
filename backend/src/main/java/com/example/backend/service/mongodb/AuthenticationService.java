@@ -1,21 +1,25 @@
 package com.example.backend.service.mongodb;
 
+import com.example.backend.pojo.mongodb.Token;
 import com.example.backend.pojo.mongodb.User;
+import com.example.backend.repository.mongodb.TokenRepository;
 import com.example.backend.repository.mongodb.UserRepository;
 import com.example.backend.requestBody.GoogleAccountData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @Service
 public class AuthenticationService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private TokenRepository tokenRepository;
 
     private static final String[] WHITELIST_DOMAIN = {"it.kmitl.ac.th"};
 
@@ -45,6 +49,17 @@ public class AuthenticationService {
         return isValid;
     }
 
-    
+//    Generate token using UUIDv4
+    public String generateToken(String userId) {
+
+        UUID uuid = UUID.randomUUID();
+
+        LocalDateTime current = LocalDateTime.now();
+
+        Token token = new Token(null, userId, uuid.toString(), current);
+        tokenRepository.save(token);
+
+        return uuid.toString();
+    }
 
 }
