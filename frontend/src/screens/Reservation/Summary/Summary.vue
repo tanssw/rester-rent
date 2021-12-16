@@ -29,6 +29,7 @@
                 </div>
             </div>
         </div>
+        <success-modal ref="successModal" />
     </div>
 </template>
 <script>
@@ -36,10 +37,12 @@ import dayjs from 'dayjs'
 import axios from 'axios'
 
 import Receipt from './Receipt.vue'
+import SuccessModal from './SuccessModal.vue'
 
 export default {
     components: {
-        Receipt
+        Receipt,
+        SuccessModal
     },
     props: {
         reservation: {
@@ -95,6 +98,9 @@ export default {
             return total
         },
     },
+    mounted() {
+        this.$refs.successModal.tempShow()
+    },
     methods: {
         formatSpec(exist, id, price) {
             if (exist) return {id: id, price: price}
@@ -125,8 +131,13 @@ export default {
                 }
             }
 
-            let path = `${process.env.VUE_APP_API_TARGET}/addOrder`
-            let result = await axios.patch(path, body)
+            try {
+                let path = `${process.env.VUE_APP_API_TARGET}/addOrder`
+                await axios.patch(path, body)
+                this.$refs.successModal.toggle()
+            } catch (error) {
+
+            }
 
         }
     }
