@@ -45,6 +45,7 @@ public class AuthenticationController {
 
         String token = authenticationService.generateToken(result.get_id());
 
+
         return new ResponseEntity(token, HttpStatus.OK);
 
     }

@@ -1,5 +1,6 @@
 package com.example.backend.service.mongodb;
 
+import com.example.backend.pojo.mongodb.Token;
 import com.example.backend.pojo.mongodb.User;
 import com.example.backend.repository.mongodb.TokenRepository;
 import com.example.backend.repository.mongodb.UserRepository;
@@ -8,10 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @Service
 public class AuthenticationService {
@@ -52,11 +51,15 @@ public class AuthenticationService {
 
 //    Generate token using UUIDv4
     public String generateToken(String userId) {
+
         UUID uuid = UUID.randomUUID();
-        System.out.println(uuid);
+
+        LocalDateTime current = LocalDateTime.now();
+
+        Token token = new Token(null, userId, uuid.toString(), current);
+        tokenRepository.save(token);
+
         return uuid.toString();
     }
-
-
 
 }
