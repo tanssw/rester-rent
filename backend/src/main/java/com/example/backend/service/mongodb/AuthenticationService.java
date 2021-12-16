@@ -62,4 +62,14 @@ public class AuthenticationService {
         return uuid.toString();
     }
 
+    public boolean removeToken(String userId, String token) {
+        Token document = tokenRepository.findByUserAndToken(userId, token);
+        try {
+            tokenRepository.delete(document);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }

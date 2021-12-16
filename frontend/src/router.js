@@ -40,7 +40,7 @@ router.beforeEach((to, from, next) => {
     // Router Guard for Sign-in Page
     if (to.name === 'signin') {
         const token = localStorage.getItem('RR-Token')
-        if (token) return next({name: 'AdminPanel'})
+        if (token) return next({name: 'Order'})
         return next()
     }
 

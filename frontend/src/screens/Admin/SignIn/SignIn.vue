@@ -68,7 +68,7 @@ export default {
                 // Save token in local storage using for apis authorization
                 localStorage.setItem('RR-Token', token)
 
-                this.$router.push({name: 'AdminPanel'})
+                this.$router.push({name: 'Order'})
 
             } catch (error) {
                 // Display error message
