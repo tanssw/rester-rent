@@ -7,6 +7,8 @@ import CustomerTemplate from './templates/CustomerTemplate.vue'
 import Reservation from './screens/Reservation/Reservation.vue'
 import SignIn from './screens/Admin/SignIn/SignIn.vue'
 import AdminPanel from './screens/Admin/AdminPanel.vue'
+import Payment from './screens/Admin/component/Payment.vue'
+import Order from './screens/Admin/component/Order.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -26,9 +28,17 @@ const router = createRouter({
         {
             path: '/admin',
             component: AdminPanel,
-            children: [
-                {path: '', component: AdminPanel, name: 'AdminPanel'},
-            ]
+            name: 'AdminPanel'
+        },
+        {   
+            path: '/admin/payment', 
+            component: Payment, 
+            name: 'Payment'
+        },
+        {   
+            path: '/admin/order', 
+            component: Order, 
+            name: 'Order'
         }
     ]
 })

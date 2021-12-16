@@ -1,10 +1,9 @@
 <template>
     <div class="container-fluid">
         <div class="row flex-nowrap main-content">
-        <SIDEBAR :section ="section" @change= "changeSec" />
+        <SIDEBAR/>
         <div class="col py-3">
-            <ORDER v-if= "section == 'order'"/>
-            <PAYMENT v-if= "section == 'payment'"/>
+            
         </div>
         </div>
     </div>
@@ -22,23 +21,10 @@
 </style>
 
 <script>
-import PAYMENT from "./component/Payment.vue"
-import ORDER from "./component/Order.vue"
 import SIDEBAR from "./component/Sidebar.vue"
 export default {
     components: {
-        PAYMENT, ORDER, SIDEBAR
-    },
-    data() {
-        return {
-            section: "order"
-        }
-    },
-    methods: {
-        changeSec(sec){
-            this.section = sec
-        }
+        SIDEBAR
     }
-
 }
 </script>

@@ -7,17 +7,17 @@
                 <div class="liness mx-1 rounded-pill my-3" ></div>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li>
-                        <a href="#" data-bs-toggle="collapse" class="nav-link px-3 align-middle" v-on:click = "changeSec('home')">
+                        <a href="#" data-bs-toggle="collapse" class="nav-link px-3 align-middle">
                             <i class="fas fa-tachometer-alt"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span> 
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-3 align-middle" v-on:click = "changeSec('order')">
+                        <a href="/admin/order" class="nav-link px-3 align-middle">
                             <i class="far fa-calendar-check"></i> <span class="ms-1 d-none d-sm-inline">Orders</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-3 align-middle" v-on:click = "changeSec('payment')">
+                        <a href="/admin/payment" class="nav-link px-3 align-middle">
                             <i class="fas fa-money-check-alt"></i><span class="ms-1 d-none d-sm-inline"> Payment</span>
                         </a>
                     </li>
@@ -26,24 +26,3 @@
             </div>
     </div>
 </template>
-
-<script>
-export default {
-    props: {
-        section: {
-            type: String,
-            required: true
-        }
-    },
-    methods: {
-        changeSec(sec){
-            // console.log(sec)
-            this.$emit("change", sec);
-        }
-    }
-}
-</script>
-
-<style>
-
-</style>
