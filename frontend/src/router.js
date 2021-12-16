@@ -28,8 +28,8 @@ const router = createRouter({
             path: '/admin',
             component: AdminPanel,
             children: [
-                { path: 'payment', component: Payment, name: 'Payment'},
-                { path: 'order', component: Order, name: 'Order'}
+                { path: 'payment', component: Payment, name: 'payment'},
+                { path: 'order', component: Order, name: 'order'}
             ]
         },
     ]
@@ -40,7 +40,7 @@ router.beforeEach((to, from, next) => {
     // Router Guard for Sign-in Page
     if (to.name === 'signin') {
         const token = localStorage.getItem('RR-Token')
-        if (token) return next({name: 'AdminPanel'})
+        if (token) return next({name: 'order'})
         return next()
     }
 

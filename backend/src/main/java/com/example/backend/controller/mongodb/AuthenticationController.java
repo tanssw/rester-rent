@@ -2,6 +2,7 @@ package com.example.backend.controller.mongodb;
 
 import com.example.backend.pojo.mongodb.User;
 import com.example.backend.requestBody.AuthData;
+import com.example.backend.requestBody.AuthTokenData;
 import com.example.backend.service.mongodb.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -52,10 +53,13 @@ public class AuthenticationController {
     @RequestMapping(value="/token", method = RequestMethod.POST)
     public void authWithToken() {
 
-
-
     }
 
-    @RequestMapping(value="/", method = RequestMethod.DELETE)
-    public  void deleteToken() {}
+    @RequestMapping(value="/auth", method = RequestMethod.DELETE)
+    public ResponseEntity deleteToken(@RequestBody AuthTokenData authTokenData) {
+        String userId = authTokenData.getUserId();
+        String token = authTokenData.getToken();
+        boolean result = authenticationService.removeToken(userId, token);
+        return new ResponseEntity(result, HttpStatus.OK);
+    }
 }
