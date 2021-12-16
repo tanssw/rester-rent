@@ -1,6 +1,8 @@
 package com.example.backend.requestBody;
 
-public class AuthTokenData {
+import java.io.Serializable;
+
+public class AuthTokenData implements Serializable {
     private String token;
     private String userId;
 

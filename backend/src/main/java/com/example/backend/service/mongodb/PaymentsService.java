@@ -13,8 +13,7 @@ public class PaymentsService {
     @Autowired
     private PaymentsRepository paymentsRepository;
 
-    public List<Payments> getAllPayments() {return paymentsRepository.findAll();}
-
+//    CREATE & UPDATE
     public boolean addOrUpdatePayment(Payments payment){
         try {
             paymentsRepository.save(payment);
@@ -24,7 +23,12 @@ public class PaymentsService {
             return false;
         }
     }
+//    READ
+    public List<Payments> getAllPayments() {return paymentsRepository.findAll();}
 
+    public boolean findPaymentById(String id) {return !paymentsRepository.findById(id).isEmpty();}
+
+//    DELETE
     public boolean deletePayment(String id) {
         try {
             paymentsRepository.deleteById(id);
