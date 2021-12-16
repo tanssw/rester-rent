@@ -34,15 +34,13 @@ public class AuthenticationController {
 //        Check if user's Google account is valid.
         if (!authenticationService.isValidGoogleAccount(accessToken, googleId, email)
         || !authenticationService.isWhitelist(email)) {
-            return new ResponseEntity("Authentication Failed", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity("Authentication Failed", HttpStatus.FORBIDDEN);
         }
-
+        
 //        Add new user if 'googleId' is not exist in database.
         if (authenticationService.isUserExist(googleId)) {
             authenticationService.addUser(user);
         }
-
-
 
         return new ResponseEntity("This will be a token.", HttpStatus.OK);
 
