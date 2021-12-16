@@ -50,8 +50,9 @@ router.beforeEach((to, from, next) => {
     // Router Guard for another admin page
     if (paths[0] === 'admin' && !paths.includes('signin')) {
         const token = localStorage.getItem('RR-Token')
-        if (token) return next()
-        return next({name: 'signin'})
+        if (!token) return next({name: 'signin'})
+        if (paths.length === 1) return next({name: 'order'})
+        next()
     }
 
     return next()
