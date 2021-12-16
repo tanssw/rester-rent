@@ -65,7 +65,6 @@ public class AuthenticationService {
     public boolean removeToken(String userId, String token) {
         Token document = tokenRepository.findByUserAndToken(userId, token);
         try {
-            System.out.println(document);
             tokenRepository.delete(document);
             return true;
         } catch (Exception e) {

@@ -60,9 +60,7 @@ public class AuthenticationController {
     public ResponseEntity deleteToken(@RequestBody AuthTokenData authTokenData) {
         String userId = authTokenData.getUserId();
         String token = authTokenData.getToken();
-        System.out.println(userId + " " + token);
         boolean result = authenticationService.removeToken(userId, token);
-        System.out.println(result);
         return new ResponseEntity(result, HttpStatus.OK);
     }
 }
