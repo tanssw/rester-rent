@@ -22,6 +22,9 @@
                         </div>
                     </div>
                     <div class="text-center">
+                        <div v-if="isError" class="text-danger h6 mb-4">
+                            เกิดข้อผิดพลาดระหว่างดำเนินการ กรุณาลองใหม่ในภายหลัง
+                        </div>
                         <button @click="requestOrder()" :disabled="!validInformation" class="btn btn-emerald py-3 px-5">
                             ยืนยันการจอง
                         </button>
@@ -56,6 +59,7 @@ export default {
         return {
             name: null,
             email: null,
+            isError: false
         }
     },
     computed: {
@@ -98,9 +102,6 @@ export default {
             return total
         },
     },
-    mounted() {
-        this.$refs.successModal.tempShow()
-    },
     methods: {
         formatSpec(exist, id, price) {
             if (exist) return {id: id, price: price}
@@ -136,7 +137,8 @@ export default {
                 await axios.patch(path, body)
                 this.$refs.successModal.toggle()
             } catch (error) {
-
+                this.isError = true
+                console.log(error)
             }
 
         }
