@@ -14,7 +14,7 @@ public class Token {
     private String _id;
     private String userId;
     private String token;
-    @Indexed(name = "createdAt", expireAfterSeconds = 60)
+    @Indexed(name = "createdAt", expireAfterSeconds = 3600)
     private LocalDateTime createdAt;
 
     public Token() {}
