@@ -59,11 +59,6 @@ export default {
         return {
             navigations: [
                 {
-                    title: 'Dashboard',
-                    pathName: 'dashboard',
-                    icon: 'fas fa-tachometer-alt'
-                },
-                {
                     title: 'Orders',
                     pathName: 'order',
                     icon: 'far fa-calendar-check'
