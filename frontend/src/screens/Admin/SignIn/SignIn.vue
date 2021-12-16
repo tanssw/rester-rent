@@ -61,7 +61,15 @@ export default {
         async signIn() {
             try {
                 this.user = await this.openGoogleSignIn()
-                await this.requestAuth()
+                const token = await this.requestAuth()
+
+                if (!token) return
+
+                // Save token in local storage using for apis authorization
+                localStorage.setItem('RR-Token', token)
+
+                this.$router.push({name: 'AdminPanel'})
+
             } catch (error) {
                 // Display error message
                 this.isLoading = false
@@ -100,10 +108,8 @@ export default {
             // Send user data to backend
             const path = `${process.env.VUE_APP_API_TARGET}/auth`
             const result = await axios.post(path, this.user)
-            console.log(result.data)
-
-            // TODO: Save token in local storage using for apis authorization
-            // TODO: Route to '/admin/'
+            const token = result.data
+            return token
         }
     }
 }
