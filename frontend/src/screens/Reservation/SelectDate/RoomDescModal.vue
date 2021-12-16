@@ -6,14 +6,14 @@
                     <div class="row mb-4">
                         <div class="col-4"></div>
                         <div class="col-8">
-                            <h4>{{room.title}}</h4>
+                            <h4>{{room.name}}</h4>
                             <div>ขนาด: {{room.size}}</div>
-                            <div>รองรับได้สูงสุด {{room.maximum}} คน</div>
+                            <div>รองรับได้สูงสุด {{room.capacity}} คน</div>
                         </div>
                     </div>
                     <div class="mb-4">
                         <h5>รายละเอียด</h5>
-                        <div>{{room.description}}</div>
+                        <div>{{room.details_room}} {{room.details_music}}</div>
                     </div>
                     <div class="d-flex justify-content-end align-items-center">
                         <h4 class="fw-light me-4 mb-0">
