@@ -16,6 +16,9 @@
                     </div>
                 </div>
                 <div class="text-end mt-4">
+                    <span v-if="isError" class="text-danger small me-3">
+                        เกิดข้อผิดพลาดในการดำเนินการ กรุณาลองใหม่ในภายหลัง
+                    </span>
                     <button @click="sendPayment()" :disabled="!isValid" class="btn btn-emerald px-4 py-2">ส่งหลักฐาน</button>
                 </div>
             </div>
@@ -29,6 +32,7 @@
                 </ul>
             </div>
         </div>
+        <success-modal ref="successModal"/>
     </div>
 </template>
 <style scoped>
@@ -40,7 +44,12 @@ li {
 import axios from 'axios'
 import dayjs from 'dayjs'
 
+import SuccessModal from './SuccessModal.vue'
+
 export default {
+    components: {
+        SuccessModal
+    },
     data() {
         return {
             inputs: {
@@ -74,7 +83,8 @@ export default {
                     placeholder: 'example@resterrent.com',
                     value: ''
                 }
-            }
+            },
+            isError: false
         }
     },
     computed: {
@@ -90,14 +100,20 @@ export default {
             let date = this.inputs.date.value
             let time = this.inputs.time.value
 
-            const path = `${process.env.VUE_APP_API_TARGET}/addPayment`
-            const body = {
-                amount: this.inputs.amount.value,
-                mail: this.inputs.email.value,
-                date_time: dayjs(`${date} ${time}`, 'YYYY-MM-DD HH:mm'),
-                proof_of_payment: this.inputs.referenceNo.value
+            try {
+                const path = `${process.env.VUE_APP_API_TARGET}/addPayment`
+                const body = {
+                    amount: this.inputs.amount.value,
+                    mail: this.inputs.email.value,
+                    date_time: dayjs(`${date} ${time}`, 'YYYY-MM-DD HH:mm'),
+                    proof_of_payment: this.inputs.referenceNo.value
+                }
+                await axios.patch(path)
+                this.$refs.successModal.tempShow()
+            } catch (error) {
+                this.isError = true
             }
-            await axios.patch(path)
+
         }
     }
 }
