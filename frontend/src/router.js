@@ -2,11 +2,12 @@ import { createWebHistory, createRouter } from 'vue-router'
 
 // Templates
 import CustomerTemplate from './templates/CustomerTemplate.vue'
-
+import AdminPanel from './templates/AdminPanel.vue'
 // Screens
 import Reservation from './screens/Reservation/Reservation.vue'
 import SignIn from './screens/Admin/SignIn/SignIn.vue'
-import AdminPanel from './screens/Admin/AdminPanel.vue'
+import Payment from './screens/Admin/component/Payment.vue'
+import Order from './screens/Admin/component/Order.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -27,9 +28,10 @@ const router = createRouter({
             path: '/admin',
             component: AdminPanel,
             children: [
-                {path: '', component: AdminPanel, name: 'AdminPanel'},
+                { path: 'payment', component: Payment, name: 'Payment'},
+                { path: 'order', component: Order, name: 'Order'}
             ]
-        }
+        },
     ]
 })
 
