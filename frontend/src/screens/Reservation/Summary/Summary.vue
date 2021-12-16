@@ -135,7 +135,7 @@ export default {
             try {
                 let path = `${process.env.VUE_APP_API_TARGET}/addOrder`
                 await axios.patch(path, body)
-                this.$refs.successModal.toggle()
+                this.$refs.successModal.tempShow()
             } catch (error) {
                 this.isError = true
                 console.log(error)
