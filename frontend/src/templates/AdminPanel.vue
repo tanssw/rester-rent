@@ -1,27 +1,30 @@
 <template>
     <div class="container-fluid">
         <div class="row flex-nowrap main-content">
-            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100 sticky-top">
-                    <div class="d-flex align-items-center pt-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                        <div class="d-none d-sm-inline">
-                            <h4 class="mb-0">Rester Rent</h4>
-                            <div class="fw-light">Management</div>
-                        </div>
-                    </div>
-                    <div class="line mx-1 rounded-pill my-3" ></div>
-                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                        <li @click="goTo(nav.pathName)" v-for="(nav, index) in navigations" :key="index" class="d-flex align-items-center my-2 cursor-pointer">
-                            <div class="icon-box">
-                                <i :class="nav.icon"></i>
+            <div class="col-auto col-md-3 col-xl-2 p-0 bg-dark text-white">
+                <div class="d-flex vh-100 flex-column">
+                    <div class="flex-grow-1">
+                        <div class="header-box p-3">
+                            <div class="d-none d-sm-inline">
+                                <h4 class="mb-0">Rester Rent</h4>
+                                <div class="fw-light">Management</div>
                             </div>
-                            <span class="ms-3 d-none d-sm-inline fw-light">{{nav.title}}</span>
-                        </li>
-                    </ul>
-                    <hr>
+                        </div>
+                        <ul class="p-3" id="menu">
+                            <li @click="goTo(nav.pathName)" v-for="(nav, index) in navigations" :key="index" :class="{'mt-3': index}" class="d-flex align-items-center cursor-pointer">
+                                <div class="icon-box">
+                                    <i :class="nav.icon"></i>
+                                </div>
+                                <span class="ms-3 d-none d-sm-inline fw-light">{{nav.title}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="p-3">
+                        <button class="btn btn-outline-danger w-100">Sign Out</button>
+                    </div>
                 </div>
             </div>
-            <div class="col py-3">
+            <div class="body-content col">
                 <router-view/>
             </div>
         </div>
@@ -34,11 +37,20 @@
 }
 .line {
     width: 100%;
-    height: 0.4vh;
+    height: 1px;
     background-color: gainsboro;
 }
 .main-content {
+    height: 100vh;
     background-color: white;
+    overflow: hidden;
+}
+.header-box {
+    border-bottom: 1px solid grey;
+}
+.body-content {
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 </style>
 <script>
