@@ -45,8 +45,9 @@ public class AuthenticationController {
         }
 
         String token = authenticationService.generateToken(result.get_id());
+        AuthTokenData authTokenData = new AuthTokenData(token, result.get_id());
 
-        return new ResponseEntity(token, HttpStatus.OK);
+        return new ResponseEntity(authTokenData, HttpStatus.OK);
 
     }
 

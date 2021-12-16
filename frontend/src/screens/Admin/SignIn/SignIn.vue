@@ -61,12 +61,13 @@ export default {
         async signIn() {
             try {
                 this.user = await this.openGoogleSignIn()
-                const token = await this.requestAuth()
+                const {token, userId} = await this.requestAuth()
 
                 if (!token) return
 
                 // Save token in local storage using for apis authorization
                 localStorage.setItem('RR-Token', token)
+                localStorage.setItem('RR-UID', userId)
 
                 this.$router.push({name: 'order'})
 
@@ -108,8 +109,8 @@ export default {
             // Send user data to backend
             const path = `${process.env.VUE_APP_API_TARGET}/auth`
             const result = await axios.post(path, this.user)
-            const token = result.data
-            return token
+            const {token, userId} = result.data
+            return {token, userId}
         }
     }
 }

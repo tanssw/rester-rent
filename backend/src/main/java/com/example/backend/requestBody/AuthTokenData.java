@@ -4,6 +4,11 @@ public class AuthTokenData {
     private String token;
     private String userId;
 
+    public AuthTokenData(String token, String userId) {
+        this.token = token;
+        this.userId = userId;
+    }
+
     public String getToken() {
         return token;
     }
