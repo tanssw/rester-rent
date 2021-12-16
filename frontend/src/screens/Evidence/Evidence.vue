@@ -38,12 +38,13 @@ li {
 </style>
 <script>
 import axios from 'axios'
+import dayjs from 'dayjs'
 
 export default {
     data() {
         return {
             inputs: {
-                receiptNo: {
+                referenceNo: {
                     title: 'รหัสอ้างอิง',
                     type: 'text',
                     placeholder: 'รหัสอ้างอิง / เลขที่รายการ',
@@ -85,9 +86,16 @@ export default {
     },
     methods: {
         async sendPayment() {
+
+            let date = this.inputs.date.value
+            let time = this.inputs.time.value
+
             const path = `${process.env.VUE_APP_API_TARGET}/addPayment`
             const body = {
-
+                amount: this.inputs.amount.value,
+                mail: this.inputs.email.value,
+                date_time: dayjs(`${date} ${time}`, 'YYYY-MM-DD HH:mm'),
+                proof_of_payment: this.inputs.referenceNo.value
             }
             await axios.patch(path)
         }
