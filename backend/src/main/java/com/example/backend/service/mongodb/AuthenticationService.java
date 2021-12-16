@@ -19,17 +19,12 @@ public class AuthenticationService {
 
     private static final String[] WHITELIST_DOMAIN = {"it.kmitl.ac.th"};
 
-    public void addUser(User user) {
-
+    public User getUser(String googleId) {
+        return userRepository.findByGoogleId(googleId);
     }
 
-    public boolean isUserExist(String googleId) {
-        try {
-            User user = userRepository.findByGoogleId(googleId);
-            return user != null;
-        } catch (Exception e) {
-            return false;
-        }
+    public User addUser(User user) {
+        return userRepository.save(user);
     }
 
     public boolean isValidGoogleAccount(String accessToken, String googleId, String email) {
@@ -49,5 +44,7 @@ public class AuthenticationService {
         boolean isValid = Arrays.asList(WHITELIST_DOMAIN).contains(domain);
         return isValid;
     }
+
+    
 
 }

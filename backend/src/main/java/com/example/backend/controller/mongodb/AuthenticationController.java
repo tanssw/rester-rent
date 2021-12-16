@@ -36,11 +36,14 @@ public class AuthenticationController {
         || !authenticationService.isWhitelist(email)) {
             return new ResponseEntity("Authentication Failed", HttpStatus.FORBIDDEN);
         }
-        
-//        Add new user if 'googleId' is not exist in database.
-        if (authenticationService.isUserExist(googleId)) {
-            authenticationService.addUser(user);
+
+//        Get user data (If not found, then add it in)
+        User result = authenticationService.getUser(googleId);
+        if (result == null) {
+            result = authenticationService.addUser(user);
         }
+
+        System.out.println(result);
 
         return new ResponseEntity("This will be a token.", HttpStatus.OK);
 
