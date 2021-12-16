@@ -41,10 +41,10 @@ server.servlet.context-path=/api
 
 spring.data.mongodb.host=localhost
 spring.data.mongodb.port=27017
-spring.data.mongodb.database=resterent
+spring.data.mongodb.database=... (Your MongoDB Database Name)
 spring.data.mongodb.auto-index-creation=true
 
-spring.datasource.url=jdbc:mysql://${MYSQL_HOST:localhost}:3306/resterent
+spring.datasource.url=jdbc:mysql://${MYSQL_HOST:localhost}:3306/... (Your MySQL Database Name)
 spring.datasource.username= ...
 spring.datasource.password= ...
 ```
