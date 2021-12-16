@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="text-end mt-4">
-                    <button :disabled="!isValid" class="btn btn-emerald px-4 py-2">ส่งหลักฐาน</button>
+                    <button @click="sendPayment()" :disabled="!isValid" class="btn btn-emerald px-4 py-2">ส่งหลักฐาน</button>
                 </div>
             </div>
             <div class="col-6">
@@ -37,6 +37,8 @@ li {
 }
 </style>
 <script>
+import axios from 'axios'
+
 export default {
     data() {
         return {
@@ -59,6 +61,12 @@ export default {
                     placeholder: '',
                     value: ''
                 },
+                amount: {
+                    title: 'จำนวนเงิน',
+                    type: 'number',
+                    placeholder: '0000.00',
+                    value: ''
+                },
                 email: {
                     title: 'อีเมลที่ใช้ติดต่อ',
                     type: 'email',
@@ -73,6 +81,15 @@ export default {
             let values = Object.values(this.inputs).map(input => input.value)
             let notFilled = values.filter(value => value === '')
             return !notFilled.length
+        },
+    },
+    methods: {
+        async sendPayment() {
+            const path = `${process.env.VUE_APP_API_TARGET}/addPayment`
+            const body = {
+
+            }
+            await axios.patch(path)
         }
     }
 }
