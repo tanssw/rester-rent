@@ -1,0 +1,79 @@
+<template>
+    <div>
+        <h3 class="fw-light mb-5">
+            <i class="fas fa-file-invoice me-1"></i>
+            ส่งหลักฐานการโอนเงิน
+        </h3>
+        <div class="row g-5">
+            <div class="col-6">
+                <div v-for="(input, key, index) in inputs" :key="index" :class="{'mt-4': index}" class="row align-items-center">
+                    <div class="col-3">
+                        {{input.title}}
+                        <span class="text-danger">*</span>
+                    </div>
+                    <div class="col-9">
+                        <input v-model="input.value" :type="input.type" :placeholder="input.placeholder" class="form-control p-3">
+                    </div>
+                </div>
+                <div class="text-end mt-4">
+                    <button :disabled="!isValid" class="btn btn-emerald px-4 py-2">ส่งหลักฐาน</button>
+                </div>
+            </div>
+            <div class="col-6">
+                <h5 class="mb-4">การส่งหลักฐานการโอนเงิน</h5>
+                <ul>
+                    <li>กรุณาดำเนินการโอนเงินหลังจากได้รับการอนุมัติ</li>
+                    <li>ดำเนินการส่งหลักฐานการโอนเงินโดยทันที</li>
+                    <li>พนักงานมีสิทธิ์ยกเลิกรายการของท่าน หากไม่ดำเนินการโอนเงินภายใน 3 วัน</li>
+                    <li>พนักงานจะติดต่อท่านทางอีเมลที่ท่านได้แนบไว้เท่านั้น</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</template>
+<style scoped>
+li {
+    margin: 1em auto;
+}
+</style>
+<script>
+export default {
+    data() {
+        return {
+            inputs: {
+                receiptNo: {
+                    title: 'รหัสอ้างอิง',
+                    type: 'text',
+                    placeholder: 'รหัสอ้างอิง / เลขที่รายการ',
+                    value: ''
+                },
+                date: {
+                    title: 'วันที่',
+                    type: 'date',
+                    placeholder: '',
+                    value: ''
+                },
+                time: {
+                    title: 'เวลา',
+                    type: 'time',
+                    placeholder: '',
+                    value: ''
+                },
+                email: {
+                    title: 'อีเมลที่ใช้ติดต่อ',
+                    type: 'email',
+                    placeholder: 'example@resterrent.com',
+                    value: ''
+                }
+            }
+        }
+    },
+    computed: {
+        isValid() {
+            let values = Object.values(this.inputs).map(input => input.value)
+            let notFilled = values.filter(value => value === '')
+            return !notFilled.length
+        }
+    }
+}
+</script>
