@@ -3,17 +3,17 @@
         <h4 class="fw-light mb-4">เลือกห้องสำหรับจัดงาน</h4>
         <div class="row g-5">
             <div v-for="(room, index) in rooms" :key="index" class="col-4">
-                <div @click="showDescription(room)" :class="{'active': checkSelectedRoom(room.id)}" class="room-card cursor-pointer rounded-3 p-3">
+                <div @click="showDescription(room)" :class="{'active': checkSelectedRoom(room._id)}" class="room-card cursor-pointer rounded-3 p-3">
                     <div class="row">
                         <div class="col-3">
 
                         </div>
                         <div class="col-9 d-flex">
                             <div class="flex-grow-1">
-                                <h5>{{room.title}}</h5>
+                                <h5>{{room.name}}</h5>
                                 <div class="small">
                                     <div>ขนาด: {{room.size}}</div>
-                                    <div>รองรับได้สูงสุด {{room.maximum}} คน</div>
+                                    <div>รองรับได้สูงสุด {{room.capacity}} คน</div>
                                 </div>
                             </div>
                             <div class="my-auto">
@@ -40,7 +40,6 @@
 }
 </style>
 <script>
-import mockedRoomList from '@/assets/mock/rooms.json'
 
 import RoomDescModal from './RoomDescModal.vue'
 
@@ -51,14 +50,15 @@ export default {
     props: {
         selected: {
             type: Object
+        },
+        rooms: {
+            type: Array
         }
     },
     emits: ['update:selected'],
     data() {
         return {
-            focus: {},
-            rooms: mockedRoomList
-        }
+            focus: {}        }
     },
     methods: {
         showDescription(room) {
@@ -70,7 +70,7 @@ export default {
             this.focus = {}
         },
         checkSelectedRoom(roomId) {
-            return this.selected.id === roomId
+            return this.selected._id === roomId
         }
     }
 }

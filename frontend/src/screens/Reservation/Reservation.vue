@@ -3,7 +3,7 @@
         <section-navigator v-model:step="step" />
         <div v-if="step === 0">
             <reserve-calendar v-model:selected="reservation.date" />
-            <select-room v-model:selected="reservation.room" />
+            <select-room v-model:selected="reservation.room" :rooms="rooms" />
             <select-time v-model:startAt="reservation.startAt" v-model:endAt="reservation.endAt" />
             <confirm-selection :reservation="reservation" :isValid="isValid" @confirm="nextStep" />
         </div>
@@ -36,6 +36,7 @@ import MusicSelection from './SpecifyDetail/Music/MusicSelection.vue'
 import FoodSelection from './SpecifyDetail/Food/FoodSelection.vue'
 
 import ReserveSummary from './Summary/Summary.vue'
+import axios from 'axios'
 
 export default {
     components: {
@@ -58,6 +59,9 @@ export default {
         return {
             step: 0,
             specStep: 0,
+            rooms: [],
+            allRoom: [],
+            orders: [],
             reservation: {
                 date: null,
                 room: {},
@@ -78,6 +82,19 @@ export default {
         isValid() {
             let reserve = this.reservation
             if (!reserve.date) return false
+            else if(reserve.date && !reserve.startAt && !reserve.endAt){
+                this.reservation.room = {}
+                let unreservedRooms = this.allRoom.filter(room => {
+                    let reserveRoom = this.orders.filter(order => {
+                        let reserveOrderDate = order.start_date.slice(0, 10)
+                        let conditionRoom = room._id == order.details.location
+                        let conditionDate = reserveOrderDate == reserve.date
+                        if(conditionRoom && conditionDate) return order
+                    })
+                    if(!reserveRoom.length) return room
+                })
+                this.rooms = unreservedRooms
+            }
             if (!reserve.startAt) return false
             if (!reserve.endAt) return false
             if (!Object.keys(reserve.room).length) return false
@@ -92,7 +109,27 @@ export default {
             let nextStep = this.step + 1
             if (![0, 1, 2].includes(nextStep)) return
             this.step = nextStep
+        },
+        async requestLocation() {
+            // Get Rooms from backend
+            const path = `${process.env.VUE_APP_API_TARGET}/getLocate`
+            const result = await axios.get(path)
+            const rooms = result.data
+            return rooms
+        },
+        async requestOrder() {
+            // Get Orders from backend
+            const path = `${process.env.VUE_APP_API_TARGET}/getOrder`
+            const result = await axios.get(path)
+            const orders = result.data
+            return orders
         }
+    },
+    async created() {
+        this.rooms = await this.requestLocation()
+        this.allRoom = await this.requestLocation()
+        this.orders = await this.requestOrder()
     }
+    
 }
 </script>

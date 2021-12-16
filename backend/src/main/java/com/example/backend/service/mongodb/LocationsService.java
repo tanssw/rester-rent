@@ -2,9 +2,11 @@ package com.example.backend.service.mongodb;
 
 import com.example.backend.pojo.mongodb.Locations;
 import com.example.backend.repository.mongodb.LocationsRepository;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,9 +17,9 @@ public class LocationsService {
     private LocationsRepository locationsRepository;
 
     //    CREATE & UPDATE
-    public boolean addOrUpdateLocation(Locations locations) {
+    public boolean addOrUpdateLocation(Locations location) {
         try {
-            locationsRepository.save(locations);
+            locationsRepository.save(location);
             return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -26,7 +28,14 @@ public class LocationsService {
     }
 
 //    READ
-    public List<Locations> allLocation() {return locationsRepository.findAll();}
+    public List<Locations> allLocation() {
+        List<Locations> locations = locationsRepository.findAll();
+        return locations;
+    }
+
+    public boolean findRoomById(String id) {
+        return !locationsRepository.findById(id).isEmpty();
+    }
 
 //    DELETE
     public boolean deleteLocation(String id) {
