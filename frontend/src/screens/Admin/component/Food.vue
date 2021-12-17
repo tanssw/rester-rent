@@ -43,7 +43,7 @@
                                     >
                                     <span class="float-end">
                                         <i class="fas fa-users"></i>
-                                    </span>
+                                </span>
                                 </div>
                             </div>
                             <div class="col-3">

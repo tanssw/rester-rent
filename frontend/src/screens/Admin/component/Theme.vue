@@ -132,7 +132,7 @@
                                     </template>
                                 </div>
                             </div>
-                            <template v-if = "editable">
+                            <template v-if = "editable && !addNewTheme">
                                 <div v-for= "(item, index) in newAcc" :key= "index" class="col-6">
                                     <div class="row">
                                         <div class="col-3">
@@ -274,7 +274,6 @@ export default {
             const result = await axios.get(path);
             const theme = result.data;
             this.Themes = theme;
-            console.log(theme);
         },
         async requestAccessory(){
             // Get Acc
@@ -300,6 +299,7 @@ export default {
             alert('Delete Accessory ' + acc.aname);
         },
         themeDetails(data){
+            console.log('a');
             this.themeDetail = data;
         },
         addItem(){
@@ -319,7 +319,7 @@ export default {
                 this.checkUnauthorized(error)
             }
         },
-        editableConfirm(id){
+        async editableConfirm(id){
             // validate later
             if (true){
                 this.newAcc.map(async(x) => {
@@ -328,16 +328,54 @@ export default {
                     if (!this.addNewTheme){
                         var index = this.Themes.findIndex(x => x.id == id);
                         await this.addThemeAccessory(idAcc, this.Themes[index].id, x.quantity);
+                        await this.updateTheme(this.Themes[index].id);
                         this.Themes[index] = this.themeDetail
                     }
                 });
-                if (this.addNewTheme){ 
-                    this.addNewTheme = false;
+                
+                if (this.addNewTheme){
+                    console.log(this.addNewTheme)
+                    var data = { 
+                        "name": this.themeDetail.name,
+                        "price": this.themeDetail.price,
+                        "image": this.themeDetail.image,
+                        "details": this.themeDetail.details
+                    }
+                    this.addThemes(data);
                     this.Themes.push(this.themeDetail);
+                    this.addNewTheme = false;
                 }
                 this.editable = false;
                 this.newAcc = []
             } 
+        },
+        async addThemes(data){
+            console.log('a');
+            try {
+                const path = `${process.env.VUE_APP_API_TARGET}/addTheme`;
+                const result = await axios.patch(path, data, this.header);
+                await this.requestAccessory();
+                alert("update complete");
+            } catch(error) {
+                this.checkUnauthorized(error)
+            }
+        },
+        async updateTheme(id){
+            try {
+                const path = `${process.env.VUE_APP_API_TARGET}/updTheme/${id}`;
+                const data = { 
+                    "id": this.themeDetail.id,
+                    "details": this.themeDetail.details,
+                    "price": this.themeDetail.price,
+                    "name": this.themeDetail.name,
+                    "image": this.themeDetail.image
+                }
+                const result = await axios.patch(path, data, this.header);
+                await this.requestAccessory();
+                alert("update complete");
+            } catch(error) {
+                this.checkUnauthorized(error)
+            }
         },
         async deleteItem(item, i){
              try {
