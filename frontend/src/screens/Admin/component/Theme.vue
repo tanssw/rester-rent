@@ -290,13 +290,17 @@ export default {
             alert('Add New Accessory ' + this.newAccName);
         },
         async deleteAccessory(acc){
-            const path = `${process.env.VUE_APP_API_TARGET}/delAcc/${acc.id}`;
-            const result = await axios.delete(path, {
-                headers: this.header.headers,
-                data: {}
-            });
-            await this.requestAccessory();
-            alert('Delete Accessory ' + acc.aname);
+            try {
+                const path = `${process.env.VUE_APP_API_TARGET}/delAcc/${acc.id}`;
+                const result = await axios.delete(path, {
+                    headers: this.header.headers,
+                    data: {}
+                });
+                await this.requestAccessory();
+                alert('Delete Accessory ' + acc.aname);
+            } catch(error) {
+                this.checkUnauthorized(error)
+            }
         },
         themeDetails(data){
             console.log('a');

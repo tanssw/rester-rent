@@ -31,7 +31,7 @@
                 <template v-for= "(option) in sizeOption" :key= "option.initial">
                     <button type="button" class="list-group-item list-group-item-action" v-if= "setSize != null">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-3">
                             {{ "SIZE "+ option.initial }}
                         </div>
                         <template v-if= "editable && this.setSize[index][option.initial].status">
@@ -43,12 +43,20 @@
                                     >
                                     <span class="float-end">
                                         <i class="fas fa-users"></i>
-                                </span>
+                                    </span>
                                 </div>
                             </div>
                             <div class="col-3">
                                 <span class="float-end">
-                                    ควย $
+                                    <div class="input-group justify-content-end"> 
+                                    <input type="number" class="form-control-plaintext" id="size" 
+                                        :value= "this.setSize[index][option.initial].price"
+                                        style="width: 3.5vw;"
+                                    >
+                                    <span class="float-end">
+                                        $
+                                    </span>
+                                </div>
                                 </span>
                             </div>
                         </template>
@@ -65,12 +73,17 @@
                             </span>
                         </div>
                         </template>
-                        <div class="col-2 ">
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox"
-                                    :disabled = "!editable" :checked = "this.setSize[index][option.initial].status"
-                                    @change= "this.setSize[index][option.initial].status = !this.setSize[index][option.initial].status"
-                                >
+                        <div class="col-3 align-items-center" :class= "!editable ? 'invisible':''" >
+                            <a v-if= "!true" class="btn btn-outline-info p-1"
+                                @click= "addSize(option.size, set)"
+                            >
+                                <span> Add </span>
+                            </a>
+                            <div class="btn-group" role="group" aria-label="First group" v-else>
+                                <a class="btn btn-outline-info"><i class="fas fa-pen"></i></a>
+                                <a class="btn btn-outline-danger" @click= "delSize(setSize[index][option.initial].id)">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -79,10 +92,6 @@
             </ul>
             <div class="card-body">
                <div class="d-flex justify-content-end align-items-center">
-                    <h4 class="fw-light me-4 mb-0">
-                        
-                    </h4>
-                    <button type="button" class="btn btn-danger px-4 py-2 mx-2" data-bs-dismiss="modal">DELETE</button>
                     <button @click= "editable = !editable" class="btn btn-warning px-5 py-2">EDIT</button>
                 </div>
             </div>
@@ -91,6 +100,19 @@
     </div>
     </div>
   </div>
+  <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-body">
+                  <h4>Are you sure to Delete this Menu?</h4>
+              </div>
+              <div class="modal-footer justify-content-end align-items-center">
+                  <button class="btn px-2" data-bs-dismiss="modal">cancle</button>
+                  <button @click= "deleteFood" class="btn btn-danger px-5 ">Delete</button>
+              </div>
+            </div>
+          </div>
+    </div>
 </template>
 
 <script>
@@ -98,6 +120,12 @@ import axios from "axios";
 export default {
   data() {
     return {
+      header:{
+        headers: {
+            token: localStorage.getItem('RR-Token'),
+            userId: localStorage.getItem('RR-UID')
+        }
+      },
       FoodSet: [],
       showMenu: [],
       setSize: {},
@@ -107,7 +135,8 @@ export default {
           {size: "Large", initial: "L"},
           {size: "Extra Large", initial: "XL"},
       ],
-      editable: false
+      editable: false,
+      modal: null
     };
   },
   methods: {
@@ -117,9 +146,34 @@ export default {
       const result = await axios.get(path);
       const food = result.data;
       this.FoodSet = food;
-      this.setFoodData(food.length);
+      await this.setFoodData(food.length);
     },
-    setFoodData(size){
+    async addSize(size){
+        try {
+            const path = `${process.env.VUE_APP_API_TARGET}/addFood`;
+            const data = {
+                "fname": food.fName,
+                "menus": food.menus,
+                "capacity": 0,
+                "price": 0,
+                "size": size
+            }
+            const result = await axios.patch(path, data, this.header);
+            await this.getFood();
+        } catch(error) {
+            this.checkUnauthorized(error)
+        }
+    },
+    async delSize(id){
+        try {
+            const path = `${process.env.VUE_APP_API_TARGET}/delFood/${id}`;
+            const result = await axios.delete(path, this.header);
+            await this.getFood();
+        } catch(error) {
+            this.checkUnauthorized(error)
+        }
+    },
+    async setFoodData(size){
         for (let i = 0; i < size; i++) {
             this.showMenu[i] = false
             this.setSize[i] = {
@@ -133,11 +187,16 @@ export default {
     },
     optionsFilter(size, opt){
         var food = opt.filter( x => x.size == size);
-        return (food.length == 0) ? {size: "-", price: "-", status: false} : {size: food[0].capacity, price: food[0].price, status: true}
+        return (food.length == 0) ? {size: "-", price: "-", status: false, id: null} : {size: food[0].capacity, price: food[0].price, status: true, id: food[0].id}
     }
   },
   async created() {
     await this.getFood();
+  },
+  mounted() {
+    this.modal = new bootstrap.Modal(document.getElementById("myModal"), {
+      keyboard: false,
+    });
   },
 };
 </script>
