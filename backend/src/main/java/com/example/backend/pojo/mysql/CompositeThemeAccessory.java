@@ -7,30 +7,30 @@ import java.util.Objects;
 @Embeddable
 public class CompositeThemeAccessory implements Serializable {
 
-    private int THEME_ID;
-    private int ACCESSORY_ID;
+    private String THEME_ID;
+    private String ACCESSORY_ID;
 
     public CompositeThemeAccessory() {
     }
 
-    public CompositeThemeAccessory(int THEME_ID, int ACCESSORY_ID) {
+    public CompositeThemeAccessory(String THEME_ID, String ACCESSORY_ID) {
         this.THEME_ID = THEME_ID;
         this.ACCESSORY_ID = ACCESSORY_ID;
     }
 
-    public int getTHEME_ID() {
+    public String getTHEME_ID() {
         return THEME_ID;
     }
 
-    public void setTHEME_ID(int THEME_ID) {
+    public void setTHEME_ID(String THEME_ID) {
         this.THEME_ID = THEME_ID;
     }
 
-    public int getACCESSORY_ID() {
+    public String getACCESSORY_ID() {
         return ACCESSORY_ID;
     }
 
-    public void setACCESSORY_ID(int ACCESSORY_ID) {
+    public void setACCESSORY_ID(String ACCESSORY_ID) {
         this.ACCESSORY_ID = ACCESSORY_ID;
     }
 

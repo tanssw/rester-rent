@@ -12,8 +12,13 @@ public interface FoodRepository extends JpaRepository<Food, String> {
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE FOOD SET FNAME=?1, CAPACITY=?2, SIZE=?3, MENUS=?4, PRICE=?5 WHERE ID=?6", nativeQuery = true)
-    void changeFoodById(String name, int capacity, String size, String menus, int price, int id);
+    @Query(value = "UPDATE FOOD SET FNAME=?1, MENUS=?2 WHERE FNAME=?3", nativeQuery = true)
+    void changeFoodDataByName(String newName, String newMenus, String name);
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE FOOD SET CAPACITY=?1, SIZE=?2, PRICE=?3 WHERE ID=?4", nativeQuery = true)
+    void changeFoodOptionById(int capacity, String size, int price, int id);
 
     @Transactional
     @Modifying

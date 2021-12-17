@@ -10,6 +10,11 @@ public class FoodBody {
     public FoodBody() {
     }
 
+    public FoodBody(String fname, String menus) {
+        this.fname = fname;
+        this.menus = menus;
+    }
+
     public FoodBody(String fname, int capacity, String size, String menus, int price) {
         this.fname = fname;
         this.capacity = capacity;

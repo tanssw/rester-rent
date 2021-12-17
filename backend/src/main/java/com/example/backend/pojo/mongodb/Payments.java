@@ -4,33 +4,40 @@ import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 
 @Data
 @Document("payments")
 public class Payments {
     @Id
     private String _id;
-    private String no;
-    private String date_time;
-    private String proof_of_payment;
+    private LocalDateTime date_time;
+    private int amount;
+    private String email;
     private boolean status;
+    private String reference;
+    private String mail;
 
     public Payments() {
     }
 
-    public Payments(String no, String date_time, String proof_of_payment, boolean status) {
-        this.no = no;
+    public Payments(LocalDateTime date_time, int amount, String email, boolean status, String reference, String mail) {
         this.date_time = date_time;
-        this.proof_of_payment = proof_of_payment;
+        this.amount = amount;
+        this.email = email;
         this.status = status;
+        this.reference = reference;
+        this.mail = mail;
     }
 
-    public Payments(String _id, String no, String date_time, String proof_of_payment, boolean status) {
+    public Payments(String _id, LocalDateTime date_time, int amount, String email, boolean status, String reference, String mail) {
         this._id = _id;
-        this.no = no;
         this.date_time = date_time;
-        this.proof_of_payment = proof_of_payment;
+        this.amount = amount;
+        this.email = email;
         this.status = status;
+        this.reference = reference;
+        this.mail = mail;
     }
 
     public String get_id() {
@@ -41,28 +48,28 @@ public class Payments {
         this._id = _id;
     }
 
-    public String getNo() {
-        return no;
-    }
-
-    public void setNo(String no) {
-        this.no = no;
-    }
-
-    public String getDate_time() {
+    public LocalDateTime getDate_time() {
         return date_time;
     }
 
-    public void setDate_time(String date_time) {
+    public void setDate_time(LocalDateTime date_time) {
         this.date_time = date_time;
     }
 
-    public String getProof_of_payment() {
-        return proof_of_payment;
+    public int getAmount() {
+        return amount;
     }
 
-    public void setProof_of_payment(String proof_of_payment) {
-        this.proof_of_payment = proof_of_payment;
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public boolean isStatus() {
@@ -71,5 +78,21 @@ public class Payments {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 }

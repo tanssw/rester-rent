@@ -1,9 +1,13 @@
 package com.example.backend.pojo.mongodb;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Id;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Data
@@ -16,19 +20,18 @@ public class Orders {
     private String start_date;
     private String end_date;
     private int income;
-    private String status;
+    private String status = "รอการดำเนินการ";
     private Object details;
 
     public Orders() {
     }
 
-    public Orders(String fullname, String mail, String start_date, String end_date, int income, String status, Object details) {
+    public Orders(String fullname, String mail, String start_date, String end_date, int income, Object details) {
         this.fullname = fullname;
         this.mail = mail;
         this.start_date = start_date;
         this.end_date = end_date;
         this.income = income;
-        this.status = status;
         this.details = details;
     }
 
