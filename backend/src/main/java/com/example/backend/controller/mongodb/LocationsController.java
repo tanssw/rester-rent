@@ -56,7 +56,7 @@ public class LocationsController {
         AuthTokenData header = new AuthTokenData(token, userId);
         Object auth = rabbitTemplate.convertSendAndReceive("AuthExchange", "auth", header);
         if ((boolean) auth) {
-            if (locationsService.deleteLocation(id) && locationsService.findRoomById(id)) {
+            if (locationsService.findRoomById(id) & locationsService.deleteLocation(id)) {
                 return new ResponseEntity("delete room successfully.", HttpStatus.OK);
             }
             return new ResponseEntity("Something went wrong.", HttpStatus.INTERNAL_SERVER_ERROR);

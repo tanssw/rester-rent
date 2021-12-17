@@ -62,7 +62,7 @@ public class OrdersController {
         AuthTokenData header = new AuthTokenData(token, userId);
         Object auth = rabbitTemplate.convertSendAndReceive("AuthExchange", "auth", header);
         if ((boolean) auth) {
-            if (ordersService.delOrder(id) && ordersService.findOrderById(id)) {
+            if (ordersService.findOrderById(id) & ordersService.delOrder(id)) {
                 return new ResponseEntity("Delete order successfully.", HttpStatus.OK);
             }
             return new ResponseEntity("Something went wrong.", HttpStatus.INTERNAL_SERVER_ERROR);
