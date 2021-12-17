@@ -104,7 +104,7 @@
                                         </div>
                                         <div class="col-7">
                                             <select v-model= "item.name" style="position: absolute; opacity: 0">
-                                                <option v-for= "(accItem, index) in acc" v-bind:value= "accItem.name" :key= "index">
+                                                <option v-for= "(accItem, index) in accFilter" v-bind:value= "accItem.name" :key= "index">
                                                     {{ accItem.name }}
                                                 </option>
                                             </select>
@@ -183,6 +183,7 @@ export default {
             newAcc: [],
             accItem: {},
             test: 'aaaaa',
+            accFilter: [],
             acc: [{
                 "id": 9,
                 "name": "หลอดไฟ aaaa",
@@ -209,11 +210,12 @@ export default {
             this.newAcc.push({
                 name: "",
                 quantity: 1
-            })
+            });
+            this.accFilters();
         },
         editableConfirm(id){
+            // validate later
             if (true){
-
                 this.newAcc.map((x) => {
                     var idAcc = this.acc.find((acc) => acc.name == x.name);
                     this.themeDetail.accessory.push({...x, "id": idAcc.id});
@@ -229,8 +231,7 @@ export default {
                 }
                 this.editable = false;
                 this.newAcc = []
-            }
-            
+            } 
         },
         deleteItem(item, i){
             alert('Delete Item '+ item.name);
@@ -252,6 +253,16 @@ export default {
         },
         update(key, val){
             this.themeDetail[key] = val;
+        },
+        accFilters() {
+            var checkName1 = this.themeDetail.accessory.map( x => {
+                return x.name
+            });
+            var checkName2 = this.newAcc.map( x => {
+                return x.name
+            });
+            
+            this.accFilter = this.acc.filter( x => !checkName1.includes(x.name) && !checkName2.includes(x.name) )
         }
     }
 }
