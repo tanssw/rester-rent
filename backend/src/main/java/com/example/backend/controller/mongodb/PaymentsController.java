@@ -22,17 +22,11 @@ public class PaymentsController {
     public ResponseEntity getAllPayments() {return new ResponseEntity(paymentsService.getAllPayments(), HttpStatus.OK);}
 
     @RequestMapping(value="/addPayment", method = RequestMethod.PATCH)
-    public ResponseEntity addPayment(@RequestBody Payments payment, @RequestHeader("token") String token, @RequestHeader("userId") String userId) {
-        AuthTokenData header = new AuthTokenData(token, userId);
-        Object auth = rabbitTemplate.convertSendAndReceive("AuthExchange", "auth", header);
-        if ((boolean) auth) {
-            if (paymentsService.addOrUpdatePayment(payment)) {
-                return new ResponseEntity("Add payment successfully.", HttpStatus.OK);
-            }
-            return new ResponseEntity("Something went wrong.", HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity addPayment(@RequestBody Payments payment) {
+        if (paymentsService.addOrUpdatePayment(payment)) {
+            return new ResponseEntity("Add payment successfully.", HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-    }
+        return new ResponseEntity("Something went wrong.", HttpStatus.INTERNAL_SERVER_ERROR);    }
 
     @RequestMapping(value="/updPayment", method = RequestMethod.PATCH)
     public ResponseEntity updatePayment(@RequestBody Payments payments, @RequestHeader("token") String token, @RequestHeader("userId") String userId) {

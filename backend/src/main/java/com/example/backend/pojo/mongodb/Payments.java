@@ -15,23 +15,29 @@ public class Payments {
     private int amount;
     private String email;
     private boolean status;
+    private String reference;
+    private String mail;
 
     public Payments() {
     }
 
-    public Payments(LocalDateTime date_time, int amount, String email, boolean status) {
+    public Payments(LocalDateTime date_time, int amount, String email, boolean status, String reference, String mail) {
         this.date_time = date_time;
         this.amount = amount;
         this.email = email;
         this.status = status;
+        this.reference = reference;
+        this.mail = mail;
     }
 
-    public Payments(String _id, LocalDateTime date_time, int amount, String email, boolean status) {
+    public Payments(String _id, LocalDateTime date_time, int amount, String email, boolean status, String reference, String mail) {
         this._id = _id;
         this.date_time = date_time;
         this.amount = amount;
         this.email = email;
         this.status = status;
+        this.reference = reference;
+        this.mail = mail;
     }
 
     public String get_id() {
@@ -72,5 +78,21 @@ public class Payments {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 }

@@ -106,9 +106,9 @@ export default {
                     amount: this.inputs.amount.value,
                     mail: this.inputs.email.value,
                     date_time: dayjs(`${date} ${time}`, 'YYYY-MM-DD HH:mm'),
-                    proof_of_payment: this.inputs.referenceNo.value
+                    reference: this.inputs.referenceNo.value
                 }
-                await axios.patch(path)
+                await axios.patch(path, body)
                 this.$refs.successModal.tempShow()
             } catch (error) {
                 this.isError = true
