@@ -291,16 +291,10 @@ export default {
             alert('Add New Accessory ' + this.newAccName);
         },
         async deleteAccessory(acc){
-            console.log(acc.id);
             const path = `${process.env.VUE_APP_API_TARGET}/delAcc/${acc.id}`;
             const result = await axios.delete(path, {
-                headers: {
-                    token: localStorage.getItem('RR-Token'),
-                    userId: localStorage.getItem('RR-UID')
-                },
-                data: {
-                    
-                }
+                headers: this.header.headers,
+                data: {}
             });
             await this.requestAccessory();
             alert('Delete Accessory ' + acc.aname);
@@ -315,19 +309,29 @@ export default {
             });
             this.accFilters();
         },
+        async addThemeAccessory(acc, id, quan){
+            try {
+                const path = `${process.env.VUE_APP_API_TARGET}/addThemeAcc`;
+                const data = { "themeId": id, "accessoryId": acc.id, "quantity": quan}
+                const result = await axios.patch(path, data, this.header);
+                await this.requestAccessory();
+            } catch(error) {
+                this.checkUnauthorized(error)
+            }
+        },
         editableConfirm(id){
             // validate later
             if (true){
-                this.newAcc.map((x) => {
-                    var idAcc = this.acc.find((acc) => acc.name == x.name);
-                    this.themeDetail.accessory.push({...x, "id": idAcc.id});
+                this.newAcc.map(async(x) => {
+                    var idAcc = this.Accessory.find((acc) => acc.aname == x.name);
+                    this.themeDetail.accessories.push({...x, "id": idAcc.id});
+                    if (!this.addNewTheme){
+                        var index = this.Themes.findIndex(x => x.id == id);
+                        await this.addThemeAccessory(idAcc, this.Themes[index].id, x.quantity);
+                        this.Themes[index] = this.themeDetail
+                    }
                 });
-
-                if (!this.addNewTheme){
-                    var index = this.Themes.findIndex(x => x.id == id);
-                    this.Themes[index] = this.themeDetail
-                }
-                else if (this.addNewTheme){ 
+                if (this.addNewTheme){ 
                     this.addNewTheme = false;
                     this.Themes.push(this.themeDetail);
                 }
@@ -335,9 +339,19 @@ export default {
                 this.newAcc = []
             } 
         },
-        deleteItem(item, i){
-            alert('Delete Item '+ item.name);
-            this.themeDetail.accessories.splice(i, 1);
+        async deleteItem(item, i){
+             try {
+                const path = `${process.env.VUE_APP_API_TARGET}/delThemeAcc/${this.themeDetail.id}/${item.id}`;
+                const result = await axios.delete(path, {
+                    headers: this.header.headers,
+                    data: {}
+                });
+                await this.requestAccessory();
+                alert('Delete Item '+ item.name);
+                this.themeDetail.accessories.splice(i, 1);
+            } catch(error) {
+                this.checkUnauthorized(error)
+            }
         },
         deleteItemEdit(i){
             this.newAcc.splice(i, 1);
