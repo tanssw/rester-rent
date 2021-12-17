@@ -4,13 +4,13 @@
             <div v-for="(theme, index) in themes" :key="index" class="col-3 text-center">
                 <div class="d-flex justify-content-center">
                     <div @click="openModal(theme)" :class="{'active': checkSelected(theme)}" class="theme-card">
-                        <div class="image rounded-circle mx-auto"></div>
-                        <h5 class="fw-light py-1 rounded-3 mt-4 mb-0">{{theme.title}}</h5>
+                        <img :src="theme.image" class="image rounded-circle mx-auto"/>
+                        <h5 class="fw-light py-1 rounded-3 mt-4 mb-0">{{theme.tname}}</h5>
                     </div>
                 </div>
             </div>
         </div>
-        <theme-info-modal ref="themeInfoModal" :theme="focus" @confirm="selectTheme" />
+        <theme-info-modal ref="themeInfoModal" :accessory="focusItem" :theme="focus" @confirm="selectTheme" />
     </div>
 </template>
 <style scoped>
@@ -36,9 +36,9 @@
 }
 </style>
 <script>
-import mockedThemes from '@/assets/mock/themes.json'
-
 import ThemeInfoModal from './ThemeInfoModal.vue'
+
+import axios from 'axios'
 
 export default {
     components: {
@@ -53,12 +53,22 @@ export default {
     data() {
         return {
             focus: {},
-            themes: mockedThemes
+            themes: [],
+            accessories: [],
+            focusItem: [],
         }
     },
     methods: {
+        getItem(themeId) {
+            let accessory = this.accessories
+            let matchAccessory = accessory.filter(item => {
+                if(themeId == item.id.theme_ID) return item
+            })
+            return matchAccessory
+        },
         openModal(theme) {
             this.focus = theme
+            this.focusItem = this.getItem(theme.id)
             this.$refs.themeInfoModal.toggle()
         },
         selectTheme() {
@@ -66,7 +76,26 @@ export default {
         },
         checkSelected(theme) {
             return this.selected.id === theme.id
+        },
+        async requestTheme() {
+            // Get Theme from backend
+            const path = `${process.env.VUE_APP_API_TARGET}/theme/`
+            const result = await axios.get(path)
+            const themes = result.data
+            return themes
+        },
+        async requestAccessory() {
+            // Get Accessory from backend
+            const path = `${process.env.VUE_APP_API_TARGET}/getTheme`
+            const result = await axios.get(path)
+            const accessories = result.data
+            return accessories
         }
+    },
+    async created() {
+        this.themes = await this.requestTheme()
+        this.accessories = await this.requestAccessory()
+        
     }
 }
 </script>
