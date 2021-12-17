@@ -15,6 +15,7 @@ public class ThemeAccessoryService {
     @Autowired
     private ThemeAccessoryRepository themeAccessoryRepository;
 
+
     //    CREATE
     public boolean addThemeAccessory(ThemeAccessoryBody item) {
         try {
@@ -29,7 +30,7 @@ public class ThemeAccessoryService {
     }
 
     // READ
-    public List findAllThemeAccessory() {return themeAccessoryRepository.findAll();}
+    public boolean findThemeAccessory(String id) {return !themeAccessoryRepository.findById(id).isEmpty();}
 
     // Delete
     public boolean deleteThemeAccessory(int themeId, int accessoryId) {

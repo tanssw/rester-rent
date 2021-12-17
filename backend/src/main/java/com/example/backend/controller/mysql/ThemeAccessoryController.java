@@ -84,7 +84,7 @@ public class ThemeAccessoryController {
         AuthTokenData header = new AuthTokenData(token, userId);
         Object auth = rabbitTemplate.convertSendAndReceive("AuthExchange", "auth", header);
         if ((boolean) auth) {
-            if (themeAccessoryService.deleteThemeAccessory(themeId, accessoryId)) {
+            if (themeAccessoryService.findThemeAccessory(Integer.toString(themeId)) && themeAccessoryService.deleteThemeAccessory(themeId, accessoryId)) {
                 return new ResponseEntity("Delete theme_accessory successfully.", HttpStatus.OK);
             }
             return new ResponseEntity("Something went wrong.", HttpStatus.INTERNAL_SERVER_ERROR);
