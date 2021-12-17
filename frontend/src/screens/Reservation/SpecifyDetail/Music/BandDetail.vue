@@ -40,6 +40,8 @@
 <script>
 import dayjs from 'dayjs'
 
+import axios from 'axios'
+
 import BandModal from './BandModal.vue'
 
 import mockedMusics from '@/assets/mock/musics.json'
@@ -68,7 +70,7 @@ export default {
     computed: {
         formattedDate() {
             return this.date ? dayjs(this.date).format('DD MMM YYYY') : ''
-        }
+        },
     },
     methods: {
         showDetail(band) {
@@ -76,12 +78,22 @@ export default {
             this.$refs.bandModal.toggle()
         },
         checkActive(band) {
-            return this.selected.id === band.id
+            return this.selected._id === band._id
         },
         selectBand(band) {
             this.focus = {}
             this.$emit('select', band)
+        },
+        async requestMusic() {
+            const path = `${process.env.VUE_APP_API_TARGET}/getBrand`
+            const result = await axios.get(path)
+            const band = result.data
+            console.log(band);
+            return band
         }
+    },
+    async created() {
+        this.bands = await this.requestMusic()
     }
 }
 </script>
