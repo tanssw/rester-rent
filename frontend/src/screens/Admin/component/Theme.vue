@@ -10,7 +10,7 @@
                 data-bs-target="#themeInfoModal"    
                 @click= "addTheme()"
             >        
-                <span style="font-size: 26px;"><i class="fas fa-plus-circle"></i></span>
+                <span style="font-size: 30px;"><i class="fas fa-plus-circle"></i></span>
             </div>
             </div>
             <template v-for= "theme in Themes" :key= "theme.id">
@@ -42,7 +42,43 @@
                     </div>
                 </div>
             </template>
-        </div>   
+        </div>
+        <div class="col-12 p-5 rounded shadow">
+            <div class="row">
+            <div class="col-2">
+                <h1>Accessory</h1>
+            </div>
+            <div class="col-2"
+                data-bs-toggle="modal"
+                data-bs-target="#accessoryModal"       
+            >        
+                <span style="font-size: 30px;"><i class="fas fa-plus-circle"></i></span>
+            </div>
+            </div>
+            <div>
+                <div class="row">
+                    <div v-for = "acc in Accessory" :key= "acc.id" class="col-3 rounded card">
+                        <div class="row">
+                            <div class="col-2">
+                                <div class="image ratio ratio-1x1 rounded-3"></div>
+                            </div>
+                            <div class="col">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <p class="card-text">{{acc.aname}}</p>
+                                        </div>
+                                        <div class="col-2 justify-content-end" @click= "deleteAccessory(acc)">
+                                            <i class="far fa-trash-alt"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="themeInfoModal" tabindex="-1" class="modal fade">
@@ -167,15 +203,48 @@
             </div>
         </div>
     </div>
+
+    <div id="accessoryModal" tabindex="-1" class="modal fade">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h3>Add New Accessory</h3>
+                    <div class="input-group p-3">
+                        <span class="input-group-text">Name </span>
+                        <input type="text" aria-label="Name Accessory" 
+                            class="form-control"
+                            :value= "newAccName"
+                            @change= "changeAccName($event.target.value)"
+                        >
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="d-flex justify-content-end align-items-center">
+                        <button data-bs-dismiss="modal" class="btn px-2 py-2 mx-3">Cancle</button>
+                        <button @click= "addAccessory" data-bs-dismiss="modal" class="btn btn-emerald px-2 py-2">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
-import THEMES from '../dummy_data/Theme'
+import THEMES from '../dummy_data/Theme';
+import axios from 'axios';
 export default {
     data(){
         return {
+            header: {
+                headers: {
+                    token: localStorage.getItem('RR-Token'),
+                    userId: localStorage.getItem('RR-UID')
+                }
+            },
+            newAccName: "",
             Themes: THEMES,
             modal: null,
+            modal2: null,
             theme: [],
             themeDetail: {},
             editable: false,
@@ -184,25 +253,44 @@ export default {
             accItem: {},
             test: 'aaaaa',
             accFilter: [],
-            acc: [{
-                "id": 9,
-                "name": "หลอดไฟ aaaa",
-            },{
-                "id": 6,
-                "name": "หลอดไฟ bbbb",
-            },{
-                "id": 7,
-                "name": "หลอดไฟ cccc",
-            }],
+            Accessory: null
         }
     },
     mounted() {
+        
         this.modal = new bootstrap.Modal(document.getElementById("themeInfoModal"), {
             keyboard: false,
             backdrop: "static"
         });
+
+        this.modal2 = new bootstrap.Modal(document.getElementById("accessoryModal"), {
+            keyboard: false
+        });
     },
     methods: {
+        async requestAccessory(){
+            // Get Acc
+            const path = `${process.env.VUE_APP_API_TARGET}/getAcc`;
+            const result = await axios.get(path);
+            const acc = result.data;
+            this.Accessory = acc;
+        },
+        async addAccessory(){
+            const path = `${process.env.VUE_APP_API_TARGET}/addAcc`;
+            const data = { "name": this.newAccName}
+            const result = await axios.patch(path, data, this.header);
+            await this.requestAccessory();
+        },
+        async deleteAccessory(acc){
+            const path = `${process.env.VUE_APP_API_TARGET}/delAcc/${acc.id}`;
+            const data = { "name": acc.aname }
+            const result = await axios.delete(path, {
+                headers: this.header.headers, 
+                data: data
+            });
+            await this.requestAccessory();
+            alert('Delete Accessory '+acc.aname);
+        },
         themeDetails(data){
             this.themeDetail = data;
         },
@@ -254,6 +342,9 @@ export default {
         update(key, val){
             this.themeDetail[key] = val;
         },
+        changeAccName(val){
+            this.newAccName = val
+        },
         accFilters() {
             var checkName1 = this.themeDetail.accessory.map( x => {
                 return x.name
@@ -264,6 +355,9 @@ export default {
             
             this.accFilter = this.acc.filter( x => !checkName1.includes(x.name) && !checkName2.includes(x.name) )
         }
+    },
+    async created() {
+        await this.requestAccessory()
     }
 }
 </script>
