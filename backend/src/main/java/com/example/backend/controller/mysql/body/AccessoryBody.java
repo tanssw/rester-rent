@@ -1,13 +1,13 @@
 package com.example.backend.controller.mysql.body;
 
 public class AccessoryBody {
-    private String name;
+    private String aname;
 
     public String getName() {
-        return name;
+        return aname;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.aname = name;
     }
 }
