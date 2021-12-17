@@ -115,8 +115,8 @@ export default {
             let endDate = dayjs(`${reservation.date} ${reservation.endAt}:00`, 'YYYY-MM-DD H:mm').format()
 
             let theme = this.formatSpec(this.existing.hasTheme, spec.theme.id, spec.theme.price)
-            let food = this.formatSpec(this.existing.hasFood, spec.food.id, spec.food.price)
-            let music = this.formatSpec(this.existing.hasBand, spec.music.band.id, spec.music.band.price)
+            let food = this.formatSpec(this.existing.hasFood, spec.food.size.id, spec.food.size.price)
+            let music = this.formatSpec(this.existing.hasBand, spec.music.band._id, spec.music.band.price)
 
             let body = {
                 fullname: this.name,
@@ -128,7 +128,7 @@ export default {
                     theme: theme,
                     food: food,
                     music: music,
-                    location: {id: reservation.room.id, price: reservation.room.price}
+                    location: {id: reservation.room._id, price: reservation.room.price}
                 }
             }
 

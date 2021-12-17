@@ -62,9 +62,9 @@ export default {
         getItem(themeId) {
             let accessory = this.accessories
             let matchAccessory = accessory.filter(item => {
-                if(themeId == item.id.theme_ID) return item
+                if(themeId == item.id) return item
             })
-            return matchAccessory
+            return matchAccessory[0].accessories
         },
         openModal(theme) {
             this.focus = theme
@@ -79,14 +79,14 @@ export default {
         },
         async requestTheme() {
             // Get Theme from backend
-            const path = `${process.env.VUE_APP_API_TARGET}/theme/`
+            const path = `${process.env.VUE_APP_API_TARGET}/getTheme`
             const result = await axios.get(path)
             const themes = result.data
             return themes
         },
         async requestAccessory() {
             // Get Accessory from backend
-            const path = `${process.env.VUE_APP_API_TARGET}/getTheme`
+            const path = `${process.env.VUE_APP_API_TARGET}/getThemeAcc`
             const result = await axios.get(path)
             const accessories = result.data
             return accessories

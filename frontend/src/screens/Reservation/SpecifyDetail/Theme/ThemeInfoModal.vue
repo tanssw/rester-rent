@@ -21,7 +21,7 @@
                                         <div class="image ratio ratio-1x1 rounded-3"></div>
                                     </div>
                                     <div class="col-9">
-                                        <h6 class="mb-0">{{item.aname}}</h6>
+                                        <h6 class="mb-0">{{item.name}}</h6>
                                         <span>x{{item.quantity}}</span>
                                     </div>
                                 </div>

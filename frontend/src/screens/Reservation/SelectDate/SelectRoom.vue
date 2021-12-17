@@ -5,8 +5,8 @@
             <div v-for="(room, index) in rooms" :key="index" class="col-4">
                 <div @click="showDescription(room)" :class="{'active': checkSelectedRoom(room._id)}" class="room-card cursor-pointer rounded-3 p-3">
                     <div class="row">
-                        <div class="col-3">
-
+                        <div class="col-3 d-flex">
+                            <img :src="room.image" class="image ratio ratio-2x4 rounded-1"/>
                         </div>
                         <div class="col-9 d-flex">
                             <div class="flex-grow-1">
@@ -37,6 +37,9 @@
 }
 .room-card.active {
     border-color: var(--light-emerald);
+}
+.image {
+    object-fit:cover;
 }
 </style>
 <script>
