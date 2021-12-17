@@ -8,11 +8,8 @@ import java.util.Set;
 public class Accessory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int ID;
+    private String ID;
     private String ANAME;
-
-//    @OneToMany(mappedBy = "Theme")
-//    Set<ThemeAccessory> themeAccessory;
 
     public Accessory() {
     }
@@ -21,16 +18,16 @@ public class Accessory {
         this.ANAME = ANAME;
     }
 
-    public Accessory(int ID, String ANAME) {
+    public Accessory(String ID, String ANAME) {
         this.ID = ID;
         this.ANAME = ANAME;
     }
 
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 

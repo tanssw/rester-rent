@@ -54,7 +54,7 @@ public class AccessoryController {
 
 //    Delete accessory by id
     @DeleteMapping("/delAcc/{id}")
-    public ResponseEntity deleteAccessory(@PathVariable("id") int id, @RequestHeader("token") String token, @RequestHeader("userId") String userId) {
+    public ResponseEntity deleteAccessory(@PathVariable("id") int  id, @RequestHeader("token") String token, @RequestHeader("userId") String userId) {
         AuthTokenData header = new AuthTokenData(token, userId);
         Object auth = rabbitTemplate.convertSendAndReceive("AuthExchange", "auth", header);
         if ((boolean) auth) {
