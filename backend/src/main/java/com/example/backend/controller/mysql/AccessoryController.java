@@ -58,7 +58,7 @@ public class AccessoryController {
         AuthTokenData header = new AuthTokenData(token, userId);
         Object auth = rabbitTemplate.convertSendAndReceive("AuthExchange", "auth", header);
         if ((boolean) auth) {
-            if (accessoryService.deleteByAccessoryId(id) && !accessoryService.findAccessoryById(Integer.toString(id))) {
+            if (!accessoryService.findAccessoryById(Integer.toString(id)) & accessoryService.deleteByAccessoryId(id)) {
                 return new ResponseEntity("Delete accessory successfully.", HttpStatus.OK);
             }
             return new ResponseEntity("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);

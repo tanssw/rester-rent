@@ -116,7 +116,7 @@
                     <div class="mb-5">
                         <h4 class="mb-3">รายการของประกอบฉาก</h4>
                         <div class="row">
-                            <div v-for="(item, index) in themeDetail.accessory" :key="index" class="col-6">
+                            <div v-for="(item, index) in themeDetail.accessories" :key="index" class="col-6">
                                 <div class="row">
                                     <div class="col-3">
                                         <div class="image ratio ratio-1x1 rounded-3"></div>
@@ -140,8 +140,8 @@
                                         </div>
                                         <div class="col-7">
                                             <select v-model= "item.name" style="position: absolute; opacity: 0">
-                                                <option v-for= "(accItem, index) in accFilter" v-bind:value= "accItem.name" :key= "index">
-                                                    {{ accItem.name }}
+                                                <option v-for= "(accItem, index) in accFilter" v-bind:value= "accItem.aname" :key= "index">
+                                                    {{ accItem.aname }}
                                                 </option>
                                             </select>
                                             <h6 class="mb-0">
@@ -235,12 +235,13 @@ import axios from 'axios';
 export default {
     data(){
         return {
-            header: {
+            header:{
                 headers: {
                     token: localStorage.getItem('RR-Token'),
                     userId: localStorage.getItem('RR-UID')
                 }
-            },
+            }
+            ,
             newAccName: "",
             Themes: [],
             modal: null,
@@ -269,7 +270,7 @@ export default {
     methods: {
         async requestTheme(){
             // Get Theme
-            const path = `${process.env.VUE_APP_API_TARGET}/theme/getTheme`;
+            const path = `${process.env.VUE_APP_API_TARGET}/getThemeAcc`;
             const result = await axios.get(path);
             const theme = result.data;
             this.Themes = theme;
@@ -287,16 +288,22 @@ export default {
             const data = { "name": this.newAccName}
             const result = await axios.patch(path, data, this.header);
             await this.requestAccessory();
+            alert('Add New Accessory ' + this.newAccName);
         },
         async deleteAccessory(acc){
+            console.log(acc.id);
             const path = `${process.env.VUE_APP_API_TARGET}/delAcc/${acc.id}`;
-            const data = { "name": acc.aname }
             const result = await axios.delete(path, {
-                headers: this.header.headers, 
-                data: data
+                headers: {
+                    token: localStorage.getItem('RR-Token'),
+                    userId: localStorage.getItem('RR-UID')
+                },
+                data: {
+                    
+                }
             });
             await this.requestAccessory();
-            alert('Delete Accessory '+acc.aname);
+            alert('Delete Accessory ' + acc.aname);
         },
         themeDetails(data){
             this.themeDetail = data;
@@ -330,7 +337,7 @@ export default {
         },
         deleteItem(item, i){
             alert('Delete Item '+ item.name);
-            this.themeDetail.accessory.splice(i, 1);
+            this.themeDetail.accessories.splice(i, 1);
         },
         deleteItemEdit(i){
             this.newAcc.splice(i, 1);
@@ -353,14 +360,14 @@ export default {
             this.newAccName = val
         },
         accFilters() {
-            var checkName1 = this.themeDetail.accessory.map( x => {
-                return x.name
+            var checkId1 = this.themeDetail.accessories.map( x => {
+                return x.id
             });
-            var checkName2 = this.newAcc.map( x => {
-                return x.name
+            var checkId2 = this.newAcc.map( x => {
+                return x.id
             });
-            
-            this.accFilter = this.acc.filter( x => !checkName1.includes(x.name) && !checkName2.includes(x.name) )
+            this.accFilter = this.Accessory.filter( x => !checkId1.includes(x.id) && !checkId2.includes(x.id) )
+            console.log(!checkId1.includes("7"))
         }
     },
     async created() {
