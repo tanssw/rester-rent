@@ -1,10 +1,11 @@
 [{
   "_id": {
-    "$oid": "61b34e8fc2e2b139a51d6b84"
+    "$oid": "61ba0f7642daeb5848c5e2dd"
   },
-  "no": "61b34e75c2e2b139a51d6b83",
-  "date_time": {
-    "$date": "2021-10-25T11:00:08.012Z"
-  },
-  "proof_of_payment": "money transfer slip"
+  "date_time": "2021-10-5T07:00:19Z",
+  "status": false,
+  "_class": "com.example.backend.pojo.mongodb.Payments",
+  "amount": 1500,
+  "refer": "123456789abc",
+  "mail": "iamkanz@it.kmitl.ac.th"
 }]
