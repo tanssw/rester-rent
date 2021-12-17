@@ -88,7 +88,6 @@ export default {
             const path = `${process.env.VUE_APP_API_TARGET}/getBrand`
             const result = await axios.get(path)
             const band = result.data
-            console.log(band);
             return band
         }
     },
