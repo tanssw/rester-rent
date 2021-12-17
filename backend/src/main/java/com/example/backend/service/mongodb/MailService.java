@@ -1,6 +1,7 @@
 package com.example.backend.service.mongodb;
 
 import com.example.backend.pojo.mongodb.Orders;
+import com.example.backend.pojo.mongodb.Payments;
 import jakarta.mail.Message;
 import jakarta.mail.MessagingException;
 import jakarta.mail.Session;
@@ -68,6 +69,29 @@ public class MailService {
         }
 
         return this.sendMail(order.getMail(), header, body);
+    }
+
+    public boolean sendMail(Payments payment, boolean isApproved) {
+
+        String header, body;
+
+        if (isApproved) {
+            header = "ธุรกรรมของคุณได้รับการยืนยัน";
+            body = String.format(
+                    "หลักฐานการโอนเงินของคุณได้รับการตรวจสอบและยืนยันเรียบร้อยแล้ว\n" +
+                            "ทางเเราจะดำเนินการจัดเตรียมสถานที่ อุปกรณ์ และสิ่งอำนวยความสพดวกต่าง ๆ ตามที่ท่านได้ระบุไว้"
+            );
+        } else {
+            header = "ธุรกรรมของคุณถูกปฏิเสธ";
+            body = String.format(
+                    "ขออภัยเป็นอย่างสูง ทางเราตรวจสอบพบความผิดปกติในหลักฐานการโอนเงินของคุณ\n" +
+                            "ทางเราจะดำเนินการคืนเงินให้ท่านภายใน 3 วัน หากมีข้อสงสัยกรุณาติดด่อ ..." +
+                            "ขอบคุณที่สนใจในบริการของเราค่ะ"
+            );
+        }
+
+        return this.sendMail(payment.getMail(), header, body);
+
     }
 
 }
