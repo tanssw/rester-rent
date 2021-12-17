@@ -29,6 +29,8 @@ public class AccessoryService {
 //    READ
     public List<Accessory> allAccessory() {return accessoryRepository.findAll();}
 
+    public boolean findAccessoryById(String id) {return accessoryRepository.findById(id).isEmpty();}
+
 //    UPDATE
     public boolean updateAccessory(int id, AccessoryBody item) {
         try {

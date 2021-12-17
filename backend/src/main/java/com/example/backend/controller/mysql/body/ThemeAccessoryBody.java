@@ -1,32 +1,32 @@
 package com.example.backend.controller.mysql.body;
 
 public class ThemeAccessoryBody {
-    private int themeId;
-    private int accessoryId;
+    private String themeId;
+    private String accessoryId;
     private int quantity;
 
     public ThemeAccessoryBody() {
     }
 
-    public ThemeAccessoryBody(int themeId, int accessoryId, int quantity) {
+    public ThemeAccessoryBody(String themeId, String accessoryId, int quantity) {
         this.themeId = themeId;
         this.accessoryId = accessoryId;
         this.quantity = quantity;
     }
 
-    public int getThemeId() {
+    public String getThemeId() {
         return themeId;
     }
 
-    public void setThemeId(int themeId) {
+    public void setThemeId(String themeId) {
         this.themeId = themeId;
     }
 
-    public int getAccessoryId() {
+    public String getAccessoryId() {
         return accessoryId;
     }
 
-    public void setAccessoryId(int accessoryId) {
+    public void setAccessoryId(String accessoryId) {
         this.accessoryId = accessoryId;
     }
 

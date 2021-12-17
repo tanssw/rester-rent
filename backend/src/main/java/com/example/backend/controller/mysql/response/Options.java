@@ -1,23 +1,23 @@
 package com.example.backend.controller.mysql.response;
 
 public class Options {
-    private int id;
+    private String id;
     private int capacity;
     private int price;
     private String size;
 
-    public Options(int id, int capacity, int price, String size) {
+    public Options(String id, int capacity, int price, String size) {
         this.id = id;
         this.capacity = capacity;
         this.price = price;
         this.size = size;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
