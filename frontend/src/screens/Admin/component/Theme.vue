@@ -242,7 +242,7 @@ export default {
                 }
             },
             newAccName: "",
-            Themes: THEMES,
+            Themes: [],
             modal: null,
             modal2: null,
             theme: [],
@@ -251,7 +251,6 @@ export default {
             addNewTheme: false,
             newAcc: [],
             accItem: {},
-            test: 'aaaaa',
             accFilter: [],
             Accessory: null
         }
@@ -268,6 +267,14 @@ export default {
         });
     },
     methods: {
+        async requestTheme(){
+            // Get Theme
+            const path = `${process.env.VUE_APP_API_TARGET}/theme/getTheme`;
+            const result = await axios.get(path);
+            const theme = result.data;
+            this.Themes = theme;
+            console.log(theme);
+        },
         async requestAccessory(){
             // Get Acc
             const path = `${process.env.VUE_APP_API_TARGET}/getAcc`;
@@ -357,7 +364,8 @@ export default {
         }
     },
     async created() {
-        await this.requestAccessory()
+        await this.requestAccessory();
+        await this.requestTheme();
     }
 }
 </script>
