@@ -11,13 +11,15 @@ import javax.transaction.Transactional;
 @Repository
 public interface ThemeAccessoryRepository extends JpaRepository<ThemeAccessory, String> {
 
-//    @Transactional
-//    @Modifying
-//    @Query(value = "UPDATE THEME_ACCESSORY SET ACCESSORY_ID=?1 WHERE THEME_ACCESSORY.THEME_ID=?2", nativeQuery = true)
-//    void updateTA(int accessoryId, int themeId);
+    @Transactional
+    @Modifying
+    @Query(value = "DELETE FROM THEME_ACCESSORY WHERE THEME_ID=?1", nativeQuery = true)
+    void deleteTAByThemeId(int themeId);
 
     @Transactional
     @Modifying
     @Query(value = "DELETE FROM THEME_ACCESSORY WHERE THEME_ID=?1 AND ACCESSORY_ID=?2", nativeQuery = true)
     void deleteTA(int themeId, int accessoryId);
+
+
 }

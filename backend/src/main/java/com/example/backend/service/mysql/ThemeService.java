@@ -2,7 +2,7 @@ package com.example.backend.service.mysql;
 
 import com.example.backend.controller.mysql.body.ThemeBody;
 import com.example.backend.pojo.mysql.Theme;
-import com.example.backend.repository.ThemeRepository;
+import com.example.backend.repository.mysql.ThemeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
