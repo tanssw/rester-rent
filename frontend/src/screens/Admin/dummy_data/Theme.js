@@ -9,17 +9,17 @@ const THEMES = [
         {
           "id": 0,
           "name": "หลอดไฟ LED",
-          "quintity": 10
+          "quantity": 10
         },
         {
           "id": 1,
           "name": "ต้นไม้ขนาดกลาง",
-          "quintity": 5
+          "quantity": 5
         },
         {
           "id": 2,
           "name": "ตุ๊กตาหิมะ",
-          "quintity": 5
+          "quantity": 5
         }
       ]
     },
