@@ -53,7 +53,7 @@ public class MusicsController {
         AuthTokenData header = new AuthTokenData(token, userId);
         Object auth = rabbitTemplate.convertSendAndReceive("AuthExchange", "auth", header);
         if ((boolean) auth) {
-            if (musicsService.delBrand(id) && musicsService.findBrandById(id)) {
+            if (musicsService.findBrandById(id) & musicsService.delBrand(id)) {
                 return new ResponseEntity("delete Brand successfully.", HttpStatus.OK);
             }
             return new ResponseEntity("Something went wrong.", HttpStatus.INTERNAL_SERVER_ERROR);

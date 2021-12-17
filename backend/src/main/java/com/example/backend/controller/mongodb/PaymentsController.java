@@ -57,7 +57,7 @@ public class PaymentsController {
         AuthTokenData header = new AuthTokenData(token, userId);
         Object auth = rabbitTemplate.convertSendAndReceive("AuthExchange", "auth", header);
         if ((boolean) auth) {
-            if (paymentsService.deletePayment(id) && paymentsService.findPaymentById(id)) {
+            if (paymentsService.findPaymentById(id) & paymentsService.deletePayment(id)) {
                 return new ResponseEntity("Delete payment successfully.", HttpStatus.OK);
             }
             return new ResponseEntity("Something went wrong.", HttpStatus.INTERNAL_SERVER_ERROR);
