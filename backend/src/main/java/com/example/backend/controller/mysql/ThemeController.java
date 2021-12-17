@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/theme")
 public class ThemeController {
 
     @Autowired
@@ -49,11 +48,11 @@ public class ThemeController {
     }
 
     @DeleteMapping("/delTheme/{id}")
-    public ResponseEntity<?> deleteAccessory(@PathVariable("id") int id, @RequestBody ThemeBody themeBody, @RequestHeader("token") String token, @RequestHeader("userId") String userId) {
+    public ResponseEntity<?> deleteAccessory(@PathVariable("id") int id, @RequestHeader("token") String token, @RequestHeader("userId") String userId) {
         AuthTokenData header = new AuthTokenData(token, userId);
         Object auth = rabbitTemplate.convertSendAndReceive("AuthExchange", "auth", header);
         if ((boolean) auth) {
-            if (themeService.deleteByThemeId(id)) {
+            if (themeService.findThemeById(Integer.toString(id)) && themeService.deleteByThemeId(id)) {
                 return new ResponseEntity<>("Delete Theme successfully", HttpStatus.OK);
             }
             return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);

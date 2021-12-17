@@ -12,10 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 public class FoodController {
@@ -71,25 +68,38 @@ public class FoodController {
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
-    @PatchMapping("/updFood/{id}")
+    @PatchMapping("/updFoodOption/{id}")
     public ResponseEntity<?> updateFoodDataById(@PathVariable("id") int id, @RequestBody FoodBody foodBody, @RequestHeader("token") String token, @RequestHeader("userId") String userId) {
         AuthTokenData header = new AuthTokenData(token, userId);
         Object auth = rabbitTemplate.convertSendAndReceive("AuthExchange", "auth", header);
         if ((boolean) auth) {
-            if (foodService.updateFoodDataById(id, foodBody)) {
-                return new ResponseEntity<>("Add accessory successfully.", HttpStatus.OK);
+            if (foodService.updateFoodOptionById(id, foodBody)) {
+                return new ResponseEntity<>("Update food successfully.", HttpStatus.OK);
             }
             return new ResponseEntity<>("Something went wrong.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
-    @DeleteMapping("/delFood/{id}")
-    public ResponseEntity<?> deleteByFoodId(@PathVariable("id") int id, @RequestBody FoodBody foodBody, @RequestHeader("token") String token, @RequestHeader("userId") String userId) {
+    @PatchMapping("/updFoodData/{name}")
+    public ResponseEntity updateFoodDataByName(@PathVariable("name") String name, @RequestBody FoodBody foodBody, @RequestHeader("token") String token, @RequestHeader("userId") String userId) {
         AuthTokenData header = new AuthTokenData(token, userId);
         Object auth = rabbitTemplate.convertSendAndReceive("AuthExchange", "auth", header);
         if ((boolean) auth) {
-            if (foodService.deleteByFoodId(id)) {
+            if (foodService.updateFoodDataByName(name, foodBody)) {
+                return new ResponseEntity("Update food successfully.", HttpStatus.OK);
+            }
+            return new ResponseEntity("Something went wrong.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+    }
+
+    @DeleteMapping("/delFood/{id}")
+    public ResponseEntity<?> deleteByFoodId(@PathVariable("id") int id, @RequestHeader("token") String token, @RequestHeader("userId") String userId) {
+        AuthTokenData header = new AuthTokenData(token, userId);
+        Object auth = rabbitTemplate.convertSendAndReceive("AuthExchange", "auth", header);
+        if ((boolean) auth) {
+            if (foodService.findFoodById(Integer.toString(id)) && foodService.deleteByFoodId(id)) {
                 return new ResponseEntity<>("Delete food successfully", HttpStatus.OK);
             }
             return new ResponseEntity<>("Something went wrong.", HttpStatus.INTERNAL_SERVER_ERROR);

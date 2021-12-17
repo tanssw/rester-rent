@@ -13,9 +13,6 @@ public class Theme {
     private String IMAGE;
     private String DETAILS;
 
-//    @OneToMany(mappedBy = "Accessory")
-//    Set<ThemeAccessory> themeAccessory;
-
     public Theme() {
     }
 

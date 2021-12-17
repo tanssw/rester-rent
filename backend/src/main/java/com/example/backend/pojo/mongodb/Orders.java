@@ -1,10 +1,13 @@
 package com.example.backend.pojo.mongodb;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Id;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Data
@@ -14,8 +17,8 @@ public class Orders {
     private String _id;
     private String fullname;
     private String mail;
-    private LocalDateTime start_date;
-    private LocalDateTime end_date;
+    private String start_date;
+    private String end_date;
     private int income;
     private String status = "รอการดำเนินการ";
     private Object details;
@@ -23,7 +26,7 @@ public class Orders {
     public Orders() {
     }
 
-    public Orders(String fullname, String mail, LocalDateTime start_date, LocalDateTime end_date, int income, Object details) {
+    public Orders(String fullname, String mail, String start_date, String end_date, int income, Object details) {
         this.fullname = fullname;
         this.mail = mail;
         this.start_date = start_date;
@@ -32,7 +35,7 @@ public class Orders {
         this.details = details;
     }
 
-    public Orders(String _id, String fullname, String mail, LocalDateTime start_date, LocalDateTime end_date, int income, String status, Object details) {
+    public Orders(String _id, String fullname, String mail, String start_date, String end_date, int income, String status, Object details) {
         this._id = _id;
         this.fullname = fullname;
         this.mail = mail;
@@ -67,19 +70,19 @@ public class Orders {
         this.mail = mail;
     }
 
-    public LocalDateTime getStart_date() {
+    public String getStart_date() {
         return start_date;
     }
 
-    public void setStart_date(LocalDateTime start_date) {
+    public void setStart_date(String start_date) {
         this.start_date = start_date;
     }
 
-    public LocalDateTime getEnd_date() {
+    public String getEnd_date() {
         return end_date;
     }
 
-    public void setEnd_date(LocalDateTime end_date) {
+    public void setEnd_date(String end_date) {
         this.end_date = end_date;
     }
 

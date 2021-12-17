@@ -54,12 +54,12 @@ public class AccessoryController {
 
 //    Delete accessory by id
     @DeleteMapping("/delAcc/{id}")
-    public ResponseEntity deleteAccessory(@PathVariable("id") int id, @RequestBody AccessoryBody accessoryBody, @RequestHeader("token") String token, @RequestHeader("userId") String userId) {
+    public ResponseEntity deleteAccessory(@PathVariable("id") int id, @RequestHeader("token") String token, @RequestHeader("userId") String userId) {
         AuthTokenData header = new AuthTokenData(token, userId);
         Object auth = rabbitTemplate.convertSendAndReceive("AuthExchange", "auth", header);
         if ((boolean) auth) {
-            if (accessoryService.deleteByAccessoryId(id)) {
-                return new ResponseEntity("Delete accessory successfully", HttpStatus.OK);
+            if (accessoryService.deleteByAccessoryId(id) && !accessoryService.findAccessoryById(Integer.toString(id))) {
+                return new ResponseEntity("Delete accessory successfully.", HttpStatus.OK);
             }
             return new ResponseEntity("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
         }
