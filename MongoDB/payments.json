@@ -6,6 +6,6 @@
   "status": false,
   "_class": "com.example.backend.pojo.mongodb.Payments",
   "amount": 1500,
-  "refer": "123456789abc",
+  "reference": "123456789abc",
   "mail": "iamkanz@it.kmitl.ac.th"
 }]
