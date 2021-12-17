@@ -54,7 +54,7 @@ public class ThemeAccessoryController {
 
                     if(temp.getName() == null) temp.setName(ta.getTNAME());
                     if(temp.getImage() == null) temp.setImage(ta.getIMAGE());
-                    if(temp.getDetils() == null) temp.setDetils(ta.getDETAILS());
+                    if(temp.getDetails() == null) temp.setDetails(ta.getDETAILS());
                     if(temp.getPrice() == 0) temp.setPrice(ta.getPRICE());
 
                     temp.addAccessory(tempAcc);
