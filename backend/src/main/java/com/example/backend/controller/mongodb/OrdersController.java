@@ -44,8 +44,10 @@ public class OrdersController {
                 if (!ordersService.addOrUpdateOrder(order)) {
                     throw new Exception();
                 }
-                if (!mailService.sendMail(order, true)) {
-                    throw new Exception();
+                if (order.getStatus().equals("รอการชำระเงิน")) {
+                    mailService.sendMail(order, true);
+                } else if (order.getStatus().equals("ยกเลิกการดดำเนินการ")) {
+                    mailService.sendMail(order, false);
                 }
                 return new ResponseEntity("Update order status successfully.", HttpStatus.OK);
             } catch (Exception e) {
