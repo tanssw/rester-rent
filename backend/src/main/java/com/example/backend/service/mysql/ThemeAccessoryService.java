@@ -30,12 +30,16 @@ public class ThemeAccessoryService {
     }
 
     // READ
-    public boolean findThemeAccessory(String id) {return !themeAccessoryRepository.findById(id).isEmpty();}
+    public boolean findThemeAccessory(String themeId, String accessoryId) {
+        return !themeAccessoryRepository.findTAById(themeId, accessoryId).isEmpty();}
+
+    public boolean findThemeAccessoryById(String id) {return !themeAccessoryRepository.findById(id).isEmpty();}
+
 
     // Delete
     public boolean deleteThemeAccessory(int themeId, int accessoryId) {
         try {
-            themeAccessoryRepository.deleteTA(themeId, accessoryId);
+            themeAccessoryRepository.deleteTA(Integer.toString(themeId), Integer.toString(accessoryId));
             return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -43,7 +47,7 @@ public class ThemeAccessoryService {
         }
     }
 
-    public boolean deleteTAByThemeId(int themeId) {
+    public boolean deleteTAByThemeId(String themeId) {
         try {
             themeAccessoryRepository.deleteTAByThemeId(themeId);
             return true;
