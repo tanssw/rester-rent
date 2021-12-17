@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class Payments {
     @Id
     private String _id;
-    private LocalDateTime date_time;
+    private String date_time;
     private int amount;
     private String email;
     private boolean status;
@@ -21,7 +21,7 @@ public class Payments {
     public Payments() {
     }
 
-    public Payments(LocalDateTime date_time, int amount, String email, boolean status, String reference, String mail) {
+    public Payments(String date_time, int amount, String email, boolean status, String reference, String mail) {
         this.date_time = date_time;
         this.amount = amount;
         this.email = email;
@@ -30,7 +30,7 @@ public class Payments {
         this.mail = mail;
     }
 
-    public Payments(String _id, LocalDateTime date_time, int amount, String email, boolean status, String reference, String mail) {
+    public Payments(String _id, String date_time, int amount, String email, boolean status, String reference, String mail) {
         this._id = _id;
         this.date_time = date_time;
         this.amount = amount;
@@ -48,11 +48,11 @@ public class Payments {
         this._id = _id;
     }
 
-    public LocalDateTime getDate_time() {
+    public String getDate_time() {
         return date_time;
     }
 
-    public void setDate_time(LocalDateTime date_time) {
+    public void setDate_time(String date_time) {
         this.date_time = date_time;
     }
 
