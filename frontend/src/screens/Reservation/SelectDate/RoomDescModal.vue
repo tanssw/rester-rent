@@ -4,7 +4,9 @@
             <div class="modal-content">
                 <div class="modal-body p-5">
                     <div class="row mb-4">
-                        <div class="col-4"></div>
+                        <div class="col-4">
+                            <img :src="room.image" class="image ratio ratio-4x3 rounded-3"/>
+                        </div>
                         <div class="col-8">
                             <h4>{{room.name}}</h4>
                             <div>ขนาด: {{room.size}}</div>

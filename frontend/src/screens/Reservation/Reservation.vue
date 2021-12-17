@@ -87,7 +87,7 @@ export default {
                 let unreservedRooms = this.allRoom.filter(room => {
                     let reserveRoom = this.orders.filter(order => {
                         let reserveOrderDate = order.start_date.slice(0, 10)
-                        let conditionRoom = room._id == order.details.location
+                        let conditionRoom = room._id == order.details.location.id
                         let conditionDate = reserveOrderDate == reserve.date
                         if(conditionRoom && conditionDate) return order
                     })

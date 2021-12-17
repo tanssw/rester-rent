@@ -2,6 +2,7 @@ package com.example.backend.controller.mysql;
 
 import com.example.backend.controller.mysql.body.ThemeBody;
 import com.example.backend.requestBody.AuthTokenData;
+import com.example.backend.service.mysql.ThemeAccessoryService;
 import com.example.backend.service.mysql.ThemeService;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ public class ThemeController {
 
     @Autowired
     private ThemeService themeService;
+
+    @Autowired
+    private ThemeAccessoryService themeAccessoryService;
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -52,7 +56,7 @@ public class ThemeController {
         AuthTokenData header = new AuthTokenData(token, userId);
         Object auth = rabbitTemplate.convertSendAndReceive("AuthExchange", "auth", header);
         if ((boolean) auth) {
-            if (themeService.findThemeById(Integer.toString(id)) && themeService.deleteByThemeId(id)) {
+            if (themeService.findThemeById(Integer.toString(id)) & themeAccessoryService.deleteTAByThemeId(id) & themeService.deleteByThemeId(id)) {
                 return new ResponseEntity<>("Delete Theme successfully", HttpStatus.OK);
             }
             return new ResponseEntity<>("Something went wrong", HttpStatus.INTERNAL_SERVER_ERROR);
