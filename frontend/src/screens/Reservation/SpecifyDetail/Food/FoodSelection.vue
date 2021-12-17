@@ -2,12 +2,12 @@
     <div class="mb-5">
         <div class="row">
             <div v-for="(food, index) in foods" :key="index" class="col-4">
-                <div @click="viewDetail(food)" :class="{'active': checkSelected(food.id)}" class="food-card rounded-3 cursor-pointer p-4">
+                <div @click="viewDetail(food)" :class="{'active': checkSelected(food.fName)}" class="food-card rounded-3 cursor-pointer p-4">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="row flex-grow-1">
-                            <h5 :class="{'text-emerald': checkSelected(food.id)}"  class="fw-light mb-0">{{food.fname}}</h5>
+                            <h5 :class="{'text-emerald': checkSelected(food.fName)}"  class="fw-light mb-0">{{food.fName}}</h5>
                         </div>
-                        <span v-if="checkSelected(food.id)">
+                        <span v-if="checkSelected(food.fName)">
                             <i class="fas fa-check fa-lg text-emerald"></i>
                         </span>
                         <span v-else>
@@ -36,6 +36,8 @@ import FoodModal from './FoodModal.vue'
 
 import mockedFoods from '@/assets/mock/foods.json'
 
+import axios from 'axios'
+
 export default {
     components: {
         FoodModal
@@ -49,12 +51,12 @@ export default {
     data() {
         return {
             focus: {},
-            foods: mockedFoods
+            foods: []
         }
     },
     methods: {
-        checkSelected(id) {
-            return this.selected.id === id
+        checkSelected(name) {
+            return this.selected.fName === name
         },
         viewDetail(food) {
             this.focus = food
@@ -63,7 +65,17 @@ export default {
         selectFood(food) {
             this.focus = {}
             this.$emit('update:selected', food)
+        },
+        async requestFood() {
+            // Get Foods from backend
+            const path = `${process.env.VUE_APP_API_TARGET}/getFood`
+            const result = await axios.get(path)
+            const foods = result.data
+            return foods
         }
+    },
+    async created() {
+        this.foods = await this.requestFood()
     }
 }
 </script>

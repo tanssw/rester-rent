@@ -3,7 +3,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-body p-5">
-                    <h3 class="mb-4">{{food.fname}}</h3>
+                    <h3 class="mb-4">{{food.fName}}</h3>
                     <div class="mb-4">
                         <h5 class="mb-3">รายการอาหาร</h5>
                         <div class="row">
@@ -16,12 +16,12 @@
                     </div>
                     <div class="mb-5">
                         <h5 class="mb-3">เลือกขนาดที่ต้องการ</h5>
-                        <div v-for="(size, index) in food.sizes" :key="index" class="row align-items-center my-4">
+                        <div v-for="(size, index) in food.options" :key="index" class="row align-items-center my-4">
                             <div class="col fw-bold">{{sizeToText(size.size)}}</div>
                             <div class="col">รองรับได้ {{size.capacity}} คน</div>
                             <div class="col">ราคา {{size.price}} บาท</div>
                             <div class="col-1 text-end">
-                                <label :for="`size-${food.id}-${size.id}`">
+                                <label :for="`size-${food.fName}-${size.id}`">
                                     <span v-if="isChosenSize(size.id)">
                                         <i class="far fa-check-square fa-lg text-emerald"></i>
                                     </span>
@@ -29,7 +29,7 @@
                                         <i class="far fa-square fa-lg text-secondary"></i>
                                     </span>
                                 </label>
-                                <input v-model="selectedSize" :id="`size-${food.id}-${size.id}`" name="size" type="radio" :value="size.id" class="d-none">
+                                <input v-model="selectedSize" :id="`size-${food.fName}-${size.id}`" name="size" type="radio" :value="size.id" class="d-none">
                             </div>
                         </div>
                     </div>
@@ -77,8 +77,8 @@ export default {
         },
         confirmSelect() {
             let food = JSON.parse(JSON.stringify(this.food))
-            food.size = food.sizes.find(size => size.id === this.selectedSize)
-            delete food.sizes
+            food.size = food.options.find(size => size.id === this.selectedSize)
+            delete food.options
             this.$emit('select', food)
             this.modal.hide()
         },
@@ -87,9 +87,10 @@ export default {
         },
         sizeToText(size) {
             switch (size.toLowerCase()) {
-                case 's': return "ขนาดเล็ก"
-                case 'm': return "ขนาดกลาง"
-                case 'l': return "ขนาดใหญ่"
+                case 'small': return "ขนาดเล็ก"
+                case 'medium': return "ขนาดกลาง"
+                case 'large': return "ขนาดใหญ่"
+                case 'extra large': return "ขนาดใหญ่พิเศษ"
             }
         },
         isChosenSize(sizeId) {
