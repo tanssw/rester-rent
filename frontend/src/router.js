@@ -10,7 +10,6 @@ import SignIn from './screens/Admin/SignIn/SignIn.vue'
 import Payment from './screens/Admin/component/Payment.vue'
 import Order from './screens/Admin/component/Order.vue'
 import Theme from './screens/Admin/component/Theme.vue'
-import Food from './screens/Admin/component/Food.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -34,8 +33,7 @@ const router = createRouter({
             children: [
                 { path: 'payment', component: Payment, name: 'payment'},
                 { path: 'order', component: Order, name: 'order'},
-                { path: 'theme', component: Theme, name: 'theme'},
-                { path: 'food', component: Food, name: 'food'},
+                { path: 'theme', component: Theme, name: 'theme'}
             ]
         },
     ]
