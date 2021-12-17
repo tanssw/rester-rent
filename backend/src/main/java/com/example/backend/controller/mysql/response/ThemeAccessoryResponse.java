@@ -7,7 +7,7 @@ public class ThemeAccessoryResponse {
     private String id;
     private String name;
     private String image;
-    private String detils;
+    private String details;
     private int price;
     private List<AccessoryItems> accessories = new ArrayList<>();
 
@@ -18,11 +18,11 @@ public class ThemeAccessoryResponse {
         this.id = id;
     }
 
-    public ThemeAccessoryResponse(String id, String name, String image, String detils, int price, List<AccessoryItems> accessories) {
+    public ThemeAccessoryResponse(String id, String name, String image, String details, int price, List<AccessoryItems> accessories) {
         this.id = id;
         this.name = name;
         this.image = image;
-        this.detils = detils;
+        this.details = details;
         this.price = price;
         this.accessories = accessories;
     }
@@ -55,12 +55,12 @@ public class ThemeAccessoryResponse {
         this.image = image;
     }
 
-    public String getDetils() {
-        return detils;
+    public String getDetails() {
+        return details;
     }
 
-    public void setDetils(String detils) {
-        this.detils = detils;
+    public void setDetails(String details) {
+        this.details = details;
     }
 
     public int getPrice() {
