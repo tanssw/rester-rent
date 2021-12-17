@@ -1,7 +1,7 @@
-package com.example.backend.service;
+package com.example.backend.service.mysql;
 
 import com.example.backend.controller.mysql.body.AccessoryBody;
-import com.example.backend.pojo.Accessory;
+import com.example.backend.pojo.mysql.Accessory;
 import com.example.backend.repository.mysql.AccessoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.example.backend.repository;
+package com.example.backend.repository.mysql;
 
 import com.example.backend.pojo.mysql.Theme;
 import org.springframework.data.jpa.repository.JpaRepository;

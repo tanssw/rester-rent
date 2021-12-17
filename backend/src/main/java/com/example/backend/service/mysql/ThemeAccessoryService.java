@@ -43,5 +43,15 @@ public class ThemeAccessoryService {
         }
     }
 
+    public boolean deleteTAByThemeId(int themeId) {
+        try {
+            themeAccessoryRepository.deleteTAByThemeId(themeId);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
 
 }

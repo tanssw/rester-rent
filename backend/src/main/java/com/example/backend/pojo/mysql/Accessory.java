@@ -1,4 +1,4 @@
-package com.example.backend.pojo;
+package com.example.backend.pojo.mysql;
 
 import javax.persistence.*;
 import java.util.Set;

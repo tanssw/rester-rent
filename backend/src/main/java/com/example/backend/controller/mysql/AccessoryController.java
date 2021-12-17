@@ -2,7 +2,7 @@ package com.example.backend.controller.mysql;
 
 import com.example.backend.controller.mysql.body.AccessoryBody;
 import com.example.backend.requestBody.AuthTokenData;
-import com.example.backend.service.AccessoryService;
+import com.example.backend.service.mysql.AccessoryService;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
