@@ -1,6 +1,6 @@
 <template>
   <div class="row px-3">
-          <div class="col-8 p-5 rounded shadow">
+          <div class="col-12 p-5 rounded shadow">
             <h4>Order รอการดำเนินการ</h4>
             <table class="table is-fullwidth table-fixed">
               <thead class="table-light">
@@ -125,93 +125,6 @@
                   Next
                 </button>
               </div>
-            </div>
-          </div>
-          <div class="col-4 p-4 rounded">
-            <div class="progress">
-              <div
-                class="progress-bar รอการดำเนินการ"
-                role="progressbar"
-                :style="{
-                  width:
-                    (Orders.filter((x) => x.status == 'รอการดำเนินการ').length /
-                      Orders.length) *
-                      100 +
-                    '%',
-                }"
-                :aria-valuenow="
-                  Orders.filter((x) => x.status == 'รอการดำเนินการ').length
-                "
-                aria-valuemin="0"
-                :aria-valuemax="Orders.length"
-              ></div>
-              <div
-                class="progress-bar รอการชำระเงิน"
-                role="progressbar"
-                :style="{
-                  width:
-                    (Orders.filter((x) => x.status == 'รอการชำระเงิน').length /
-                      Orders.length) *
-                      100 +
-                    '%',
-                }"
-                :aria-valuenow="
-                  Orders.filter((x) => x.status == 'รอการชำระเงิน').length
-                "
-                aria-valuemin="0"
-                :aria-valuemax="Orders.length"
-              ></div>
-              <div
-                class="progress-bar ชำระเงินเสร็จสิ้น"
-                role="progressbar"
-                :style="{
-                  width:
-                    (Orders.filter((x) => x.status == 'ชำระเงินเสร็จสิ้น')
-                      .length /
-                      Orders.length) *
-                      100 +
-                    '%',
-                }"
-                :aria-valuenow="
-                  Orders.filter((x) => x.status == 'ชำระเงินเสร็จสิ้น').length
-                "
-                aria-valuemin="0"
-                :aria-valuemax="Orders.length"
-              ></div>
-              <div
-                class="progress-bar ออเดอร์เสร็จสิ้น"
-                role="progressbar"
-                :style="{
-                  width:
-                    (Orders.filter((x) => x.status == 'ออเดอร์เสร็จสิ้น')
-                      .length /
-                      Orders.length) *
-                      100 +
-                    '%',
-                }"
-                :aria-valuenow="
-                  Orders.filter((x) => x.status == 'ออเดอร์เสร็จสิ้น').length
-                "
-                aria-valuemin="0"
-                :aria-valuemax="Orders.length"
-              ></div>
-              <div
-                class="progress-bar ยกเลิกการดำเนินการ"
-                role="progressbar"
-                :style="{
-                  width:
-                    (Orders.filter((x) => x.status == 'ยกเลิกการดำเนินการ')
-                      .length /
-                      Orders.length) *
-                      100 +
-                    '%',
-                }"
-                :aria-valuenow="
-                  Orders.filter((x) => x.status == 'ยกเลิกการดำเนินการ').length
-                "
-                aria-valuemin="0"
-                :aria-valuemax="Orders.length"
-              ></div>
             </div>
           </div>
   </div>
