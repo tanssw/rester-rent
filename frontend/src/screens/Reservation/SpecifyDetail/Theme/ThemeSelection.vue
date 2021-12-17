@@ -62,10 +62,8 @@ export default {
         getItem(themeId) {
             let accessory = this.accessories
             let matchAccessory = accessory.filter(item => {
-                // console.log(item)
                 if(themeId == item.id) return item
             })
-            console.log(matchAccessory[0].accessories)
             return matchAccessory[0].accessories
         },
         openModal(theme) {
