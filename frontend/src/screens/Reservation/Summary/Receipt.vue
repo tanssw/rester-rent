@@ -76,13 +76,8 @@ export default {
             let musicPrice = (spec.music.type === 'audio') ? 0 : spec.music.band.price
 
             let list = []
-<<<<<<< Updated upstream
-            if (this.existing.hasRoom) list.push({title: `ห้อง ${reservation.room.title}`, price: reservation.room.price})
-            if (this.existing.hasTheme) list.push({title: `ธีมงาน ${spec.theme.title}`, price: spec.theme.price})
-=======
             if (this.existing.hasRoom) list.push({title: `ห้อง ${reservation.room.name}`, price: reservation.room.price})
             if (this.existing.hasTheme) list.push({title: `ธีมงาน ${spec.theme.tname}`, price: spec.theme.price})
->>>>>>> Stashed changes
             if (this.existing.hasRoom || this.existing.hasBand) list.push({title: musicTitle, price: musicPrice})
             if (this.existing.hasFood) list.push({title: `ชุดอาหาร ${spec.food.fName}`, price: spec.food.size.price})
 

@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <food-modal ref="foodModal" :food="focus" @select="selectFood" />
+        <food-modal ref="foodModal" :menu="focusItem" :food="focus" @select="selectFood" />
     </div>
 </template>
 <style scoped>
@@ -51,6 +51,7 @@ export default {
     data() {
         return {
             focus: {},
+            focusItem: [],
             foods: []
         }
     },
@@ -60,11 +61,24 @@ export default {
         },
         viewDetail(food) {
             this.focus = food
+            let strMenu = food.menus
+            let arrayMenu = JSON.parse(strMenu)
+            this.focusItem = arrayMenu
             this.$refs.foodModal.toggle()
         },
         selectFood(food) {
             this.focus = {}
+            this.focusItem = []
             this.$emit('update:selected', food)
+        },
+        compareName(a, b) {
+            if ( a.fName < b.fName ){
+                return -1;
+            }
+            if ( a.fName > b.fName ){
+                return 1;
+            }
+            return 0;
         },
         async requestFood() {
             // Get Foods from backend
@@ -76,6 +90,7 @@ export default {
     },
     async created() {
         this.foods = await this.requestFood()
+        this.foods.sort(this.compareName)
     }
 }
 </script>

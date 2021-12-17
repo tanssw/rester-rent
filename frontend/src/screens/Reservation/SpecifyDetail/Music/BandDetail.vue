@@ -44,6 +44,8 @@ import axios from 'axios'
 
 import BandModal from './BandModal.vue'
 
+import mockedMusics from '@/assets/mock/musics.json'
+
 export default {
     components: {
         BandModal
@@ -62,7 +64,7 @@ export default {
     data() {
         return {
             focus: {},
-            bands: {},
+            bands: mockedMusics
         }
     },
     computed: {

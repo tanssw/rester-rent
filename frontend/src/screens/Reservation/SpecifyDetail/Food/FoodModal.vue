@@ -7,7 +7,7 @@
                     <div class="mb-4">
                         <h5 class="mb-3">รายการอาหาร</h5>
                         <div class="row">
-                            <div v-for="(menu, index) in food.menu" :key="index" class="col-6">
+                            <div v-for="(menu, index) in menu" :key="index" class="col-6">
                                 <div class="py-2">
                                     <span class="fw-light">— {{ menu }}</span>
                                 </div>
@@ -53,6 +53,9 @@ export default {
     props: {
         food: {
             type: Object
+        },
+        menu: {
+            type: Array
         }
     },
     data() {
