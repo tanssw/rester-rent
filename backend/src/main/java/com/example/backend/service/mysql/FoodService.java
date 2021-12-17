@@ -28,11 +28,24 @@ public class FoodService {
     //    READ
     public List<Food> allFood() {return foodRepository.findAll();}
 
+    public boolean findFoodById(String id) {
+        return !foodRepository.findById(id).isEmpty();}
+
 
     //    UPDATE
-    public boolean updateFoodDataById(int id, FoodBody item) {
+    public boolean updateFoodDataByName(String name, FoodBody item) {
         try {
-            foodRepository.changeFoodById(item.getFname(), item.getCapacity(), item.getSize(), item.getMenus().toString(), item.getPrice(), id);
+            foodRepository.changeFoodDataByName(item.getFname(), item.getMenus(), name);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean updateFoodOptionById(int id, FoodBody item) {
+        try {
+            foodRepository.changeFoodOptionById(item.getCapacity(), item.getSize(), item.getPrice(), id);
             return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
