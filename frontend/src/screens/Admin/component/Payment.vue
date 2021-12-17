@@ -1,5 +1,4 @@
 <template>
-
   <div>
           <div class="col-11 mx-5 p-5 rounded shadow">
             <div class="row justify-content-between">
@@ -24,8 +23,9 @@
               <table class="table is-fullwidth table-fixed">
                 <thead class="table-light">
                   <tr>
-                    <th scope="col">Order#</th>
                     <th scope="col">Payment#</th>
+                    <th scope="col">Content</th>
+                    <th scope="col">Amount</th>
                     <th scope="col">
                         Date
                         <button type="button" class="btn btn-sm" @click="sortDate()">
@@ -51,16 +51,17 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <template v-for="payment in PaymentResult" :key="payment.no">
+                  <template v-for="(payment, index) in PaymentResult" :key="index">
                     <tr>
-                      <td>{{ payment.no }}</td>
-                      <td>{{ payment.proof_of_payment }}</td>
-                      <td>{{ dateFormat(payment.date) }}</td>
+                      <td>{{ payment.reference}}</td>
+                      <td>{{ payment.mail }}</td>
+                      <td>{{ payment.amount }}</td>
+                      <td>{{ dateFormat(payment.date_time) }}</td>
                       <td class="d-grid gap-2 d-md-flex">
                         <button
                           type="button"
                           class="btn btn-success btn-sm px-1 rounded"
-                          @click="showModal(payment.no)"
+                          @click="showModal(payment.reference)"
                           v-if="!payment.status"
                           data-bs-toggle="modal"
                           data-bs-target="#myModal"
@@ -131,12 +132,18 @@
 </style>
 
 <script>
-import Payment from "../dummy_data/Payment.js";
+import axios from 'axios';
 import dayjs from "dayjs";
 export default {
   data() {
     return {
-      Payments: Payment,
+      header:{
+        headers: {
+            token: localStorage.getItem('RR-Token'),
+            userId: localStorage.getItem('RR-UID')
+        }
+      },
+      Payments: [],
       sortByDate: false,
       sortByStatus: false,
       searchText: "",
@@ -148,11 +155,13 @@ export default {
   },
   computed: {
     PaymentResult() {
-      return this.Payments.filter((x) => {
-        if (x.proof_of_payment.includes(this.searchText) || x.no.includes(this.searchText)) {
-          return x;
-        }
-      });
+      if (this.Payments != []){
+        return this.Payments.filter((x) => {
+          if ( x.reference.includes(this.searchText) || x.mail.includes(this.searchText)) {
+            return x;
+          }
+        });
+      }
     }
   },
   methods: {
@@ -217,17 +226,34 @@ export default {
     search() {
       console.log(this.searchText);
     },
-    confirmPayment(no) {
-      console.log(no);
-      this.notify = no;
-      this.Payments.map((x) => {
-        if (x.no == no){
+    confirmPayment(reference) {
+      this.notify = reference;
+      this.Payments.map(async(x) => {
+        if (x.reference == reference){
+          await this.updatePayment(x);
           x.status = true;
         }
       })
     },
     dateFormat(date){
-        return dayjs(date).format("MM/DD/YYYY HH:mm");
+        return date;
+    },
+    async getPayment(){
+      const path = `${process.env.VUE_APP_API_TARGET}/getPayment`;
+      const result = await axios.get(path);
+      const data = result.data;
+      this.Payments = data;
+    },
+    async updatePayment(x){
+        var data = x;
+        data.status = true;
+        try {
+            const path = `${process.env.VUE_APP_API_TARGET}/updPayment`;
+            const result = await axios.patch(path, data, this.header);
+            await this.requestAccessory();
+        } catch(error) {
+            this.checkUnauthorized(error)
+        }
     }
   },
   mounted() {
@@ -239,5 +265,8 @@ export default {
         delay: 3000
     });
   },
+  async created() {
+    await this.getPayment();
+  }
 };
 </script>
