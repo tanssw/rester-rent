@@ -25,8 +25,11 @@ public class ThemeService {
             return false;
         }
     }
+
     //    READ
     public List<Theme> allTheme() {return themeRepository.findAll();}
+
+    public List<Theme> afterAdd() {return themeRepository.findThemeThatNotExistInThemeAccessory();}
 
     public boolean findThemeById(String id) {return !themeRepository.findById(id).isEmpty();}
 

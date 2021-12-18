@@ -31,7 +31,7 @@ public class ThemeController {
         Object auth = rabbitTemplate.convertSendAndReceive("AuthExchange", "auth", header);
         if ((boolean) auth) {
             if (themeService.addTheme(themeBody)) {
-                return new ResponseEntity<>("Add Theme successfully.", HttpStatus.OK);
+                return new ResponseEntity<>(themeService.afterAdd(), HttpStatus.OK);
             }
             return new ResponseEntity<>("Something went wrong.", HttpStatus.INTERNAL_SERVER_ERROR);
         }

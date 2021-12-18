@@ -12,6 +12,11 @@ public interface ThemeRepository extends JpaRepository<Theme, String> {
 
     @Transactional
     @Modifying
+    @Query(value="SELECT * FROM THEME LEFT JOIN THEME_ACCESSORY ON THEME.ID = THEME_ACCESSORY.THEME_ID WHERE THEME_ACCESSORY.THEME_ID IS NULL", nativeQuery = true)
+    List<Theme> findThemeThatNotExistInThemeAccessory();
+
+    @Transactional
+    @Modifying
     @Query(value = "UPDATE THEME SET TNAME=?1, PRICE=?2, IMAGE=?3, DETAILS=?4 WHERE ID=?5", nativeQuery = true)
     void changeThemeById(String name, int price, String image, String details, int id);
 
