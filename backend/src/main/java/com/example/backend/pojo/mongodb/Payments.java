@@ -13,7 +13,6 @@ public class Payments {
     private String _id;
     private String date_time;
     private int amount;
-    private String email;
     private boolean status;
     private String reference;
     private String mail;
@@ -21,20 +20,18 @@ public class Payments {
     public Payments() {
     }
 
-    public Payments(String date_time, int amount, String email, boolean status, String reference, String mail) {
+    public Payments(String date_time, int amount, boolean status, String reference, String mail) {
         this.date_time = date_time;
         this.amount = amount;
-        this.email = email;
         this.status = status;
         this.reference = reference;
         this.mail = mail;
     }
 
-    public Payments(String _id, String date_time, int amount, String email, boolean status, String reference, String mail) {
+    public Payments(String _id, String date_time, int amount, boolean status, String reference, String mail) {
         this._id = _id;
         this.date_time = date_time;
         this.amount = amount;
-        this.email = email;
         this.status = status;
         this.reference = reference;
         this.mail = mail;
@@ -62,14 +59,6 @@ public class Payments {
 
     public void setAmount(int amount) {
         this.amount = amount;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public boolean isStatus() {

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrdersService {
@@ -26,6 +27,16 @@ public class OrdersService {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
+        }
+    }
+
+    public void updateOrderStatus(String mail, int income) {
+        try {
+            Orders updOrder = ordersRepository.findOrderByMailAndAmount(mail, income);
+            updOrder.setStatus("ชำระเงินเสร็จสิ้น");
+            ordersRepository.save(updOrder);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 

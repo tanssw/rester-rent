@@ -3,6 +3,7 @@ package com.example.backend.controller.mongodb;
 import com.example.backend.pojo.mongodb.Payments;
 import com.example.backend.requestBody.AuthTokenData;
 import com.example.backend.service.mongodb.MailService;
+import com.example.backend.service.mongodb.OrdersService;
 import com.example.backend.service.mongodb.PaymentsService;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class PaymentsController {
 
     @Autowired
     private PaymentsService paymentsService;
+
+    @Autowired
+    private OrdersService ordersService;
 
     @Autowired
     private MailService mailService;
@@ -42,6 +46,9 @@ public class PaymentsController {
                     throw new Exception();
                 }
                 if (payments.isStatus()) {
+                    System.out.println(payments);
+                    System.out.println(payments.getMail() + " " + payments.getAmount());
+                    ordersService.updateOrderStatus(payments.getMail(), payments.getAmount());
                     mailService.sendMail(payments, true);
                 }
                 return new ResponseEntity("Update payment successfully.", HttpStatus.OK);
