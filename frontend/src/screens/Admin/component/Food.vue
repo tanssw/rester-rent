@@ -21,8 +21,12 @@
                 <template v-if= "showMenu[index]">
                     <div class="p-2">
                         <h6>Menu</h6>
-                        <div class="p-1">
-                            <span>{{set.menus}}</span>
+                        <div class="p-1 col-11">
+                            <template v-for= "(item, indexItem) in JSON.parse(set.menus)" :key="indexItem">
+                                <div class="col-8 mx-3">
+                                    <span> - {{ item }}</span>
+                                </div>
+                            </template>
                         </div>
                     </div>
                 </template>
@@ -39,6 +43,7 @@
                                 <div class="input-group justify-content-end"> 
                                     <input type="number" class="form-control-plaintext" id="size" 
                                         :value= "this.setSize[index][option.initial].size"
+                                        @change= "setSize[index][option.initial].size = $event.target.value"
                                         style="width: 3.5vw;"
                                     >
                                     <span class="float-end">
@@ -51,6 +56,7 @@
                                     <div class="input-group justify-content-end"> 
                                     <input type="number" class="form-control-plaintext" id="size" 
                                         :value= "this.setSize[index][option.initial].price"
+                                        @change= "setSize[index][option.initial].price = $event.target.value"
                                         style="width: 3.5vw;"
                                     >
                                     <span class="float-end">
@@ -74,13 +80,15 @@
                         </div>
                         </template>
                         <div class="col-3 align-items-center" :class= "!editable ? 'invisible':''" >
-                            <a v-if= "!true" class="btn btn-outline-info p-1"
+                            <a v-if= "!this.setSize[index][option.initial].status" class="btn btn-outline-info p-1"
                                 @click= "addSize(option.size, set)"
                             >
                                 <span> Add </span>
                             </a>
                             <div class="btn-group" role="group" aria-label="First group" v-else>
-                                <a class="btn btn-outline-info"><i class="fas fa-pen"></i></a>
+                                <a class="btn btn-outline-info" @click= "editSize(setSize[index][option.initial], set, option.size)">
+                                    <i class="fas fa-pen"></i>
+                                </a>
                                 <a class="btn btn-outline-danger" @click= "delSize(setSize[index][option.initial].id)">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
@@ -148,7 +156,7 @@ export default {
       this.FoodSet = food;
       await this.setFoodData(food.length);
     },
-    async addSize(size){
+    async addSize(size, food){
         try {
             const path = `${process.env.VUE_APP_API_TARGET}/addFood`;
             const data = {
@@ -158,6 +166,7 @@ export default {
                 "price": 0,
                 "size": size
             }
+            console.log(data)
             const result = await axios.patch(path, data, this.header);
             await this.getFood();
         } catch(error) {
@@ -168,6 +177,23 @@ export default {
         try {
             const path = `${process.env.VUE_APP_API_TARGET}/delFood/${id}`;
             const result = await axios.delete(path, this.header);
+            await this.getFood();
+        } catch(error) {
+            this.checkUnauthorized(error)
+        }
+    },
+    async editSize(food, set, size){
+        try {
+            const path = `${process.env.VUE_APP_API_TARGET}/updFoodOption/${food.id}`;
+            const data = {
+                "id": food.id,
+                "fname": set.fName,
+                "menus": set.menus,
+                "capacity": food.size,
+                "price": food.price,
+                "size": size
+            }
+            const result = await axios.patch(path, data, this.header);
             await this.getFood();
         } catch(error) {
             this.checkUnauthorized(error)
