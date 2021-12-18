@@ -79,13 +79,8 @@ export default {
                 {
                     title: 'Theme',
                     pathName: 'theme',
-                    icon: 'fas fa-boxes'
+                    icon: 'fas fa-money-check-alt'
                 },
-                {
-                    title: "Food",
-                    pathName: 'food',
-                    icon: 'fas fa-utensils'
-                }
             ]
         }
     },
