@@ -6,7 +6,7 @@
               <thead class="table-light">
                 <tr>
                   <th scope="col">Order#</th>
-                  <th scope="col">Context</th>
+                  <th scope="col">Contact</th>
                   <th scope="col">Total</th>
                   <th scope="col">Details</th>
                   <th scope="col">Actions</th>
@@ -20,11 +20,11 @@
                     pageOrderWait * perPage - perPage,
                     pageOrderWait * perPage
                   )"
-                  :key="order.id"
+                  :key="order._id"
                 >
                   <tr>
-                    <th scope="row">{{ order.id }}</th>
-                    <td>{{ order.content }}</td>
+                    <th scope="row">{{ order._id }}</th>
+                    <td>{{ order.mail }}</td>
                     <td>{{ "$" + order.income.toFixed(2).toString() }}</td>
                     <td>
                       <button
@@ -32,6 +32,7 @@
                         class="btn btn-primary btn-sm px-4 rounded-pill"
                         data-bs-toggle="modal"
                         data-bs-target="#myModal"
+                        @click= "showModal(order)"
                       >
                         View Details
                       </button>
@@ -138,7 +139,7 @@
               <thead class="table-light">
                 <tr>
                   <th scope="col">Order#</th>
-                  <th scope="col">Context</th>
+                  <th scope="col">Contact</th>
                   <th scope="col" width="20%">Status</th>
                   <th scope="col">Total</th>
                   <th scope="col">Details</th>
@@ -153,8 +154,8 @@
                   :key="order.id"
                 >
                   <tr>
-                    <th scope="row">{{ order.id }}</th>
-                    <td>{{ order.content }}</td>
+                    <th scope="row">{{ order._id }}</th>
+                    <td>{{ order.mail }}</td>
                     <td>
                       <span class="badge rounded-pill" :class="order.status">
                         <span class="dot" />
@@ -168,6 +169,7 @@
                         class="btn btn-primary btn-sm px-4 rounded-pill"
                         data-bs-toggle="modal"
                         data-bs-target="#myModal"
+                        @click= "showModal(order)"
                       >
                         View Details
                       </button>
@@ -240,7 +242,18 @@
             <div class="modal-content">
               <div class="modal-body">
                 <h4>Detail Orders</h4>
-                <span> Theme, Music, Food </span>
+                <div class="col-12">
+                  <div class="row"> 
+                    <div class="col-8">
+                      <h6>{{ "Customer Name: "+modalDetail.fullname }}</h6>
+                    </div>
+                    <div class="col-8">
+                      <h6>{{ "Price: "+modalDetail.income+"$" }}</h6>
+                    </div>
+                  </div>
+                  <h6>{{ "Start time: "+ modalDetail.start_date }} </h6>
+                  <h6>{{ "End time: "+ modalDetail.end_date }}</h6>
+                </div>
               </div>
             </div>
           </div>
@@ -264,11 +277,18 @@
 
 <script>
 import Order from "../dummy_data/Orders.js";
+import axios from 'axios';
 export default {
   data() {
     return {
+      header:{
+        headers: {
+          token: localStorage.getItem('RR-Token'),
+          userId: localStorage.getItem('RR-UID')
+        }
+      },
       Orders: Order,
-      modalDetail: [],
+      modalDetail: {},
       modal: null,
       pageOrder: 1,
       perPage: 4,
@@ -277,9 +297,14 @@ export default {
     };
   },
   methods: {
-    showModal(detailData) {
-      this.modalDetail = detailData;
-      this.modal.toggle();
+    async getOrders(){
+      const path = `${process.env.VUE_APP_API_TARGET}/getOrder`;
+      const result = await axios.get(path);
+      const data = result.data;
+      this.Orders = data;
+    },
+    showModal(order) {
+      this.modalDetail = order;
     },
     pageOrderSelect(num) {
       if (!num) {
@@ -299,11 +324,27 @@ export default {
         this.pageOrderWait++;
       }
     },
-    confirmOrder(order) {
-      console.log("confirm Order ID: " + order.id);
+    async confirmOrder(order) {
+        var data = order;
+        data.status = "รอการชำระเงิน";
+        try {
+            const path = `${process.env.VUE_APP_API_TARGET}/updOrder`;
+            const result = await axios.patch(path, data, this.header);
+            await this.requestAccessory();
+        } catch(error) {
+            this.checkUnauthorized(error)
+        }
     },
-    rejectOrder(order) {
-      console.log("reject Order ID: " + order.id);
+    async rejectOrder(order) {
+      var data = order;
+        data.status = "ยกเลิกการดำเนินการ";
+        try {
+            const path = `${process.env.VUE_APP_API_TARGET}/updOrder`;
+            const result = await axios.patch(path, data, this.header);
+            await this.requestAccessory();
+        } catch(error) {
+            this.checkUnauthorized(error)
+        }
     },
   },
   mounted() {
@@ -311,5 +352,8 @@ export default {
       keyboard: false,
     });
   },
+  async created() {
+      await this.getOrders();
+  }
 };
 </script>

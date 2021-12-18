@@ -24,7 +24,7 @@
                 <thead class="table-light">
                   <tr>
                     <th scope="col">Payment#</th>
-                    <th scope="col">Content</th>
+                    <th scope="col">Contact</th>
                     <th scope="col">Amount</th>
                     <th scope="col">
                         Date
