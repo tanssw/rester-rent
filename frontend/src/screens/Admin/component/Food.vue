@@ -108,19 +108,6 @@
     </div>
     </div>
   </div>
-  <div id="myModal" class="modal fade" role="dialog">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-body">
-                  <h4>Are you sure to Delete this Menu?</h4>
-              </div>
-              <div class="modal-footer justify-content-end align-items-center">
-                  <button class="btn px-2" data-bs-dismiss="modal">cancle</button>
-                  <button @click= "deleteFood" class="btn btn-danger px-5 ">Delete</button>
-              </div>
-            </div>
-          </div>
-    </div>
 </template>
 
 <script>
@@ -144,7 +131,6 @@ export default {
           {size: "Extra Large", initial: "XL"},
       ],
       editable: false,
-      modal: null
     };
   },
   methods: {
@@ -218,12 +204,7 @@ export default {
   },
   async created() {
     await this.getFood();
-  },
-  mounted() {
-    this.modal = new bootstrap.Modal(document.getElementById("myModal"), {
-      keyboard: false,
-    });
-  },
+  }
 };
 </script>
 
